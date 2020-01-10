@@ -1,0 +1,135 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+*:before, *:after {
+  box-sizing: border-box;
+}
+
+.header-paralax {
+    background-image: url('../img/frenteCerestLarge.jpg');
+    background-size: cover;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+
+}
+
+.header-paralax h1 {
+    text-align: center;
+    color: white;
+    text-shadow: 2px 3px 1px #000;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 20px;
+    font-size: 50px;
+    padding: 210px 0;
+}
+
+main {
+    background: white;
+    position: relative;
+    top: 600px;
+    font-family: 'Raleway', sans-serif;
+}
+
+main .content {
+    margin: auto;
+    padding: 0 20px;
+ }
+
+main h1 {
+    padding: 50px 0;
+    text-align: left;
+}
+
+main p {
+    padding: 20px 0;
+    text-align: justify;
+    margin: 0;
+}
+
+.menu{
+    color: #dbe4d2;
+}
+
+.zoom {
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  transform: scale(1.1); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.equipe{
+    width:45% !important;
+    height:250px !important;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  padding: 0 4px;
+}
+
+/* Create four equal columns that sits next to each other */
+.column {
+  -ms-flex: 33.3%; /* IE10 */
+  flex: 33.3%;
+  max-width: 33.3%;
+  padding: 0 4px;
+}
+
+.column img {
+  margin-top: 8px;
+  vertical-align: middle;
+  width: 100%;
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+@media screen and (max-width: 800px) {
+  .column {
+    -ms-flex: 50%;
+    flex: 50%;
+    max-width: 50%;
+  }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column {
+    -ms-flex: 100%;
+    flex: 100%;
+    max-width: 100%;
+  }
+}
+.row .column p{
+    margin: 0 auto;
+    line-height: 1px;
+    text-align: justify;
+}
+
+.atendimento{
+    align-content: center;
+    align-self: center;
+}
+
+.descricaoImagem{
+    font-size: 0.9em;
+}
+
+.itensAtendimento{
+    text-align: left;
+    margin-left: 10%;
+}
+
+.abrangencia{
+    width: 80%;
+}
+
+.text-container{
+    display:none;
+}
