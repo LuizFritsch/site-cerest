@@ -3,54 +3,60 @@
   margin: 0;
   padding: 0;
 }
+
 *:before, *:after {
   box-sizing: border-box;
 }
 
+html{
+  scroll-behavior: smooth;
+}
+
 .header-paralax {
-    background-image: url('../img/frenteCerestLarge.jpg');
-    background-size: cover;
-    width: 100vw;
-    height: 100vh;
-    position: fixed;
+  background-image: url('../img/frenteCerestLarge.jpg');
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
 
 }
 
 .header-paralax h1 {
-    text-align: center;
-    color: white;
-    text-shadow: 2px 3px 1px #000;
-    font-family: 'Raleway', sans-serif;
-    letter-spacing: 20px;
-    font-size: 50px;
-    padding: 210px 0;
+  text-align: center;
+  color: white;
+  text-shadow: 2px 3px 1px #000;
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 20px;
+  font-size: 50px;
+  padding: 210px 0;
 }
 
 main {
-    background: white;
-    position: relative;
-    top: 600px;
-    font-family: 'Raleway', sans-serif;
+  background: white;
+  position: relative;
+  top: 600px;
+  font-family: 'Raleway', sans-serif;
+  margin: auto;
 }
 
 main .content {
-    margin: auto;
-    padding: 0 20px;
+  margin: auto;
+  padding: 0 20px;
  }
 
 main h1 {
-    padding: 50px 0;
-    text-align: left;
+  padding: 50px 0;
+  text-align: left;
 }
 
 main p {
-    padding: 20px 0;
-    text-align: justify;
-    margin: 0;
+  padding: 20px 0;
+  text-align: justify;
+  margin: 0;
 }
 
 .menu{
-    color: #dbe4d2;
+  color: #dbe4d2;
 }
 
 .zoom {
@@ -63,8 +69,8 @@ main p {
 }
 
 .equipe{
-    width:45% !important;
-    height:250px !important;
+  width:45% !important;
+  height:250px !important;
 }
 
 .row {
@@ -92,44 +98,196 @@ main p {
 /* Responsive layout - makes a two column-layout instead of four columns */
 @media screen and (max-width: 800px) {
   .column {
-    -ms-flex: 50%;
-    flex: 50%;
-    max-width: 50%;
+  -ms-flex: 50%;
+  flex: 50%;
+  max-width: 50%;
   }
 }
 
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 600px) {
   .column {
-    -ms-flex: 100%;
-    flex: 100%;
-    max-width: 100%;
+  -ms-flex: 100%;
+  flex: 100%;
+  max-width: 100%;
   }
 }
+
 .row .column p{
-    margin: 0 auto;
-    line-height: 1px;
-    text-align: justify;
+  margin: 0 auto;
+  line-height: 1px;
+  text-align: justify;
 }
 
 .atendimento{
-    align-content: center;
-    align-self: center;
+  align-content: center;
+  align-self: center;
 }
 
 .descricaoImagem{
-    font-size: 0.9em;
+  font-size: 0.9em;
 }
 
 .itensAtendimento{
-    text-align: left;
-    margin-left: 10%;
+  text-align: left;
+  margin-left: 10%;
 }
 
 .abrangencia{
-    width: 80%;
+  width: 80%;
 }
 
 .text-container{
-    display:none;
+  display:none;
+}
+
+.scrollToTop{
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  font-size: 12px;
+  padding: 1em;
+  display: none;  
+  color: black;
+}
+.navbar .in .nav li {
+   display: block;
+   float: none;
+   width:100%;
+}
+
+.logo img{
+  max-width: 220px !important;
+  height: 150px !important;
+  width: auto;
+  height: auto;
+}
+
+
+.just-padding {
+}
+
+.just-padding a{
+  color: black;
+}
+
+.list-group.list-group-root {
+  padding: 0;
+  overflow: hidden;
+}
+
+.list-group.list-group-root .list-group {
+  margin-bottom: 0;
+}
+
+.list-group.list-group-root .list-group-item {
+  border-radius: 0;
+  border-width: 1px 0 0 0;
+}
+
+.list-group.list-group-root > .list-group-item:first-child {
+  border-top-width: 0;
+}
+
+.list-group.list-group-root > .list-group > .list-group-item {
+  padding-left: 30px;
+}
+
+.list-group.list-group-root > .list-group > .list-group > .list-group-item {
+  padding-left: 45px;
+}
+
+.list-group-item .glyphicon {
+  margin-right: 5px;
+}
+
+.membros li{
+  padding-left: 30px;
+  display: table;
+}
+
+.conselho-gestor-cerest ul{
+  padding: 0px;
+}
+
+a.list-group-item{
+  text-decoration: none;
+}
+
+.fa-instagram {
+  background: #125688;
+  color: white;
+}
+
+.fa-linkedin {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-google {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa:hover {
+  opacity: 0.7;
+}
+
+.fa {
+  padding: 20px;
+  font-size: 30px;
+  width: 50px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+}
+
+.map-responsive{
+  
+}
+
+.map-responsive iframe{
+  float: left;
+  width: 400px;
+  height: 400px;
+  max-width: 400px;
+  max-height: 400px;
+  width: 100%;
+  height: 100%;
+}
+
+.info-contato{
+  float: left;
+}
+
+.conteudo-direita{
+ 
+
+  float:left;
+  width: auto;
+  min-height: 300px;
+  max-width: 400px;
+  padding-bottom: auto;
+}
+
+.shc {
+    /*remove a margem das colunas e row*/
+    margin: 0;
+    padding: 0;
+}
+
+/*fixa altura dos elementos que dividem o espaço*/
+#dados-devedor, #dados-contrato {
+    height: 250px;
+}
+
+#dados-devedor {
+}
+#dados-contrato {
+}
+
+#eventos {
+    height: 500px; /*fixa altura do elemento que fica direita*/
 }
