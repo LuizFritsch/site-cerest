@@ -9,11 +9,12 @@
 			<div class="content text-break">
 				<h1 class="text-justify">Abrangência do CEREST OESTE:</h1>
 				<p class="text-justify"></p>
-				<div class="abrangencia text-center">
+				<div class="atendimento text-center">
 					<img alt="mapa de abrangencia do cerest oeste" src="./img/mapaAbrangencia.png" class="zoom responsive img-fluid">
 					<p class="text-center descricaoImagem"><strong>Mapa de abrangência do CEREST OESTE.</strong></p>
 				</div>
-				<p>
+				
+				<p id="nuc">
 					<strong>
 					Núcleos Municipais em Saúde do Trabalhador:
 					</strong>
@@ -36,11 +37,11 @@
 					<div class="col-4">
 						<div class="list-group" id="list-tab" role="tablist">
 							
-							<a class="list-group-item list-group-item-action active " id="alegrete-list" data-toggle="list" href="#list-alegrete" role="tab" aria-controls="alegrete">Alegrete</a>
+							<a class="list-group-item list-group-item-action active scrollNucleo" id="alegrete-list" data-toggle="list" href="#list-alegrete" role="tab" aria-controls="alegrete">Alegrete</a>
 
 							<a class="list-group-item list-group-item-action disabled">Barra do Quaraí</a>
 
-							<a class="list-group-item list-group-item-action" id="itaqui-list" data-toggle="list" href="#list-itaqui" role="tab" aria-controls="itaqui">Itaqui</a>
+							<a class="list-group-item list-group-item-action scrollNucleo" id="itaqui-list" data-toggle="list" href="#list-itaqui" role="tab" aria-controls="itaqui">Itaqui</a>
 
 							<a class="list-group-item list-group-item-action disabled">Maçambará</a>
 
@@ -48,7 +49,7 @@
 
 							<a class="list-group-item list-group-item-action disabled">Quaraí</a>
 
-							<a class="list-group-item list-group-item-action" id="rosario-list" data-toggle="list" href="#list-rosario" role="tab" aria-controls="rosario">Rosário do Sul</a>
+							<a class="list-group-item list-group-item-action scrollNucleo" id="rosario-list" data-toggle="list" href="#list-rosario" role="tab" aria-controls="rosario">Rosário do Sul</a>
 
 							<a class="list-group-item list-group-item-action disabled">Santa Margarida do Sul</a>
 

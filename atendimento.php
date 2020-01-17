@@ -15,7 +15,7 @@
 					<img alt="pessoa sendo atendida no cerest" src="./img/atendimento.jpg" class="zoom responsive img-fluid">
 					<p class="text-center descricaoImagem"><strong>Horário de atendimento: De segunda a sexta, das 08 às 12h e das 14 às 18h.</strong></p>
 				</div>
-				<p><strong>Tenha os seguintes documentos em mãos para ser atendido(a):</strong></p>
+				<p>Tenha os seguintes documentos em mãos para ser atendido(a):</p>
 				<div class="itensAtendimento">
 					<ul>
 						<li>
