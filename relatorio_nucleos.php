@@ -25,15 +25,26 @@
 							<input type="text" class="form-control" id="inputCNES" placeholder="Digite o Nº CNES do Núcleos">
 						</div>
 						<hr>
+						<h4>Realização de Notificações</h4>
 						<div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAtencaoBasica" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Dropdown button
+							Atenção Básica
 							</button>
 							<div class="dropdown-menu" aria-labelledby="dropdownAtencaoBasica">
-								<a class="dropdown-item" href="#">Action</a>
-								<a class="dropdown-item" href="#">Another action</a>
-								<a class="dropdown-item" href="#">Something else here</a>
+								<a class="dropdown-item">Sim</a>
+								<a class="dropdown-item" href="#">Não</a>
 							</div>
+						</div>
+						<br>
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAtencaoBasica" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Pronto Socorro
+							</button>
+							<div class="dropdown-menu" aria-labelledby="dropdownProntoSocorro">
+								<a class="dropdown-item">Sim</a>
+								<a class="dropdown-item" href="#">Não</a>
+							</div>
+						
 						</div>
 
 						<div class="form-row">
