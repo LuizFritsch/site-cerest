@@ -26,6 +26,35 @@
 						</div>
 						<hr>
 						<h4>Realização de Notificações</h4>
+						<div class="form-group">
+							<label for="selectAtencaoBasica">Atenção Básica:</label>
+							<select class="form-control" id="selectAtencaoBasica">
+								<option>Sim</option>
+								<option>Não</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="selectProntoSocorro">Pronto Socorrro</label>
+							<select class="form-control" id="selectProntoSocorro">
+								<option>Sim</option>
+								<option>Não</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="selectHospital">Hospital</label>
+							<select class="form-control" id="selectHospital">
+								<option>Sim</option>
+								<option>Não</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="selectServicosEspecializados">Serviços Especializados</label>
+							<select class="form-control" id="selectServicosEspecializados">
+								<option>Sim</option>
+								<option>Não</option>
+							</select>
+						</div>
+						<!--
 						<div class="dropdown">
 							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownAtencaoBasica" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 							Atenção Básica
@@ -44,9 +73,9 @@
 								<a class="dropdown-item">Sim</a>
 								<a class="dropdown-item" href="#">Não</a>
 							</div>
-						
+							
 						</div>
-
+						-->
 						<div class="form-row">
 							<div class="form-group col-md-6">
 								<label for="inputCity">Cidade</label>
