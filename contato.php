@@ -7,15 +7,15 @@
 		<?php include 'header.html'; ?>
 		<main>
 			<div class="content text-break">
-				<h1 class="text-justify">Contato</h1>
-				<div class="row shc">
-					<div class="col-md-6 shc">
-						<div id="eventos" class="map-responsive conteudo-esquerda">
-							<iframe frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJZXorz9a5qpURo5A4CfmJPTA&key=AIzaSyCuvWK_Fgh2Ki_ljWs940PgnMK0n51AIhg" allowfullscreen></iframe>
+				<h1 id="t" class="text-justify">Contato</h1>
+				<div class="container">
+					<div class="row">
+						<div class="col-sm">
+							<div id="eventos" class="map-responsive" align="center">
+								<iframe align="middle" width="500" height="350" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJZXorz9a5qpURo5A4CfmJPTA&key=AIzaSyCuvWK_Fgh2Ki_ljWs940PgnMK0n51AIhg" allowfullscreen></iframe>
+							</div>
 						</div>
-					</div>
-					<div class="col-md-6 shc">
-						<div id="eventos" class="conteudo-direita">
+						<div class="col-sm">
 							<h3>Informações para contato:</h3>
 							<p>Endereço:<br>
 								Rua Marechal Floreano, 179<br>

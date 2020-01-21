@@ -7,7 +7,7 @@
 		<?php include 'header.html'; ?>
 		<main>
 			<div class="content text-break">
-				<h1 class="text-justify">Abrangência do CEREST OESTE:</h1>
+				<h1 id="t" class="text-justify">Abrangência do CEREST OESTE:</h1>
 				<p class="text-justify"></p>
 				<div class="atendimento text-center">
 					<img alt="mapa de abrangencia do cerest oeste" src="./img/mapaAbrangencia.png" class="zoom responsive img-fluid">

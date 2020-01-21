@@ -245,11 +245,14 @@ a.list-group-item{
 }
 
 .map-responsive{
-  
+  align-content: center;
+  align-items: center;
+  align-self: center;
+  text-align: center;
 }
 
 .map-responsive iframe{
-  float: left;
+  float: center !important;
   width: 400px;
   height: 400px;
   max-width: 400px;
@@ -260,6 +263,16 @@ a.list-group-item{
 
 .info-contato{
   float: left;
+}
+
+.conteudo-esquerda{
+  width: 100vw;
+  height: 100vh;
+  background: #6C7A89;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center
 }
 
 .conteudo-direita{
@@ -357,7 +370,8 @@ div.desc {
 }
 
 .clearfix:after {
-  content: "";
-  display: table;
+  content: ""
+;  display: table;
   clear: both;
 }
+

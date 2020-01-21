@@ -7,7 +7,7 @@
 		<?php include 'header.html'; ?>
 		<main>
 			<div class="content text-break">
-				<h1 class="text-justify">Publicações do CEREST OESTE</h1>
+				<h1 id="t" class="text-justify">Publicações do CEREST OESTE</h1>
 				<div class="responsive text-center">
 					<embed src="./publicacoes/artigo aviação agricola.pdf" class="pdf" type="application/pdf">
 				</div>
