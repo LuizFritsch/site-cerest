@@ -1,8 +1,8 @@
 # site-cerest
-Reformulação do site do cerest oeste utilizando HTML5, PHP, Javascript e bootstrap.
+Refatoração do site do cerest oeste utilizando HTML5, PHP, Javascript e bootstrap.
 
 Antigo:
 cerestoeste.com.br
 
-Reformulado:
+Refatorado:
 guilherme.cerestoeste.com.br
