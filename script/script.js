@@ -31,6 +31,16 @@ $(document).ready(function(){
 
 });
 
+$(document).ready(function(){
+    $('#btnAdd').attr('disabled',true);
+    $('#inputAtividade').keyup(function(){
+        if($(this).val().length !=0)
+            $('.btnAdd').attr('btnAdd', false);            
+        else
+            $('.btnAdd').attr('btnAdd',true);
+    })
+});
+
 /**
 jQuery(document).ready(function(){
 

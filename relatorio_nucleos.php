@@ -1,27 +1,45 @@
+<?php
+		/* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
+		simplesmente não fazer o login e digitar na barra de endereço do seu navegador
+		o caminho para a página principal do site (sistema), burlando assim a obrigação de
+		fazer um login, com isso se ele não estiver feito o login não será criado a session,
+		então ao verificar que a session não existe a página redireciona o mesmo
+		para a index.php.*/
+		session_start();
+			if((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
+				header('location:https://guilherme.cerestoeste.com.br/login.php');
+				exit;
+			}
+			$logado = $_SESSION['login'];
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Relatório Semestral dos Núcleos em ST</title>
 	</head>
 	<body>
-		<?php include 'header.html'; ?>
+		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify">Relatório Semestral dos Núcleos em ST</h1>
+				<?php
+				echo" <h4>Bem vindo $logado<h4>";
+				echo" <br>";
+				?>
 				<div>
 					<form>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="inputSecretario">Secretário de Saúde</label>
+								<h6>Secretário de Saúde</h6>
 								<input type="text" class="form-control" id="inputSecretario" placeholder="Digite o nome do Secretário de Saúde...">
 							</div>
 							<div class="form-group col-md-6">
-								<label for="inputResponsavel">Profissional Responsável</label>
+								<h6>Profissional Responsável</h6>
 								<input type="text" class="form-control" id="inputResponsavel" placeholder="Digite o nome do Profissional Responsável...">
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputCNES">CNES</label>
+							<h6>CNES</h6>
 							<input type="text" class="form-control" id="inputCNES" placeholder="Digite o Nº CNES do Núcleos">
 						</div>
 						
@@ -35,7 +53,7 @@
 						<div class="row">
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="selectAtencaoBasica">Atenção Básica:</label>
+									<h6>Atenção Básica:</h6>
 									<select class="form-control" id="selectAtencaoBasica">
 										<option>Sim</option>
 										<option>Não</option>
@@ -44,7 +62,7 @@
 							</div>
 							<div class="col-md-6">
 								<div class="form-group">
-									<label for="selectProntoSocorro">Pronto Socorrro</label>
+									<h6>Pronto Socorrro</h6>
 									<select class="form-control" id="selectProntoSocorro">
 										<option>Sim</option>
 										<option>Não</option>
@@ -55,7 +73,7 @@
 						<div class="row">
 							<div class="col-sm">
 								<div class="form-group">
-									<label for="selectHospital">Hospital</label>
+									<h6>Hospital</h6>
 									<select class="form-control" id="selectHospital">
 										<option>Sim</option>
 										<option>Não</option>
@@ -64,7 +82,7 @@
 							</div>
 							<div class="col-sm">
 								<div class="form-group">
-									<label for="selectServicosEspecializados">Serviços Especializados</label>
+									<h6>Serviços Especializados</h6>
 									<select class="form-control" id="selectServicosEspecializados">
 										<option>Sim</option>
 										<option>Não</option>
@@ -73,7 +91,7 @@
 							</div>
 							<div class="col-sm">
 								<div class="form-group">
-									<label for="selectServicosPrivados">Serviços Privados</label>
+									<h6>Serviços Privados</h6>
 									<select class="form-control" id="selectServicosPrivados">
 										<option>Sim</option>
 										<option>Não</option>
@@ -100,29 +118,29 @@
 							<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 								<div class="row">
 									<div class="col-sm">
-										<label for="inputNotificacoesJaneiro">Janeiro</label>
+										<h6>Janeiro</h6>
 										<input type="text" class="form-control" id="inputNotificacoesJaneiro" placeholder="Digite o nmr de notificações em Janeiro...">
 									</div>
 									<div class="col-sm">
-										<label for="inputNotificacoesFevereiro">Fevereiro</label>
+										<h6>Fevereiro</h6>
 										<input type="text" class="form-control" id="inputNotificacoesFevereiro" placeholder="Digite o nmr de notificações em Fevereiro...">
 									</div>
 									<div class="col-sm">
-										<label for="inputNotificacoesMarco">Março</label>
+										<h6>Março</h6>
 										<input type="text" class="form-control" id="inputNotificacoesMarço" placeholder="Digite o nmr de notificações em Março...">
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm">
-										<label for="inputNotificacoesAbril">Abril</label>
+										<h6>Abril</h6>
 										<input type="text" class="form-control" id="inputNotificacoesAbril" placeholder="Digite o nmr de notificações em Abril...">
 									</div>
 									<div class="col-sm">
-										<label for="inputNotificacoesMaio">Maio</label>
+										<h6>Maio</h6>
 										<input type="text" class="form-control" id="inputNotificacoesMaio" placeholder="Digite o nmr de notificações em Maio...">
 									</div>
 									<div class="col-sm">
-										<label for="inputNotificacoesJunho">Junho</label>
+										<h6>Junho</h6>
 										<input type="text" class="form-control" id="inputNotificacoesJunho" placeholder="Digite o nmr de notificações em Junho...">
 									</div>
 								</div>
@@ -130,29 +148,29 @@
 							<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 								<div class="row">
 									<div class="col-sm">
-										<label for="inputNotificacoesJulho">Julho</label>
+										<h6>Julho</h6>
 										<input type="text" class="form-control" id="inputNotificacoesJulho" placeholder="Digite o nmr de notificações em Julho...">
 									</div>
 									<div class="col-sm">
-										<label for="inputNotificacoesAgosto">Agosto</label>
+										<h6>Agosto</h6>
 										<input type="text" class="form-control" id="inputNotificacoesAgosto" placeholder="Digite o nmr de notificações em Agosto...">
 									</div>
 									<div class="col-sm">
-										<label for="inputNotificacoesSetembro">Setembro</label>
+										<h6>Setembro</h6>
 										<input type="text" class="form-control" id="inputNotificacoesSetembro" placeholder="Digite o nmr de notificações em Setembro...">
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-sm">
-										<label for="inputNotificacoesOutubro">Outubro</label>
+										<h6>Outubro</h6>
 										<input type="text" class="form-control" id="inputNotificacoesOutubro" placeholder="Digite o nmr de notificações em Outubro...">
 									</div>
 									<div class="col-sm">
-										<label for="inputNotificacoesNovembro">Novembro</label>
+										<h6>Novembro</h6>
 										<input type="text" class="form-control" id="inputNotificacoesNovembro" placeholder="Digite o nmr de notificações em Novembro...">
 									</div>
 									<div class="col-sm">
-										<label for="inputNotificacoesDezembro">Dezembro</label>
+										<h6>Dezembro</h6>
 										<input type="text" class="form-control" id="inputNotificacoesDezembro" placeholder="Digite o nmr de notificações em Dezembro...">
 									</div>
 								</div>
@@ -164,7 +182,8 @@
 						<h4>Atividades de Saúde do Trabalhador do Núcleo</h4>
 						
 						<br>
-						<p>Exemplo:</p>
+						
+						<h6>Exemplo</h6>
 						<div class="row">
 							<div class="col-sm">
 								<input class="form-control" type="text" placeholder="3" readonly>
@@ -177,20 +196,20 @@
 							</div>
 						</div>
 						<br>
-						<h5>Atendimentos Médicos:</h5>
+						<h4>Atendimentos Médicos:</h4>
 						
 						<div id="atdMedicos">
 							<div class="row">
 								<div class="col-sm">
-									<label for="inputQuantidade">Quantidade</label>
+									<h6>Quantidade</h6>
 									<input type="text" class="form-control" id="inputQuantidade" placeholder="Digite o nmr de atendimentos realizados...">
 								</div>
 								<div class="col-sm">
-									<label for="inputProfissao">Profissão</label>
+									<h6>Profissão</h6>
 									<input type="text" class="form-control" id="inputProfissao" placeholder="Digite a ocupação dos atendidos">
 								</div>
 								<div class="col-sm">
-									<label for="inputCodigos">Códigos</label>
+									<h6>Códigos</h6>
 									<input type="text" class="form-control" id="inputCodigos" placeholder="Digite os códigos">
 								</div>
 							</div>
@@ -202,53 +221,35 @@
 						<br>
 						
 						<fieldset>
-							<legend>Realiza atividades educativas/pesquisa/promoção de saúde?</legend>
-							<label for="">
-								<input type="radio" name="solidworks" value="Yes" id="rdYes" />
-								Sim
-							</label>
-							<label for="">
-								<input type="radio" name="solidworks" value="No" id="rdNo" />
-								Não
-							</label>
+							<h6>Realiza atividades educativas/pesquisa/promoção de saúde?</h6>
+							<h6>
+							<input type="radio" name="solidworks" value="Yes" id="rdYes" />
+							Sim
+							</h6>
+							<h6>
+							<input type="radio" name="solidworks" value="No" id="rdNo" />
+							Não
+							</h6>
 						</fieldset>
 						<fieldset id="boxReseller" style="display:none;">
 							<div class="atividadesEducativas">
+								<h5>Atividades Educativas</h5>
 								<div class="row">
-											<label for="atividade">Atividade Educativa</label>
-									<div class="col-md-2">
+									<div class="col-md-6">
 										<div>
-											<input type="text" class="form-control" id="inputAtividade" placeholder="Digite o nome da atividade..." name="mytext[]">
+											TESTE
 										</div>
 									</div>
-									<div class="col-md-2">
-										<button class="btn add_form_field">Adicionar +</button>
+									<div class="col-md-6">
+										
 									</div>
-								</div>	
+								</div>
 								
 							</div>
-
 						</fieldset>
 						
 						<script type="text/javascript">
-							$(document).ready(function() {
-							var max_fields = 10;
-							var wrapper = $(".atividadesEducativas");
-							var add_button = $(".add_form_field");
-							var x = 1;
-							$(add_button).click(function(e) {
-							e.preventDefault();
-							if (x < max_fields) {
-								x++;
-								$(wrapper).append('<div><input type="text" class="form-control" id="inputAtividade" placeholder="Digite o nome da atividade" name="mytext[]"><a href="#" class="delete">Delete</a></div>'); //add input box
-							} else {
-								alert('You Reached the limits')
-							}});
-							$(wrapper).on("click", ".delete", function(e) {
-							e.preventDefault();
-							$(this).parent('div').remove();
-							x--;
-							})});
+							
 						</script>
 						
 						<script type="text/javascript">
@@ -264,30 +265,33 @@
 						<br>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								<label for="inputCity">Cidade</label>
+								<h6>Cidade</h6>
 								<input type="text" class="form-control" id="inputCity">
 							</div>
 							<div class="form-group col-md-4">
-								<label for="inputEstado">Estado</label>
+								<h6>Estado</h6>
 								<select id="inputEstado" class="form-control">
 									<option selected>Escolher...</option>
 									<option>...</option>
 								</select>
 							</div>
 							<div class="form-group col-md-2">
-								<label for="inputCEP">CEP</label>
+								<h6>CEP</h6>
 								<input type="text" class="form-control" id="inputCEP">
 							</div>
 						</div>
 						<div class="form-group">
 							<div class="form-check">
 								<input class="form-check-input" type="checkbox" id="gridCheck">
-								<label class="form-check-label" for="gridCheck">
-									Clique em mim
-								</label>
+								<h6>
+								Clique em mim
+								</h6>
 							</div>
 						</div>
-						<button type="submit" class="btn btn-primary">Entrar</button>
+						<button type="submit" class="btn btn-primary">Enviar Relatório Semestral</button>
+						<br>
+						<br>
+						
 					</form>
 				</div>
 			</div>

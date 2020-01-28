@@ -4,7 +4,7 @@
 		<title>Contato</title>
 	</head>
 	<body>
-		<?php include 'header.html'; ?>
+		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify">Contato</h1>
@@ -58,7 +58,7 @@
 													<label for="assunto">
 													Assunto</label>
 													<select id="assunto" name="assunto" class="form-control" required="required">
-														<option value="na" selected="">Escolha um</option>
+														<option hidden >Escolha um</option>
 														<option value="duvidas">Dúvidas</option>
 														<option value="sugestoes">Sugestões</option>
 														<option value="reclamacao">Reclamações</option>

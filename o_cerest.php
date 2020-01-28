@@ -4,7 +4,7 @@
 		<title>O Cerest</title>
 	</head>
 	<body>
-		<?php include 'header.html'; ?>
+		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				

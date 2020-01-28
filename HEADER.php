@@ -62,15 +62,29 @@
               <a class="dropdown-item" href="#">Projetos/Pesquisa</a>
             </div>
           </li>
+          <?php
+          if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+            echo "<li class='nav-item'><a class='nav-link' href='relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+          }
+          ?>
         </ul>
         
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-1">
           <!--<input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>-->
-            <a class="btn btn-outline-success my-2 my-sm-0 btn-login" type="submit" href="./login.php#t">Login</a>
+          <?php
+          
+          if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+          session_start();
+          $logado = $_SESSION['login'];
+          echo "<h5 class='mr-sm-2'>Olá, $logado</h4>";
+          echo "<a type='button' class='btn btn-danger my-2 my-sm-1' href='logout.php'>Sair</a>";
+          }elseif((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
+          echo "<a class='btn btn-outline-success my-2 my-sm-1 btn-login' type='submit' href='./login.php#t'>Login</a>";
+          }
+          ?>
         </form>
       </div>
-
       <a href="#" id="Voltar ao Topo" title="Voltar ao topo"  class="scrollToTop">^</a>
     </nav>
     

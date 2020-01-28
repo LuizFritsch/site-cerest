@@ -97,7 +97,7 @@ if(mail($destinatario, $assunto , $body, "From: $email\r\n")){
 	header("location:http://guilherme.cerestoeste.com.br/contato.php#msg");
 }else{
 	$msg = "Erro ao enviar a mensagem.";
-	echo "<script>alert('$msg');window.location.replace('http://guilherme.cerestoeste.com.br/contato.php#msg');</script>";
+	echo "<script>alert('$msg');window.location.replace('http://192.168.7.41/cerest/contato.php#msg');</script>";
 }
 // redireciona para a página de obrigado
 ?>
