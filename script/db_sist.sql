@@ -1,26 +1,37 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
--- https://www.phpmyadmin.net/
+-- version 3.5.2.2
+-- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: 28-Jan-2020 às 08:46
--- Versão do servidor: 5.6.41-84.1
--- versão do PHP: 7.2.7
+-- Servidor: 127.0.0.1
+-- Tempo de Geração: 
+-- Versão do Servidor: 5.5.27
+-- Versão do PHP: 5.4.7
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
--- Database: `vinilpub_guilherme_cerest`
+-- Banco de Dados: `vinilpub_guilherme_cerest`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `conselho_gestor`
+--
+
+CREATE TABLE IF NOT EXISTS `conselho_gestor` (
+  `ID_MEMBRO` int(4) NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(50) NOT NULL,
+  `FK_ID_FUNCAO` int(11) NOT NULL,
+  PRIMARY KEY (`ID_MEMBRO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -28,10 +39,12 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `funcoes`
 --
 
-CREATE TABLE `funcoes` (
-  `ID_FUNCAO` int(11) NOT NULL,
-  `FUNCAO` varchar(40) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+CREATE TABLE IF NOT EXISTS `funcoes` (
+  `ID_FUNCAO` int(11) NOT NULL AUTO_INCREMENT,
+  `FUNCAO` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY (`ID_FUNCAO`),
+  KEY `ID_FUNCAO` (`ID_FUNCAO`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Extraindo dados da tabela `funcoes`
@@ -44,21 +57,25 @@ INSERT INTO `funcoes` (`ID_FUNCAO`, `FUNCAO`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura da tabela `funcoes_conselho`
 --
 
-CREATE TABLE `usuario` (
-  `ID_USER` int(4) NOT NULL,
-  `NOME` varchar(50) NOT NULL,
-  `SENHA` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE IF NOT EXISTS `funcoes_conselho` (
+  `ID_FUNCOES_CONSELHO` int(4) NOT NULL AUTO_INCREMENT,
+  `NOME_FUNCAO` varchar(50) NOT NULL,
+  PRIMARY KEY (`ID_FUNCOES_CONSELHO`),
+  KEY `ID_FUNCOES_CONSELHO` (`ID_FUNCOES_CONSELHO`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Extraindo dados da tabela `funcoes_conselho`
 --
 
-INSERT INTO `usuario` (`ID_USER`, `NOME`, `SENHA`) VALUES
-(1, 'gnome', 'batata123');
+INSERT INTO `funcoes_conselho` (`ID_FUNCOES_CONSELHO`, `NOME_FUNCAO`) VALUES
+(1, 'Presidente'),
+(2, 'Suplente do Presidente'),
+(3, 'Secretário'),
+(4, 'Suplente do Secretário');
 
 -- --------------------------------------------------------
 
@@ -66,12 +83,14 @@ INSERT INTO `usuario` (`ID_USER`, `NOME`, `SENHA`) VALUES
 -- Estrutura da tabela `usuarios`
 --
 
-CREATE TABLE `usuarios` (
-  `ID_USUARIO` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT,
   `NOME` varchar(40) CHARACTER SET utf8 NOT NULL,
   `SENHA` varchar(40) CHARACTER SET utf8 NOT NULL,
-  `FK_ID_FUNCAO` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+  `FK_ID_FUNCAO` int(11) NOT NULL,
+  PRIMARY KEY (`ID_USUARIO`),
+  KEY `FK_ID_FUNCAO` (`FK_ID_FUNCAO`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
 
 --
 -- Extraindo dados da tabela `usuarios`
@@ -82,61 +101,14 @@ INSERT INTO `usuarios` (`ID_USUARIO`, `NOME`, `SENHA`, `FK_ID_FUNCAO`) VALUES
 (2, 'luiz', 'fritsch', 2);
 
 --
--- Indexes for dumped tables
+-- Restrições para as tabelas dumpadas
 --
 
 --
--- Indexes for table `funcoes`
---
-ALTER TABLE `funcoes`
-  ADD PRIMARY KEY (`ID_FUNCAO`),
-  ADD KEY `ID_FUNCAO` (`ID_FUNCAO`);
-
---
--- Indexes for table `usuario`
---
-ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`ID_USER`);
-
---
--- Indexes for table `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD PRIMARY KEY (`ID_USUARIO`),
-  ADD KEY `FK_ID_FUNCAO` (`FK_ID_FUNCAO`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `funcoes`
---
-ALTER TABLE `funcoes`
-  MODIFY `ID_FUNCAO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `usuario`
---
-ALTER TABLE `usuario`
-  MODIFY `ID_USER` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `usuarios`
---
-ALTER TABLE `usuarios`
-  MODIFY `ID_USUARIO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- Constraints for dumped tables
---
-
---
--- Limitadores para a tabela `usuarios`
+-- Restrições para a tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`FK_ID_FUNCAO`) REFERENCES `funcoes` (`ID_FUNCAO`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -114,6 +114,20 @@
 					<ul class="list-unstyled">
 						<li>O CEREST OESTE conta com a gestão participativa do Conselho Gestor:
 							<ul class="membros">
+								<?php
+									include 'db_connection.php';
+									$con = OpenCon();
+									$result=mysqli_query($con,"SELECT * FROM conselho_gestor");
+									if ($result = mysqli_query($con, $sql)) {
+										// Get field information for all fields
+										while ($fieldinfo = mysqli_fetch_field($result)) {
+											printf("Name: %s\n", $fieldinfo -> name);
+											printf("Table: %s\n", $fieldinfo -> table);
+											printf("max. Len: %d\n", $fieldinfo -> max_length);
+										}
+									mysqli_free_result($result);
+									}
+								?>
 								<li>Presidente: (segmento usuário);</li>
 								<li>Suplente do Presidente: (segmento gestor);</li>
 								<li>Secretário: (segmento usuário);</li>
