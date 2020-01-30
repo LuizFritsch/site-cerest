@@ -4,7 +4,7 @@
 		<title></title>
 	</head>
 	<body>
-		<?php include 'HEADER.php'; ?>
+		<?php include 'header.html'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify"></h1>
@@ -40,6 +40,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<img src="./img/equipe/BETHANIA(1).jpg" class="card-img-top" alt="...">
@@ -49,6 +50,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<img src="./img/equipe/CLAUDIA(1).jpg"class="card-img-top" alt="...">
@@ -58,6 +60,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<img src="./img/equipe/CLAUDINHA(1).jpg"class="card-img-top" alt="...">
@@ -67,6 +70,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<img src="./img/equipe/DIONATAS(1).jpg"class="card-img-top" alt="...">
@@ -76,6 +80,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<img src="./img/equipe/FLAVIA(1).jpg"class="card-img-top" alt="...">
@@ -85,6 +90,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<img src="./img/equipe/LUIZ_GUILHERME(1).jpg"class="card-img-top" alt="...">
@@ -94,6 +100,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<img src="./img/equipe/MARCOS(1).jpg"class="card-img-top" alt="...">
@@ -103,6 +110,7 @@
 								</div>
 							</div>
 						</div>
+
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<img src="./img/equipe/PAULA(1).jpg"class="card-img-top" alt="...">

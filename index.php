@@ -4,7 +4,7 @@
 		<title>Cerest Oeste</title>
 	</head>
 	<body>
-		<?php include 'HEADER.php'; ?>
+		<?php include 'header.html'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify">Inicio</h1>
