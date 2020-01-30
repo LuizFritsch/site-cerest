@@ -4,7 +4,7 @@
 		<title>Contato</title>
 	</head>
 	<body>
-		<?php include 'header.html'; ?>
+		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify">Contato</h1>
