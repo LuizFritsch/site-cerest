@@ -1,5 +1,5 @@
 # site-cerest
-Atualização do site do cerest oeste
+Atualização do site do cerest oeste.
 
 Site antigo:
 cerestoeste.com.br
