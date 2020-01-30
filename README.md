@@ -2,7 +2,7 @@
 Atualização do site do cerest oeste.
 
 Site antigo:
-[ ] (cerestoeste.com.br)
+[Site antigo](cerestoeste.com.br)
 
 Site atualizado:
-[ ] (guilherme.cerestoeste.com.br)
+[Site novo](guilherme.cerestoeste.com.br)
