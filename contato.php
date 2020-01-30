@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>Contato</title>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	</head>
 	<body>
 		<?php include 'HEADER.php'; ?>
@@ -38,7 +39,7 @@
 						<div class="row">
 							<div class="col-md-8">
 								<div class="well well-sm">
-									<form action="sender.php" method="POST">
+									<form method="POST">
 										<div class="row">
 											<div class="col-md-6">
 												<div class="form-group">
@@ -76,8 +77,45 @@
 												</div>
 											</div>
 											<div class="col-md-12">
-												<button type="submit"  class="btn btn-primary pull-right" id="btnContactUs" >
+												<button id="myBtn" name="enviarMsg" type="submit" class="btn btn-primary pull-right" id="btnContactUs" >
 												Enviar mensagem</button>
+												<?php
+												$destinatario = "contato@cerestoeste.com.br";
+												$nome = $_REQUEST['nome'];
+												$email = $_REQUEST['email'];
+												$mensagem = $_REQUEST['mensagem'];
+												$assunto = $_REQUEST['assunto'];
+												// monta o e-mail na variavel $body
+												$body = "===================================" . "\n";
+												$body = $body . "FALE CONOSCO - CONTATO SITE" . "\n";
+												$body = $body . "===================================" . "\n\n";
+												$body = $body . "Nome: " . $nome . "\n";
+												$body = $body . "Email: " . $email . "\n";
+												$body = $body . "===================================" . "\n\n";
+												$body = $body . "Assunto: " . $assunto . "\n\n";
+												$body = $body . "Mensagem: " . $mensagem . "\n\n";
+												$body = $body . "===================================" . "\n";
+												// envia o email
+												if( $_SERVER['REQUEST_METHOD'] == 'POST'){
+													if(mail($destinatario, $assunto , $body, "From: $email\r\n")){
+												echo "<script>Swal.fire(
+												'Sucesso!',
+												'Sua mensagem foi enviada com sucesso!',
+												'success'
+												)</script>";
+												echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/contato.php#msg');</script>";
+												}else{
+												echo "<script>Swal.fire({
+												icon: 'Erro',
+												title: 'Oops...',
+												text: 'Não foi possivel enviar sua mensagem, tente novamente!',
+												})</script>";
+												echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/cerest/o_cerest.php#t');</script>";
+												}
+												}
+												
+												// redireciona para a página de obrigado
+												?>
 											</div>
 											<br>
 											<br>
