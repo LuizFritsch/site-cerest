@@ -18,14 +18,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Raleway:900,300' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="./style/style.css">
+    <link rel="stylesheet" type="text/css" href="../../style/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     
-    <script type="text/javascript" src="./script/script.js"></script>
+    <script type="text/javascript" src="https://guilherme.cerestoeste.com.br/script/script.js"></script>
   </head>
   <body>
     
@@ -33,7 +33,7 @@
       <h1></h1>
     </header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light menu">
-      <a class="navbar-brand" href="index.php"><img src="./img/iconeCerestSite.png" id="icone">CEREST OESTE</a>
+      <a class="navbar-brand" href="index.php"><img src="https://guilherme.cerestoeste.com.br/img/iconeCerestSite.png" id="icone">CEREST OESTE</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
       <span class="navbar-toggler-icon"></span>
       Menu
@@ -41,24 +41,24 @@
       <div class="navbar-collapse collapse menu" id="conteudoNavbarSuportado">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="index.php#t">Início
+            <a class="nav-link" href="https://guilherme.cerestoeste.com.br/index.php#t">Início
               <span class="sr-only">(página atual)</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="o_cerest.php#t">O Cerest</a>
+            <a class="nav-link" href="https://guilherme.cerestoeste.com.br/o_cerest.php#t">O Cerest</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="equipe.php#t">Equipe</a>
+            <a class="nav-link" href="https://guilherme.cerestoeste.com.br/equipe.php#t">Equipe</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="atendimento.php#t">Atendimento</a>
+            <a class="nav-link" href="https://guilherme.cerestoeste.com.br/atendimento.php#t">Atendimento</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="abrangencia.php#t">Abrangência</a>
+            <a class="nav-link" href="https://guilherme.cerestoeste.com.br/abrangencia.php#t">Abrangência</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="contato.php#t">Contato</a>
+            <a class="nav-link" href="https://guilherme.cerestoeste.com.br/contato.php#t">Contato</a>
           </li>
           <!--<li class="nav-item">
             <a class="nav-link" href="relatorio_nucleos.php#t">Relatório</a>
@@ -68,7 +68,7 @@
               Publicações
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="publicacoes_cerest.php#t">Publicações do CEREST</a>
+              <a class="dropdown-item" href="https://guilherme.cerestoeste.com.br/publicacoes_cerest.php#t">Publicações do CEREST</a>
               <a class="dropdown-item" href="#">Publicações em Saúde Pública</a>
               <a class="dropdown-item" href="#">Publicações Legais</a>
               <div class="dropdown-divider"></div>
@@ -77,7 +77,10 @@
           </li>
           <?php
           if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-            echo "<li class='nav-item'><a class='nav-link' href='relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+            echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+          }
+          if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==1){
+            echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de admin</a></li>";
           }
           ?>
         </ul>
@@ -88,9 +91,9 @@
           <?php
           if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
             echo "<h5 class='mr-sm-2 texto-ola'>Olá, $logado</h5>";
-            echo "<a type='button' class='btn btn-danger my-2 my-sm-1' href='logout.php'>Sair</a>";
+            echo "<a type='button' class='btn btn-danger my-2 my-sm-1' href='https://guilherme.cerestoeste.com.br/logout.php'>Sair</a>";
           }elseif((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
-            echo "<a class='btn btn-outline-success my-2 my-sm-1 btn-login' type='submit' href='./login.php#t'>Login</a>";
+            echo "<a class='btn btn-outline-success my-2 my-sm-1 btn-login' type='submit' href='https://guilherme.cerestoeste.com.br/login.php#t'>Login</a>";
           }
           ?>
         </form>
