@@ -1,3 +1,16 @@
+<?php
+  /* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
+  simplesmente não fazer o login e digitar na barra de endereço do seu navegador
+  o caminho para a página principal do site (sistema), burlando assim a obrigação de
+  fazer um login, com isso se ele não estiver feito o login não será criado a session,
+  então ao verificar que a session não existe a página redireciona o mesmo
+  para a index.php.*/
+  session_start();
+  $logado = $_SESSION['login'];
+  $func = $_SESSION['func'];
+  $senh = $_SESSION['senha'];
+  $ide = $_SESSION['id'];
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -73,14 +86,11 @@
           <!--<input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>-->
           <?php
-          
           if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-          session_start();
-          $logado = $_SESSION['login'];
-          echo "<h5 class='mr-sm-2'>Olá, $logado</h4>";
-          echo "<a type='button' class='btn btn-danger my-2 my-sm-1' href='logout.php'>Sair</a>";
+            echo "<h5 class='mr-sm-2 texto-ola'>Olá, $logado</h5>";
+            echo "<a type='button' class='btn btn-danger my-2 my-sm-1' href='logout.php'>Sair</a>";
           }elseif((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
-          echo "<a class='btn btn-outline-success my-2 my-sm-1 btn-login' type='submit' href='./login.php#t'>Login</a>";
+            echo "<a class='btn btn-outline-success my-2 my-sm-1 btn-login' type='submit' href='./login.php#t'>Login</a>";
           }
           ?>
         </form>

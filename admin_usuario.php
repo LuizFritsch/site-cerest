@@ -31,8 +31,6 @@
 					echo" <h4>senha $senh<h4>";
 					echo" <h4>funcao $func<h4>";
 				?>
-				
-				<p class="text-justify"></p>
 			</div>
 		</main>
 		<?php include 'footer.html'; ?>

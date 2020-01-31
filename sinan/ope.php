@@ -26,10 +26,7 @@ if(mysqli_num_rows($result)>0){
 	header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php');
 	exit;
 }else{
-	unset($_SESSION['login']);
-	unset($_SESSION['senha']);
-	unset($_SESSION['id']);
-	unset($_SESSION['funcao']);
+
 	header('location:https://guilherme.cerestoeste.com.br/login.php');
 	exit;
 }

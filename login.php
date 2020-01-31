@@ -9,11 +9,6 @@
 			//$logado = $_SESSION['login'];
 			session_start();
 			if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-				echo "<script>Swal.fire(
-												'Ops!',
-												'Parece que você já está logado! :)',
-												'success'
-												)</script>";
 				header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php');
 				exit;
 			}
@@ -22,7 +17,6 @@
 <html>
 	<head>
 		<title>Efetue Login</title>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	</head>
 	<body>
 		<?php include 'HEADER.php'; ?>
