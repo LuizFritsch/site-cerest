@@ -39,6 +39,14 @@
 						<span class="carousel-control-next-icon" aria-hidden="true"></span>
 						<span class="sr-only">Next</span>
 					</a>
+
+					<!--BD-->
+					<!--id,titulo,img,previa,data-->
+					<!--ULTIMAS NOTICIAS-->
+					<!--SELECT id, titulo, img FROM noticias WHERE 3 maiores IDs-->
+					<!--NOTICIAS-->
+					<!--SELECT id,titulo,img,previa  FROM noticias WHERE 3 maiores IDs-->
+
 				</div>
 			</div>
 		</main>

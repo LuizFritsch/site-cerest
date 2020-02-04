@@ -1,15 +1,15 @@
 <?php
-session_start();
-if((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
-	header('location:https://guilherme.cerestoeste.com.br/login.php');
-	exit;
-}
-include '../sinan/db_connection.php';
-$con=OpenCon();
-$logado = $_SESSION['login'];
-$func = $_SESSION['func'];
-$senh = $_SESSION['senha'];
-$ide = $_SESSION['id'];
+	session_start();
+	if((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
+		header('location:https://guilherme.cerestoeste.com.br/login.php');
+		exit;
+	}
+	include '../sinan/db_connection.php';
+	$con=OpenCon();
+	$logado = $_SESSION['login'];
+	$func = $_SESSION['func'];
+	$senh = $_SESSION['senha'];
+	$ide = $_SESSION['id'];
 ?>
 <!DOCTYPE html>
 <html>
