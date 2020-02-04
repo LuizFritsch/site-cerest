@@ -1,17 +1,7 @@
 <?php
-			/* esse bloco de código em php verifica se existe a sessão, pois o usuário pode
-			simplesmente não fazer o login e digitar na barra de endereço do seu navegador
-			o caminho para a página principal do site (sistema), burlando assim a obrigação de
-			fazer um login, com isso se ele não estiver feito o login não será criado a session,
-			então ao verificar que a session não existe a página redireciona o mesmo
-			para a index.php.*/
-			//session_start();
-			//$logado = $_SESSION['login'];
-			session_start();
-			if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-				header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php');
-				exit;
-			}
+if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+	echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#msg');</script>";
+}
 ?>
 <!DOCTYPE html>
 <html>
