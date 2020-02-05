@@ -1,6 +1,6 @@
 <?php
 session_start();
-if((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
+if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
 	header('location:https://guilherme.cerestoeste.com.br/login.php');
 	exit;
 }
@@ -20,7 +20,7 @@ $ide = $_SESSION['id'];
 		<?php include '../HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Painel de controle</h1>
+				<h1 id="t" class="text-justify">Painel de Controle -> Gerenciar Noticias</h1>
 				<div class="container">
 					<div class="row" id="equipe-cerest">
 						<div class="col-xl-3 col-md-6 mb-4">

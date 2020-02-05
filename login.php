@@ -1,4 +1,9 @@
 <?php
+try {
+	session_start();
+} catch (Exception $e) {
+	echo "fudeo";
+}
 if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
 	echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#msg');</script>";
 }

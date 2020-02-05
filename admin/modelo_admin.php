@@ -1,6 +1,6 @@
 <?php
 session_start();
-if((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
+if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
 	header('location:https://guilherme.cerestoeste.com.br/login.php');
 	exit;
 }

@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
+if(($_SESSION['id']!=1) || ($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
 		echo "<script>alert('Você não está logado ou não tem o nível de acesso necessário!')</script>";
 		echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/login.php');</script>";
 	}else{
