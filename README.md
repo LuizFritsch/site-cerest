@@ -2,10 +2,10 @@
 Atualização do site do cerest oeste.	
 
 Site antigo:	
-[cerestoeste.com.br](cerestoeste.com.br)	
+[cerestoeste.com.br](https://cerestoeste.com.br)	
 
 Site atualizado:	
-[guilherme.cerestoeste.com.br](guilherme.cerestoeste.com.br)	
+[guilherme.cerestoeste.com.br](https://guilherme.cerestoeste.com.br)	
 
 
 <!-- Link LARAVEL e pesquisa correta google	
