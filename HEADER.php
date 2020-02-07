@@ -87,11 +87,20 @@ if (session_start()) {
             </div>
           </li>
           <?php
-          if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-          echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
-          }
-          if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==1){
-          echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de admin</a></li>";
+            if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+              echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+            }
+            if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==1){
+              echo "<li class='nav-item dropdown'>
+              <a class='nav-link dropdown-toggle' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                Painel de Administração
+              </a>
+              <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
+                <a class='dropdown-item' href='#'>...</a>
+              </div>
+            </li>";
           }
           ?>
         </ul>
