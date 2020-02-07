@@ -1,10 +1,10 @@
+<?php include 'HEADER.php'; ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Cerest Oeste</title>
 	</head>
 	<body>
-		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify">Inicio</h1>

@@ -1,12 +1,8 @@
+<?php include 'HEADER.php'; ?>
 <?php
-try {
-	session_start();
-} catch (Exception $e) {
-	echo "fudeo";
-}
-if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-	echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#msg');</script>";
-}
+	if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+		echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#msg');</script>";
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +10,6 @@ if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
 		<title>Efetue Login</title>
 	</head>
 	<body>
-		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify">Login</h1>

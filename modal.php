@@ -1,10 +1,10 @@
+<?php include 'HEADER.php'; ?>
 <!DOCTYPE html>
 <html>
   <head>
     <title></title>
   </head>
   <body>
-    <?php include 'HEADER.php'; ?>
     <main>
       <div class="content text-break">
         <!-- Button trigger modal -->

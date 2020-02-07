@@ -1,23 +1,22 @@
-<?php
-session_start();
-if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
-	header('location:https://guilherme.cerestoeste.com.br/login.php');
-	exit;
-}
-include '../sinan/db_connection.php';
-$con=OpenCon();
-$logado = $_SESSION['login'];
-$func = $_SESSION['func'];
-$senh = $_SESSION['senha'];
-$ide = $_SESSION['id'];
-?>
+<?php include '../HEADER.php'; ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Painel Admin noticias</title>
 	</head>
 	<body>
-		<?php include '../HEADER.php'; ?>
+		<?php
+			if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
+				header('location:https://guilherme.cerestoeste.com.br/login.php');
+				exit;
+			}
+			include '../sinan/db_connection.php';
+			$con=OpenCon();
+			$logado = $_SESSION['login'];
+			$func = $_SESSION['func'];
+			$senh = $_SESSION['senha'];
+			$ide = $_SESSION['id'];
+		?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify">Painel de Controle -> Gerenciar Noticias</h1>

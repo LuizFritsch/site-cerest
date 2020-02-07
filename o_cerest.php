@@ -1,3 +1,4 @@
+<?php include 'HEADER.php'; ?>
 <?php
 include './sinan/db_connection.php';
 $con=OpenCon();
@@ -8,7 +9,6 @@ $con=OpenCon();
 		<title>O Cerest</title>
 	</head>
 	<body>
-		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				
@@ -125,52 +125,49 @@ $con=OpenCon();
 							</ul>
 						</li>
 					</ul>
-
 					<form method="POST" >
-					<div class="card">
-						<h3 class="card-header text-center font-weight-bold text-uppercase py-4">Conselho gestor do CEREST</h3>
-						<div class="card-body">
-							<div id="table" class="table-editable">
-								<table class="table table-bordered text-center table-hover-cells">
-									<thead>
-										<tr>
-											<?php
-												$sql="SELECT * FROM funcoes_conselho";
-												$result=mysqli_query($con,$sql);
-												if(!$result ) {
-													die('Could not get data: ' . mysql_error());
-												}
-												while($row = mysqli_fetch_array($result)) {
-													echo "<th scope='col'>{$row['NOME_FUNCAO']}</th> ";
-												}
-											?>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<?php
-												$sql="SELECT * FROM conselho_gestor";
-												$result=mysqli_query($con,$sql);
-												if(!$result ) {
-													die('Could not get data: ' . mysql_error());
-												}
-												while($row = mysqli_fetch_array($result)) {
-													//echo "<td contenteditable='true' name='funcao{$row['FK_ID_FUNCAO']}'>{$row['NOME']}</td>";
-													echo "<td><h6>{$row['NOME']}</h6></td>";
-												}
-											?>
-										</tr>
-									</tbody>
-								</table>
-							
+						<div class="card">
+							<h3 class="card-header text-center font-weight-bold text-uppercase py-4">Conselho gestor do CEREST</h3>
+							<div class="card-body">
+								<div id="table" class="table-editable">
+									<table class="table table-bordered text-center table-hover-cells">
+										<thead>
+											<tr>
+												<?php
+													$sql="SELECT * FROM funcoes_conselho";
+													$result=mysqli_query($con,$sql);
+													if(!$result ) {
+														die('Could not get data: ' . mysql_error());
+													}
+													while($row = mysqli_fetch_array($result)) {
+														echo "<th scope='col'>{$row['NOME_FUNCAO']}</th> ";
+													}
+												?>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<?php
+													$sql="SELECT * FROM conselho_gestor";
+													$result=mysqli_query($con,$sql);
+													if(!$result ) {
+														die('Could not get data: ' . mysql_error());
+													}
+													while($row = mysqli_fetch_array($result)) {
+														//echo "<td contenteditable='true' name='funcao{$row['FK_ID_FUNCAO']}'>{$row['NOME']}</td>";
+														echo "<td><h6>{$row['NOME']}</h6></td>";
+													}
+												?>
+											</tr>
+										</tbody>
+									</table>
+									
+								</div>
 							</div>
 						</div>
-					</div>
-					
-					
-				</form>
-
-
+						
+						
+					</form>
 				</div>
 				<p></p>
 			</div>

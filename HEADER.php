@@ -1,18 +1,18 @@
 <?php
-try {
-  //session_destroy();
+if (session_start()) {
   session_start();
   if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
     $logado = $_SESSION['login'];
     $func = $_SESSION['func'];
     $senh = $_SESSION['senha'];
     $ide = $_SESSION['id'];
-  }  
-} catch (Exception $e) {
-  echo "Deu ruim campeão";
+  }else{
+    session_unset();
+    session_destroy();
+  }
 }
 ?>
-<!DOCTYPE html>8
+<!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
@@ -88,10 +88,10 @@ try {
           </li>
           <?php
           if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-            echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+          echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
           }
           if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==1){
-            echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de admin</a></li>";
+          echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de admin</a></li>";
           }
           ?>
         </ul>
@@ -101,10 +101,10 @@ try {
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>-->
           <?php
           if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-            echo "<h5 class='mr-sm-2 texto-ola'>Olá, $logado</h5>";
-            echo "<a type='button' class='btn btn-danger my-2 my-sm-1' href='https://guilherme.cerestoeste.com.br/logout.php'>Sair</a>";
+          echo "<h5 class='mr-sm-2 texto-ola'>Olá, $logado</h5>";
+          echo "<a type='button' class='btn btn-danger my-2 my-sm-1' href='https://guilherme.cerestoeste.com.br/logout.php'>Sair</a>";
           }elseif((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
-            echo "<a class='btn btn-outline-success my-2 my-sm-1 btn-login' type='submit' href='https://guilherme.cerestoeste.com.br/login.php#t'>Login</a>";
+          echo "<a class='btn btn-outline-success my-2 my-sm-1 btn-login' type='submit' href='https://guilherme.cerestoeste.com.br/login.php#t'>Login</a>";
           }
           ?>
         </form>

@@ -1,3 +1,4 @@
+<?php include 'HEADER.php'; ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -5,7 +6,6 @@
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 	</head>
 	<body>
-		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify">Contato</h1>

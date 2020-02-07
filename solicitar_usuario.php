@@ -1,3 +1,4 @@
+<?php include 'HEADER.php'; ?>
 <!DOCTYPE html>
 <html>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,7 +69,6 @@
 	}
 	</style>
 	<body>
-		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				<form id="regForm" action="/action_page.php">

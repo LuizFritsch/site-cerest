@@ -809,12 +809,12 @@ h6 > .divider:before,
     margin: 0;
     width: 100% !important;
 }
-.files input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
+.ashuashua input:focus{     outline: 2px dashed #92b0b3;  outline-offset: -10px;
     -webkit-transition: outline-offset .15s ease-in-out, background-color .15s linear;
     transition: outline-offset .15s ease-in-out, background-color .15s linear; border:1px solid #92b0b3;
  }
-.files{ position:relative}
-.files:after {  pointer-events: none;
+.ashuashua{ position:relative}
+.ashuashua:after {  pointer-events: none;
     position: absolute;
     top: 60px;
     left: 0;
@@ -829,14 +829,14 @@ h6 > .divider:before,
     background-repeat: no-repeat;
 }
 .color input{ background-color:#f1f1f1;}
-.files:before {
+.ashuashua:before {
     position: absolute;
     bottom: 10px;
     left: 0;  pointer-events: none;
     width: 100%;
     right: 0;
     height: 57px;
-    content: " or drag it here. ";
+    content: " Selecione uma imagem ou arraste ela para cá";
     display: block;
     margin: 0 auto;
     color: #2ea591;

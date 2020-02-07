@@ -1,16 +1,4 @@
-<?php
-	session_start();
-if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
-		header('location:https://guilherme.cerestoeste.com.br/login.php');
-		exit;
-	}
-	include '../sinan/db_connection.php';
-	$con=OpenCon();
-	$logado = $_SESSION['login'];
-	$func = $_SESSION['func'];
-	$senh = $_SESSION['senha'];
-	$ide = $_SESSION['id'];
-?>
+<?php include '../HEADER.php'; ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,7 +6,18 @@ if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['se
 		<title>Painel Admin Conselho Gestor</title>
 	</head>
 	<body>
-		<?php include '../HEADER.php'; ?>
+		<?php
+			if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
+				header('location:https://guilherme.cerestoeste.com.br/login.php');
+				exit;
+			}
+			include '../sinan/db_connection.php';
+			$con=OpenCon();
+			$logado = $_SESSION['login'];
+			$func = $_SESSION['func'];
+			$senh = $_SESSION['senha'];
+			$ide = $_SESSION['id'];
+		?>
 		<main>
 			<div class="content text-break">
 				<?php
@@ -84,19 +83,21 @@ if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['se
 								$sql.="UPDATE conselho_gestor SET NOME='$nome' WHERE FK_ID_FUNCAO= $i;";
 							}
 							if(mysqli_multi_query($con,$sql)){
-								echo "<script>Swal.fire(
-								'Sucesso!',
-								'Os membros do conselho foram atualizados com sucesso!',
-								'success'
-								)</script>";
-							}else{
-								echo "<script>Swal.fire({
-								icon: 'Erro',
-								title: 'Oops...',
-								text: 'Não foi possivel alterar os membros do conselho, tente novamente!',
-								})</script>";
-							}
-						}
+					echo "<script>Swal.fire(
+					'Sucesso!',
+					'Os membros do conselho foram atualizados com sucesso!',
+					'success'
+					)</script>";
+					echo "<script>location.reload()</script>";
+					}else{
+					echo "<script>Swal.fire({
+					icon: 'Erro',
+					title: 'Oops...',
+					text: 'Não foi possivel alterar os membros do conselho, tente novamente!',
+					})</script>";
+					echo "<script>location.reload()</script>";
+					}
+					}
 					?>
 					
 				</form>

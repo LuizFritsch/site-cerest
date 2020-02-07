@@ -1,5 +1,5 @@
+<?php include '../HEADER.php'; ?>
 <?php
-session_start();
 if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
 	header('location:https://guilherme.cerestoeste.com.br/login.php');
 	exit;
@@ -17,7 +17,6 @@ $ide = $_SESSION['id'];
 		<title></title>
 	</head>
 	<body>
-		<?php include '../HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify"></h1>

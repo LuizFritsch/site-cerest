@@ -1,10 +1,10 @@
+<?php include 'HEADER.php'; ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title>Abrangência</title>
 	</head>
 	<body>
-		<?php include 'HEADER.php'; ?>
 		<main>
 			<div class="content text-break">
 				<h1 id="t" class="text-justify">Abrangência do CEREST OESTE:</h1>
@@ -21,17 +21,17 @@
 				</p>
 				<!--
 				<div id="class1" class="image-container">
-												<button class="">An image</button>
-												<a href="">An Image</a>
+													<button class="">An image</button>
+													<a href="">An Image</a>
 				</div>
 				<div id="class1-container" class="text-container">
-												<p>Some Content1</p>
+													<p>Some Content1</p>
 				</div>
 				<div id="class2" class="image-container">
-												<a href="">An Image</a>
+													<a href="">An Image</a>
 				</div>
 				<div id="class2-container" class="text-container">
-												<p>Some Content2</p>
+													<p>Some Content2</p>
 				</div>-->
 				<div class="row">
 					<div class="col-4">
