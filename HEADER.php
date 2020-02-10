@@ -1,16 +1,17 @@
 <?php
 if (session_start()) {
-  session_start();
-  if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-    $logado = $_SESSION['login'];
-    $func = $_SESSION['func'];
-    $senh = $_SESSION['senha'];
-    $ide = $_SESSION['id'];
-  }else{
-    session_unset();
-    session_destroy();
-  }
+session_start();
+if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+$logado = $_SESSION['login'];
+$func = $_SESSION['func'];
+$senh = $_SESSION['senha'];
+$ide = $_SESSION['id'];
+}else{
+session_unset();
+session_destroy();
 }
+}
+$activePage = basename($_SERVER['PHP_SELF'], ".php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -51,36 +52,37 @@ if (session_start()) {
       </button>
       <div class="navbar-collapse collapse menu" id="conteudoNavbarSuportado">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item <?= ($activePage == 'index') ? 'active':''; ?>">
             <a class="nav-link" href="https://guilherme.cerestoeste.com.br/index.php#t">Início
               <span class="sr-only">(página atual)</span>
             </a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?= ($activePage == 'o_cerest') ? 'active':''; ?>">
             <a class="nav-link" href="https://guilherme.cerestoeste.com.br/o_cerest.php#t">O Cerest</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?= ($activePage == 'equipe') ? 'active':''; ?>">
             <a class="nav-link" href="https://guilherme.cerestoeste.com.br/equipe.php#t">Equipe</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item  <?= ($activePage == 'atendimento') ? 'active':''; ?>">
             <a class="nav-link" href="https://guilherme.cerestoeste.com.br/atendimento.php#t">Atendimento</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?= ($activePage == 'abrangencia') ? 'active':''; ?>">
             <a class="nav-link" href="https://guilherme.cerestoeste.com.br/abrangencia.php#t">Abrangência</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item <?= ($activePage == 'contato') ? 'active':''; ?>">
             <a class="nav-link" href="https://guilherme.cerestoeste.com.br/contato.php#t">Contato</a>
           </li>
           <!--<li class="nav-item">
             <a class="nav-link" href="relatorio_nucleos.php#t">Relatório</a>
           </li>-->
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <li class="nav-item dropdown <?= ($activePage == 'publicacoes_legais') ? 'active':''; ?> <?= ($activePage == 'publicacoes_cerest') ? 'active':''; ?> <?= ($activePage == 'projetos_e_pesquisas') ? 'active':''; ?>">
+            
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
               Publicações
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="https://guilherme.cerestoeste.com.br/publicacoes_cerest.php#t">Publicações do CEREST</a>
-              <a class="dropdown-item" href="#">Publicações em Saúde Pública</a>
+              <a class="dropdown-item <?= ($activePage == 'publicacoes_cerest') ? 'active':''; ?>" href="https://guilherme.cerestoeste.com.br/publicacoes_cerest.php#t">Publicações do CEREST</a>
+              <a class="dropdown-item <?= ($activePage == 'publicacoes_legais') ? 'active':''; ?>" href="#">Publicações em Saúde Pública</a>
               <a class="dropdown-item" href="#">Publicações Legais</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Projetos/Pesquisa</a>
@@ -88,20 +90,39 @@ if (session_start()) {
           </li>
           <?php
             if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-              echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+              if ($activePage == 'relatorio_nucleos') {
+                echo "<li class='nav-item active'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+              }else{
+                echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+              }
             }
             if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==1){
+              $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+              if (strpos($actual_link, 'admin')) {
+                echo "<li class='nav-itme dropdown active'>
+                  <a class='nav-link dropdown-toggle dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                    Painel de Administração
+                  </a>
+                  <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                    <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
+                    <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
+                    <a class='dropdown-item' href='#'>...</a>
+                  </div>
+                </li>";
+              }
+              else{
               echo "<li class='nav-item dropdown'>
-              <a class='nav-link dropdown-toggle' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-                Painel de Administração
-              </a>
-              <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
-                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
-                <a class='dropdown-item' href='#'>...</a>
-              </div>
-            </li>";
-          }
+                <a class='nav-link dropdown-toggle' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                  Painel de Administração
+                </a>
+                <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                  <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
+                  <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
+                  <a class='dropdown-item' href='#'>...</a>
+                </div>
+              </li>";
+              }
+            }
           ?>
         </ul>
         
@@ -113,7 +134,7 @@ if (session_start()) {
           echo "<h5 class='mr-sm-2 texto-ola'>Olá, $logado</h5>";
           echo "<a type='button' class='btn btn-danger my-2 my-sm-1' href='https://guilherme.cerestoeste.com.br/logout.php'>Sair</a>";
           }elseif((!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
-          echo "<a class='btn btn-outline-success my-2 my-sm-1 btn-login' type='submit' href='https://guilherme.cerestoeste.com.br/login.php#t'>Login</a>";
+          echo "<a class='btn btn-outline-success my-2 my-sm-1 btn-login' type='submit' href='https://guilherme.cerestoeste.com.br/login.php'>Login</a>";
           }
           ?>
         </form>

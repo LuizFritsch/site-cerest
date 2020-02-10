@@ -844,3 +844,7 @@ h6 > .divider:before,
     text-transform: capitalize;
     text-align: center;
 }
+
+.dropdown-item{
+  background-color: transparent !important;
+}

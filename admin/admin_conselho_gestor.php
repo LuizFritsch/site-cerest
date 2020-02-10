@@ -8,8 +8,8 @@
 	<body>
 		<?php
 			if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
-				header('location:https://guilherme.cerestoeste.com.br/login.php');
-				exit;
+				echo "<script>alert('Você não está logado ou não tem o nível de acesso necessário!')</script>";
+				echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/login.php');</script>";
 			}
 			include '../sinan/db_connection.php';
 			$con=OpenCon();
@@ -30,7 +30,7 @@
 						<h3 class="card-header text-center font-weight-bold text-uppercase py-4">Conselho gestor do CEREST</h3>
 						<div class="card-body">
 							<div id="table" class="table-editable">
-								<table class="table table-bordered text-center table-hover-cells">
+								<table class="table d-flex table-bordered text-center table-hover-cells">
 									<thead>
 										<tr>
 											<?php

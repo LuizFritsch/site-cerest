@@ -24,7 +24,10 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 											<div class="dividosa" id="dividosa">
 												<div class="form-group">
 													<label for="inputUsuario">Usuário</label>
-													<input type="text" class="form-control" id="inputUsuario" name="inputUsuario" placeholder="Digite o seu nome de Usuário...">
+													<input type="text" class="form-control" id="inputUsuario" name="inputUsuario" placeholder="Digite o seu nome de Usuário..." autofocus>
+													<script>
+														$('#inputUsuario').focus();
+													</script>
 												</div>
 												<div class="form-group">
 													<label for="inputSenha">Senha</label>
@@ -42,23 +45,20 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 								
 								<button class="btn btn-success" data-toggle="modal" data-target="#ExemploModalCentralizado">Solicitar Acesso</button>
 								<!-- Modal -->
-								<div class="modal fade bd-example-modal-xl" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+								<div class="modal fade bd-example-modal-lg" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="modal-lg" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered" role="document">
 										<div class="modal-content">
 											<div class="modal-header">
-												<h5 class="modal-title" id="TituloModalCentralizado">Solicitar Acesso</h5>
-												<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+												<h5 class="modal-title" id="modal-lg">Solicitar Acesso</h5>
+												<button type="button" class="close" data-dismiss="modal-lg" aria-label="Fechar">
 												<span aria-hidden="true">&times;</span>
 												</button>
 											</div>
-
-
-											<div class="modal-body modal-dialog modal-xl">
-												<div class="modal-body modal-dialog modal-xl">
+											<div class="modal-body modal-dialog modal-lg">
+												<div class="modal-body modal-dialog mmodal-lg">
 													
-
 													<div class="row text-center">
-													
+														
 														<div class="col-md-6">
 															<div class="card m-3 border shadow-sm">
 																<div class="card-body">
@@ -67,7 +67,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 																	<p class="card-text text-center">Esta opção é para pessoas que fazem parte dos núcleos em saúde do trabalhador.</p>
 																	<p class="card-text text-center">Será solicitado informações relacionadas a você, ao secretário de saúde e do presidente do conselho municipal de saúde do seu municipio.</p>
 																	<p class="card-text text-center"><strong>*Caso opte por esta opção, sua solicitação será avaliada antes de liberarmos seu acesso.</strong></p>
-																	<button class="btn btn-success" data-toggle="modal" data-target="#ExemploModalCentralizado">Solicitar</button>
+																	<a type="button" class="btn btn-success" href="https://guilherme.cerestoeste.com.br/solicitar_usuario.php#t">Solicitar</a>
 																</div>
 															</div>
 														</div>
@@ -77,19 +77,14 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 																	<h5 class="card-title">Sou um usuário Comum</h5>
 																	<hr>
 																	<p class="card-text text-center">Esta opção é para quem apenas deseja se cadastrar para receber emails sobre eventos ou realizar comentários nas páginas de noticia.</p>
-																	<button class="btn btn-success" data-toggle="modal" data-target="#ExemploModalCentralizado">Solicitar</button>
+																	<a type="button" class="btn btn-success" href="https://guilherme.cerestoeste.com.br/solicitar_usuario.php#t">Solicitar</a>
 																</div>
 															</div>
 														</div>
-													
+														
 													</div>
-
-
 												</div>
 											</div>
-
-
-
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
 											</div>
