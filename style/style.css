@@ -798,7 +798,6 @@ h6 > .divider:before,
   content: "\0223E\0020";
 }
 
-
 .files input {
     outline: 2px dashed #92b0b3;
     outline-offset: -10px;
@@ -846,5 +845,5 @@ h6 > .divider:before,
 }
 
 .dropdown-item{
-  background-color: transparent !important;
+  background: transparent !important;
 }
