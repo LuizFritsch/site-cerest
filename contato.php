@@ -98,20 +98,20 @@
 												// envia o email
 												if( $_SERVER['REQUEST_METHOD'] == 'POST'){
 													if(mail($destinatario, $assunto , $body, "From: $email\r\n")){
-												echo "<script>Swal.fire(
-												'Sucesso!',
-												'Sua mensagem foi enviada com sucesso!',
-												'success'
-												)</script>";
-												echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/contato.php#msg');</script>";
-												}else{
-												echo "<script>Swal.fire({
-												icon: 'Erro',
-												title: 'Oops...',
-												text: 'Não foi possivel enviar sua mensagem, tente novamente!',
-												})</script>";
-												echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/cerest/o_cerest.php#t');</script>";
-												}
+														echo "<script>Swal.fire(
+														'Sucesso!',
+														'Sua mensagem foi enviada com sucesso!',
+														'success'
+														)</script>";
+														echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/contato.php#msg');</script>";
+													}else{
+														echo "<script>Swal.fire({
+														icon: 'Erro',
+														title: 'Oops...',
+														text: 'Não foi possivel enviar sua mensagem, tente novamente!',
+														})</script>";
+														echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/cerest/o_cerest.php#t');</script>";
+													}
 												}
 												
 												// redireciona para a página de obrigado

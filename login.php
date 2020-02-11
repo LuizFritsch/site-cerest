@@ -27,6 +27,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 													<input type="text" class="form-control" id="inputUsuario" name="inputUsuario" placeholder="Digite o seu nome de Usuário..." autofocus>
 													<script>
 														$('#inputUsuario').focus();
+														document.getElementById('inputUsuario').scrollIntoView();
 													</script>
 												</div>
 												<div class="form-group">

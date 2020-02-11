@@ -224,7 +224,7 @@
 							Sim
 							</h6>
 							<h6>
-							<input type="radio" name="solidworks" value="No" id="rdNo" />
+							<input checked="" type="radio" name="solidworks" value="No" id="rdNo" />
 							Não
 							</h6>
 						</fieldset>
