@@ -71,6 +71,10 @@
 								</script>
 							</div>
 						</div>
+						<div class="form-group">
+						    <h6>Descrição da Publicação</h6>
+						    <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+						</div>
 						<br>
 						<button type="submit" id="save" name="save" class="btn btn-success save">Submeter Publicação</button>
 						<?php
@@ -82,12 +86,18 @@
 							    Result is "uploads/filename.extension" */
 							    $target_path = $target_path . basename( $_FILES['uploadedfile']['name']);
 
+							    //inverter ordem, verificar se o input do nome esta vazio e dps enviar o arquivo
+
 							    if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
-							        if (isset($_POST['inputNomePDF']) && $_POST['inputNomePDF'] !== '') {
-							            if (rename($target_path, "../../publicacoes/".$_POST['inputNomePDF'].".pdf")) {
+							        if ($_POST['inputNomePDF'] !== '') {
+							        	$novoNome="../../publicacoes/".$_POST['inputNomePDF'].".pdf";
+							        	echo "<script>alert('$novoNome && $target_path')</script>";
+							            if (rename($target_path,$novoNome)) {
 							            	$url = "https://guilherme.cerestoeste.com.br/publicacoes/".$_POST['inputNomePDF'].".pdf";
-							            	$sql = "INSERT INTO publicacoes(ID_PUBLICACAO,NOME,URL) VALUES(DEFAULT,'$nome','$url')";
-							            	if ($result = mysqli_query($con, $sql)) {
+							            	$descricao=$_POST['descricao'];
+							            	$nome=$_POST['inputNomePDF'].".pdf";
+							            	$sql = "INSERT INTO publicacoes(ID_PUBLICACAO,NOME,URL,DESCRICAO) VALUES(DEFAULT,'$nome','$url','$descricao')";
+							            	if ($resultS = mysqli_query($con, $sql)) {
 							            		echo "<script>Swal.fire(
 							                        'Sucesso!',
 							                        'A publicação foi adicionada com sucesso!',
@@ -97,33 +107,27 @@
 							                        });</script>";	
 							            	}else{
 							            		echo "<script>Swal.fire({
-							                        icon: 'Erro',
+							                        icon: 'error',
 							                        title: 'Oops...',
 							                        text: 'Não foi possivel inserir a publicação renomeada no bd, tente novamente mais tarde!',
 							                        }).then(function() {
 							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
 							                        });</script>";							            			
 							            	}
-							            	echo "$nome";
-									        echo "$url";
-									        echo "$sql";
-							                
 							            }else{
 							                echo "<script>Swal.fire({
-							                        icon: 'Erro',
+							                        icon: 'error',
 							                        title: 'Oops...',
 							                        text: 'Não foi possivel renomear a publicação, tente novamente mais tarde!',
 							                        }).then(function() {
 							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
 							                        });</script>";
 							            }       
-							        }
-							        $url="https://guilherme.cerestoeste.com.br/publicacoes/".basename( $_FILES['uploadedfile']['name'])."";
+							        }else{
+							        	$url="https://guilherme.cerestoeste.com.br/publicacoes/".basename( $_FILES['uploadedfile']['name'])."";
 							        $nome=basename($_FILES['uploadedfile']['name']);
-							        $sql = "INSERT INTO publicacoes(ID_PUBLICACAO,NOME,URL) VALUES(DEFAULT,'$nome','$url')";
-							        echo "$nome";
-							        echo "$url";
-							        echo "$sql";
+							        $descricao=$_POST['descricao'];
+							        $sql = "INSERT INTO publicacoes(ID_PUBLICACAO,NOME,URL,DESCRICAO) VALUES(DEFAULT,'$nome','$url','$descricao')";
 							        if ($result = mysqli_query($con, $sql)) {
 							        	echo "<script>Swal.fire(
 							                        'Sucesso!',
@@ -134,16 +138,18 @@
 							                        });</script>";
 							        }else{
 							        	echo "<script>Swal.fire({
-							                        icon: 'Erro',
+							                        icon: 'error',
 							                        title: 'Oops...',
 							                        text: 'Não foi possivel inserir a publicação renomeada no bd, tente novamente mais tarde!',
 							                        }).then(function() {
 							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
 							                        });</script>";							            			
 							            	}
+							        }
+							        
 							    }else{
 							        echo "<script>Swal.fire({
-							                    icon: 'Erro',
+							                    icon: 'error',
 							                    title: 'Oops...',
 							                    text: 'Não foi possivel realizar o upload da publicação, tente novamente mais tarde!',
 							                    }).then(function() {
