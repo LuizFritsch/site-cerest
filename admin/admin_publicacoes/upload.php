@@ -1,44 +1,40 @@
 <?php
-include '../../sinan/db_connection.php';
-$conn=OpenCon();
+    // Where the file is going to be placed
+    $target_path = "./uploads/";
 
-// Uploads files
-if (isset($_POST['save'])) {
+    /* Add the original filename to our target path.
+    Result is "uploads/filename.extension" */
+    $target_path = $target_path . basename( $_FILES['uploadedfile']['name']);
+    echo "<head><script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script><head>";
 
-
-    $uploaddir = '/var/www/uploads/';
-    $uploadfile = $uploaddir . basename($_FILES['myfile']['name']);
-    
-	// if save button on the form is clicked
-    // name of the uploaded file
-    $filename = $_FILES['myfile']['name'];
-
-    // destination of the file on the server
-    $destination = 'uploads/' . $filename;
-
-    // get the file extension
-    $extension = pathinfo($filename, PATHINFO_EXTENSION);
-
-    // the physical file on a temporary uploads directory on the server
-    $file = $_FILES['myfile']['tmp_name'];
-    $size = $_FILES['myfile']['size'];
-
-    if (!in_array($extension, ['zip', 'pdf', 'docx'])) {
-        echo "You file extension must be .zip, .pdf or .docx";
-    } elseif ($_FILES['myfile']['size'] > 1000000) { // file shouldn't be larger than 1Megabyte
-        echo "File too large!";
-    } else {
-        // move the uploaded (temporary) file to the specified destination
-        if (move_uploaded_file($_FILES['myfile']['tmp_name'], $uploadfile)) {
-            $sql = "INSERT INTO publicacoes (NOME,ARQUIVO) VALUES ('$filename', $size, 0)";
-            if (mysqli_query($conn, $sql)) {
-                echo "File uploaded successfully";
-                echo "<script>window.location.assign('https://google.com')</script>";
-            }
-        } else {
-            echo "Failed to upload file.";
-            echo "<script>window.location.assign('https://gmail.com')</script>";
+    if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
+        if (isset($_POST['inputNomePDF']) && $_POST['inputNomePDF'] !== '') {
+            if (rename($target_path, "./uploads/".$_POST['inputNomePDF'].".pdf")) {
+                echo "<script>Swal.fire(
+                        'Sucesso!',
+                        'A publicação foi adicionada com sucesso!',
+                        'success'
+                        ).then(function() {
+                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor.php';
+                        });</script>";
+                echo "<script>alert('AAAAAAAA TO COM DEPRESSAO');</script>";
+            }else{
+                echo "<script>Swal.fire({
+                        icon: 'Erro',
+                        title: 'Oops...',
+                        text: 'Não foi possivel renomear a publicação, tente novamente mais tarde!',
+                        }).then(function() {
+                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor.php';
+                        });</script>";
+            }       
         }
+    }else{
+        echo "<script>Swal.fire({
+                    icon: 'Erro',
+                    title: 'Oops...',
+                    text: 'Não foi possivel realizar o upload da publicação, tente novamente mais tarde!',
+                    }).then(function() {
+                        window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor.php';
+                    });</script>";
     }
-}
 ?>
