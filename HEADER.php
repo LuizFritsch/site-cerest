@@ -45,7 +45,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
       <h1></h1>
     </header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light menu">
-      <a class="navbar-brand" href="index.php"><img src="https://guilherme.cerestoeste.com.br/img/iconeCerestSite.png" id="icone">CEREST OESTE</a>
+      <a class="navbar-brand" href="https://guilherme.cerestoeste.com.br"><img src="https://guilherme.cerestoeste.com.br/img/iconeCerestSite.png" id="icone">CEREST OESTE</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
       <span class="navbar-toggler-icon"></span>
       Menu
@@ -72,9 +72,6 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
           <li class="nav-item <?= ($activePage == 'contato') ? 'active':''; ?>">
             <a class="nav-link" href="https://guilherme.cerestoeste.com.br/contato.php#t">Contato</a>
           </li>
-          <!--<li class="nav-item">
-            <a class="nav-link" href="relatorio_nucleos.php#t">Relatório</a>
-          </li>-->
           <li class="nav-item dropdown <?= ($activePage == 'publicacoes_legais') ? 'active':''; ?> <?= ($activePage == 'publicacoes_cerest') ? 'active':''; ?> <?= ($activePage == 'projetos_e_pesquisas') ? 'active':''; ?>">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Publicações
@@ -87,11 +84,11 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
               <a class="dropdown-item" href="#">Projetos/Pesquisa</a>
             </div>
           </li>
-
-          
           <?php
           if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+            //se o usuario estiver logado, mostra a aba relatorio nucleos no menu
           if ($activePage == 'relatorio_nucleos') {
+            //se o usuario logado estiver na pagina relatorio nucleos, a aba relatorio fica em negrito no menu
           echo "<li class='nav-item active'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
           }else{
           echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
@@ -133,8 +130,6 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
         </ul>
         
         <form class="form-inline my-2 my-lg-1">
-          <!--<input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>-->
           <?php
           if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
           echo "<h5 class='mr-sm-2 texto-ola'>Olá, $logado</h5>";
@@ -146,16 +141,6 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
         </form>
       </div>
       <a href="#" id="Voltar ao Topo" title="Voltar ao topo"  class="scrollToTop">^</a>
-    </nav>
-    
-    <!--
-    <main>
-      <div class="content">
-        <h1>Bem Vindo</h1>
-        <p>O Centro Regional de Referência em Saúde do Trabalhador da Região Oeste do Rio Grande do Sul, é um serviço do Sistema Único de Saúde (SUS), com sede em Alegrete. Possui abrangência regional atendendo os municípios da 10ª Coordenadoria Regional de Saúde. A Rede Nacional de Atenção Integral à Saúde do Trabalhador (RENAST), regulamentada pela PORTARIA DE CONSOLIDAÇÃO do Ministério da Saúde nº 3 de 28 de setembro de 2017, tem o objetivo de disseminar ações de Saúde do Trabalhador articuladas às demais redes do SUS.<br>
-        Dá suporte técnico para a atenção integral em Saúde do Trabalhador, com ações de Prevenção, Promoção, Diagnóstico, Tratamento, Reabilitação e Vigilância em Saúde dos Trabalhadores e Trabalhadoras Urbanos e Rurais.</p>
-      </div>
-    </main>-->
-    
+    </nav>    
   </body>
 </html>
