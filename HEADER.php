@@ -3,9 +3,9 @@ if (session_start()) {
 session_start();
 if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
 $logado = $_SESSION['login'];
-$func = $_SESSION['func'];
+$func = $_SESSION['id'];
 $senh = $_SESSION['senha'];
-$ide = $_SESSION['id'];
+$ide = $_SESSION['func'];
 }else{
 session_unset();
 session_destroy();
