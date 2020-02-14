@@ -26,7 +26,7 @@
 		?>
 		<main>
 			<div class="content text-break">
-				<h1 class="text-justify">Painel de Controle -> Gerenciar Noticias -> Adicionar Noticia</h1>
+				<h1 class="text-justify">Painel de Controle -> Gerenciar Noticias -> Adicionar Publicação</h1>
 				<?php
 				echo" <h4>Bem vindo $logado<h4>";
 				echo" <br>";
@@ -91,7 +91,6 @@
 							    if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
 							        if ($_POST['inputNomePDF'] !== '') {
 							        	$novoNome="../../publicacoes/".$_POST['inputNomePDF'].".pdf";
-							        	echo "<script>alert('$novoNome && $target_path')</script>";
 							            if (rename($target_path,$novoNome)) {
 							            	$url = "https://guilherme.cerestoeste.com.br/publicacoes/".$_POST['inputNomePDF'].".pdf";
 							            	$descricao=$_POST['descricao'];

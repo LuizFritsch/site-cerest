@@ -19,8 +19,8 @@ if(mysqli_num_rows($result)>0){
 	while($row = mysqli_fetch_array($result)) {
 		$_SESSION['login']=$row["NOME"];
 		$_SESSION['senha']=$row["SENHA"];
-		$_SESSION['id']=$row["ID_USUARIO"];
-		$_SESSION['func']=$row["FK_ID_FUNCAO"];
+		$_SESSION['func']=$row["ID_USUARIO"];
+		$_SESSION['id']=$row["FK_ID_FUNCAO"];
 	}
 	
 	header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php');

@@ -34,7 +34,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 													<label for="inputSenha">Senha</label>
 													<input type="password" class="form-control" name="inputSenha" id="inputSenha" placeholder="Digite a sua senha...">
 												</div>
-												<input type="submit" class="form-group btn btn-primary" value="Entrar"  />
+												<input type="submit" class="form-group btn btn-primary btn-lg btn-block" value="Entrar"  />
 											</div>
 										</fieldset>
 									</form>
@@ -44,7 +44,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 								<h4 id="t" class="text-justify">Não é cadastrado ainda?</h4>
 								<p class="text-justify">Caso você não esteja cadastrado no nosso sistema ainda, solicite seu usuário e senha.</p>
 								
-								<button class="btn btn-success" data-toggle="modal" data-target="#ExemploModalCentralizado">Solicitar Acesso</button>
+								<button class="btn btn-success btn-lg btn-block" data-toggle="modal" data-target="#ExemploModalCentralizado">Solicitar Acesso</button>
 								<!-- Modal -->
 								<div class="modal fade bd-example-modal-lg" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="modal-lg" aria-hidden="true">
 									<div class="modal-dialog modal-dialog-centered" role="document">

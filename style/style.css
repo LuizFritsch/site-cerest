@@ -847,3 +847,9 @@ h6 > .divider:before,
 .dropdown-item{
   background: transparent !important;
 }
+
+.publicacoes{
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+}

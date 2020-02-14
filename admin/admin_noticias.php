@@ -42,17 +42,7 @@
 								<div class="card-body text-center">
 									<h5 class="card-title mb-0">-</h5>
 									<div class="card-text text-black-50">
-										<a href="./admin_noticias/excluir_noticia.php#t">Excluir Noticia</a>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-0 shadow">
-								<div class="card-body text-center">
-									<h5 class="card-title mb-0">-</h5>
-									<div class="card-text text-black-50">
-										<a href="./admin_noticias/atualizar_noticia.php#t">Atualizar Noticia</a>
+										<a href="./admin_noticias/excluir_noticia.php#t">Gerenciar Noticia</a>
 									</div>
 								</div>
 							</div>

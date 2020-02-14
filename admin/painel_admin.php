@@ -50,7 +50,7 @@
 								<div class="card-body text-center">
 									<h5 class="card-title mb-0">-</h5>
 									<div class="card-text text-black-50">
-										<a href="./admin_publicacoes/adicionar_publicacao.php">Gerenciar Publicacoes</a>
+										<a href="./admin_publicacoes/gerenciar_publicacoes.php">Gerenciar Publicacoes</a>
 									</div>
 								</div>
 							</div>
