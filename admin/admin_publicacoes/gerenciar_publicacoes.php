@@ -29,14 +29,14 @@
 					<div id="divPublicacoes">
 						<div class="form-group">
 							<hr>
-							<a type="button" class="btn btn-success btn-lg btn-block" href="./adicionar_publicacao.php#t">Adicionar Publicação</a>
+							<a type="button" class="btn btn-success btn-lg btn-block btn-lg btn-block" href="./adicionar_publicacao.php#t">Adicionar Publicação</a>
 							<hr>
 						</div>
 						<br>
 						<br>
 						<div class="form-group">
 							<h6>Pesquisar Publicação:</h6>
-							<input type="text" class="form-control" id="inputPesquisarPublicacao" placeholder="Digite o parte do nome da Publicação">
+							<input type="text" class="form-control" id="inputPesquisarPublicacao" name="inputPesquisarPublicacao" placeholder="Digite o parte do nome da Publicação">
 						</div>
 						<div class="table-responsive">
 							<table class="table table-striped">
@@ -60,8 +60,8 @@
 												echo "<tr>
 																	<th scope='row'>{$row['ID_PUBLICACAO']}</th>
 																	<td>{$row['NOME']}</td>
-																	<td><a type='button' target='_blank' href='{$row['URL']}' class='btn btn-primary'>Visualizar</a></td>
-																	<td><a href='' type='button' class='btn btn-warning'>Editar</a></td>
+																	<td><a type='button' target='_blank' href='{$row['URL']}' class='btn btn-primary'>Visualizar PDF</a></td>
+																	<td><a href=\"editar_publicacao.php?id=".$row['ID_PUBLICACAO']."&user-id=".$_ide."\" type='button' class='btn btn-warning'>Editar</a></td>
 																		<td><a type='button' class='btn btn-danger' href=\"delete_publicacao.php?id=".$row['ID_PUBLICACAO']."&user-id=".$_ide."\">Excluir</a></td>
 													</tr>";
 											}

@@ -40,7 +40,7 @@
 						
 						<div class="form-group">
 							<h6>Título da Publicacao</h6>
-							<input type="text" class="form-control" name="inputNomePDF" id="inputNomePDF" placeholder="Digite o nome da publicação ou deixe em branco para manter o mesmo...">
+							<input type="text" class="form-control" maxlength="250" minlength="1" name="inputNomePDF" id="inputNomePDF" placeholder="Digite o nome da publicação ou deixe em branco para manter o mesmo..." required="">
 						</div>
 						
 						<br>
@@ -48,7 +48,7 @@
 						<div class="form-group">
 							<div class="form-group files">
 								<h6>PDF da publicação</h6>
-								<input type="file" accept="application/pdf,application/" class="form-control ashuashua" name="uploadedfile" id="uploadedfile" required="" multiple="" value="Arraste o PDF aqui ou ">
+								<input type="file" accept="application/pdf,application/" class="form-control ashuashua" name="uploadedfile" id="uploadedfile" required="">
 							</div>
 						</div>
 						<div class="form-group text-center">
@@ -73,7 +73,7 @@
 						</div>
 						<div class="form-group">
 						    <h6>Descrição da Publicação</h6>
-						    <textarea class="form-control" id="descricao" name="descricao" rows="3"></textarea>
+						    <textarea class="form-control" id="descricao" maxlength="400" minlength="1" name="descricao" rows="3"></textarea>
 						</div>
 						<br>
 						<button type="submit" id="save" name="save" class="btn btn-success save">Submeter Publicação</button>
@@ -95,22 +95,23 @@
 							            	$url = "https://guilherme.cerestoeste.com.br/publicacoes/".$_POST['inputNomePDF'].".pdf";
 							            	$descricao=$_POST['descricao'];
 							            	$nome=$_POST['inputNomePDF'].".pdf";
-							            	$sql = "INSERT INTO publicacoes(ID_PUBLICACAO,NOME,URL,DESCRICAO) VALUES(DEFAULT,'$nome','$url','$descricao')";
+							            	$sql = "UPDATE publicacoes SET NOME='$nome', URL='$url', DESCRICAO='$descricao' WHERE ID_PUBLICACAO='$id'";
+							            	echo "<script>alert('$sql');</script>";
 							            	if ($resultS = mysqli_query($con, $sql)) {
 							            		echo "<script>Swal.fire(
 							                        'Sucesso!',
-							                        'A publicação foi adicionada com sucesso!',
+							                        'A publicação foi editada com sucesso!',
 							                        'success'
 							                        ).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";	
 							            	}else{
 							            		echo "<script>Swal.fire({
 							                        icon: 'error',
 							                        title: 'Oops...',
-							                        text: 'Não foi possivel inserir a publicação renomeada no bd, tente novamente mais tarde!',
+							                        text: 'Não foi possivel editar a publicação renomeada no bd, tente novamente mais tarde!1',
 							                        }).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";							            			
 							            	}
 							            }else{

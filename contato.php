@@ -130,6 +130,7 @@
 					
 				</div>
 			</div>
+			<br>
 		</main>
 		<?php include 'footer.html'; ?>
 	</body>

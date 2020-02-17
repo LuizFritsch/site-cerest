@@ -835,7 +835,7 @@ h6 > .divider:before,
     width: 100%;
     right: 0;
     height: 57px;
-    content: " Selecione uma imagem ou arraste ela para cá";
+    content: " Selecione ou arraste para cá";
     display: block;
     margin: 0 auto;
     color: #2ea591;
