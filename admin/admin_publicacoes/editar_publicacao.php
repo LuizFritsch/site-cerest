@@ -50,6 +50,28 @@
 						</div>
 						
 						<br>
+
+						<div class="form-group">
+							<h6>Tipo da Publicacao</h6>
+							<?php
+								$sql_select_tipo="SELECT * FROM tipo_publicacoes";
+								$resultad=mysqli_query($con,$sql_select_tipo);
+								if(!$resultad) {
+									die('Could not get data: ' . mysqli_error($con));
+								}
+								echo"<select class='form-control' id='tipo_publicacao' name='tipo_publicacao' required>";
+								while($ro = mysqli_fetch_array($resultad)) {
+									if ($ro['ID_TIPO_PUBLICACAO']==$$row['FK_TIPO_PUBLICACAO']) {
+										echo "<option selected value='{$ro['ID_TIPO_PUBLICACAO']}'>{$ro['TIPO_PUBLICACAO']}</option>";
+									}else{
+										echo "<option value='{$ro['ID_TIPO_PUBLICACAO']}' >{$ro['TIPO_PUBLICACAO']}</option>";
+									}
+								}		
+								echo "</select>";
+								?>
+						</div>
+
+						<br>
 						
 						<div class="form-group">
 							<div class="form-group">

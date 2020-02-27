@@ -33,16 +33,31 @@
 				?>
 				<div>
 					<form method="POST" enctype="multipart/form-data">
-						<div class="form-group">
-							<h6>Tags</h6>
-							<!--<input type="text" class="form-control" id="inputCNES" placeholder="Digite o titulo da noticia...">-->
-						</div>
-						
+											
 						<div class="form-group">
 							<h6>Título da Publicacao</h6>
-							<input type="text" class="form-control" maxlength="250" minlength="1" name="inputNomePDF" id="inputNomePDF" placeholder="Digite o nome da publicação ou deixe em branco para manter o mesmo..." required="">
+							<input type="text" class="form-control" maxlength="250" minlength="1" name="inputNomePDF" id="inputNomePDF" placeholder="Digite o nome da publicação ou deixe em branco para manter o mesmo...">
 						</div>
 						
+						<br>
+						
+						<div class="form-group">
+							<h6>Tipo da Publicacao</h6>
+							<?php
+								$sql_select="SELECT * FROM tipo_publicacoes";
+								$resultado=mysqli_query($con,$sql_select);
+								if(!$resultado) {
+									die('Could not get data: ' . mysqli_error($con));
+								}
+								echo"<select class='form-control' id='tipo_publicacao' name='tipo_publicacao' required>";
+								while($row = mysqli_fetch_array($resultado)) {
+									//echo "<td contenteditable='true' name='funcao{$row['FK_ID_FUNCAO']}'>{$row['NOME']}</td>";
+									echo "<option value='{$row['ID_TIPO_PUBLICACAO']}'>{$row['TIPO_PUBLICACAO']}</option>";
+								}		
+								echo "</select>";
+								?>
+						</div>
+
 						<br>
 						
 						<div class="form-group">
@@ -95,7 +110,8 @@
 							            	$url = "https://guilherme.cerestoeste.com.br/publicacoes/".$_POST['inputNomePDF'].".pdf";
 							            	$descricao=$_POST['descricao'];
 							            	$nome=$_POST['inputNomePDF'].".pdf";
-							            	$sql = "UPDATE publicacoes SET NOME='$nome', URL='$url', DESCRICAO='$descricao' WHERE ID_PUBLICACAO='$id'";
+							            	$tipo_publicacao=$_POST['tipo_publicacao'];
+							            	$sql = "INSERT INTO publicacoes(ID_PUBLICACAO,NOME,URL,DESCRICAO,FK_TIPO_PUBLICACAO) VALUES(DEFAULT,'$nome','$url','$descricao','$tipo_publicacao')";
 							            	echo "<script>alert('$sql');</script>";
 							            	if ($resultS = mysqli_query($con, $sql)) {
 							            		echo "<script>Swal.fire(
@@ -125,26 +141,27 @@
 							            }       
 							        }else{
 							        	$url="https://guilherme.cerestoeste.com.br/publicacoes/".basename( $_FILES['uploadedfile']['name'])."";
-							        $nome=basename($_FILES['uploadedfile']['name']);
-							        $descricao=$_POST['descricao'];
-							        $sql = "INSERT INTO publicacoes(ID_PUBLICACAO,NOME,URL,DESCRICAO) VALUES(DEFAULT,'$nome','$url','$descricao')";
-							        if ($result = mysqli_query($con, $sql)) {
-							        	echo "<script>Swal.fire(
-							                        'Sucesso!',
-							                        'A publicação foi adicionada com sucesso!',
-							                        'success'
-							                        ).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
-							                        });</script>";
-							        }else{
-							        	echo "<script>Swal.fire({
-							                        icon: 'error',
-							                        title: 'Oops...',
-							                        text: 'Não foi possivel inserir a publicação renomeada no bd, tente novamente mais tarde!',
-							                        }).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
-							                        });</script>";							            			
-							            	}
+								        $nome=basename($_FILES['uploadedfile']['name']);
+								        $descricao=$_POST['descricao'];
+								        $tipo_publicacao=$_POST['tipo_publicacao'];
+								        $sql = "INSERT INTO publicacoes(ID_PUBLICACAO,NOME,URL,DESCRICAO,FK_TIPO_PUBLICACAO) VALUES(DEFAULT,'$nome','$url','$descricao','$tipo_publicacao')";
+								        if ($result = mysqli_query($con, $sql)) {
+								        	echo "<script>Swal.fire(
+								                        'Sucesso!',
+								                        'A publicação foi adicionada com sucesso!',
+								                        'success'
+								                        ).then(function() {
+								                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+								                        });</script>";
+								        }else{
+								        	echo "<script>Swal.fire({
+								                        icon: 'error',
+								                        title: 'Oops...',
+								                        text: 'Não foi possivel inserir a publicação renomeada no bd, tente novamente mais tarde!',
+								                        }).then(function() {
+								                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+								                        });</script>";							            			
+								        }
 							        }
 							        
 							    }else{
