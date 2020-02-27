@@ -3,6 +3,8 @@
 <html>
 	<head>
 		<title>Gerenciar Publicacoes</title>
+		 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+		 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 	</head>
 	<body>
 		<?php
@@ -39,7 +41,12 @@
 							<input type="text" class="form-control" id="inputPesquisarPublicacao" name="inputPesquisarPublicacao" placeholder="Digite o parte do nome da Publicação">
 						</div>
 						<div class="table-responsive">
-							<table class="table table-striped">
+							<table class="table table-striped" id="example">
+								<script type="text/javascript">
+									$(document).ready(function() {
+									    $('#example').DataTable();
+									} );
+								</script>
 								<thead>
 									<tr>
 										<th scope="col" id="tabela-publicacoes">ID</th>
@@ -75,7 +82,7 @@
 				</form>
 
 				<br>
-				
+
 			</div>
 		</main>
 		<?php include '../../footer.html'; ?>
