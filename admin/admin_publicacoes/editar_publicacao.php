@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Painel Admin - Adicionar Publicação</title>
+		<title>Painel Admin - gerenciar Publicação</title>
 		<link rel="stylesheet" type="text/css" href="../../style/style.css">
     	<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
 	</head>
@@ -59,12 +59,12 @@
 								if(!$resultad) {
 									die('Could not get data: ' . mysqli_error($con));
 								}
-								echo"<select class='form-control' id='tipo_publicacao' name='tipo_publicacao' required>";
+								echo"<select class='form-control' id='tipo_publicacao' name='editar_tipo_publicacao' required>";
 								while($ro = mysqli_fetch_array($resultad)) {
-									if ($ro['ID_TIPO_PUBLICACAO']==$$row['FK_TIPO_PUBLICACAO']) {
-										echo "<option selected value='{$ro['ID_TIPO_PUBLICACAO']}'>{$ro['TIPO_PUBLICACAO']}</option>";
+									if ($ro['ID_TIPO_PUBLICACAO']==$row['FK_TIPO_PUBLICACAO']) {
+										echo "<option selected='' value='{$ro['ID_TIPO_PUBLICACAO']}'>{$ro['TIPO_PUBLICACAO']}</option>";
 									}else{
-										echo "<option value='{$ro['ID_TIPO_PUBLICACAO']}' >{$ro['TIPO_PUBLICACAO']}</option>";
+										echo "<option value='{$ro['ID_TIPO_PUBLICACAO']}'>{$ro['TIPO_PUBLICACAO']}</option>";
 									}
 								}		
 								echo "</select>";
@@ -107,12 +107,14 @@
 						</div>
 						<div class="form-group">
 						    <h6>Descrição da Publicação</h6>
-						    <textarea class="form-control" id="descricao" maxlength="400" minlength="1" name="descricao" rows="3" value="<?php echo (isset($row['DESCRICAO']))?$row['DESCRICAO']:'';?>"></textarea>
+						    <textarea class="form-control" id="descricao" maxlength="400" minlength="1" name="descricao" rows="3" value="<?php echo (isset($row['DESCRICAO']))?$row['DESCRICAO']:'';?>"><?php echo (isset($row['DESCRICAO']))?$row['DESCRICAO']:'';?></textarea>
 						</div>
 						<br>
 						<button type="submit" id="save" name="save" class="btn btn-success save">Submeter Publicação</button>
 						<?php
 							if($_SERVER['REQUEST_METHOD'] == 'POST'){
+								$tipo_publicacao=$_POST['editar_tipo_publicacao'];
+								echo "<script>alert('$tipo_publicacao');</script>";
 								$nome_antigo=$row['NOME'];
 								if (isset($_POST['inputNomePDF']) && strpos($_POST['inputNomePDF'], ".pdf")) {
 									$nome_novo=$_POST['inputNomePDF']; 
@@ -121,7 +123,7 @@
 								}else{
 									$nome_novo="";
 								}
-								$descricao=$_POST['DESCRICAO'];
+								$descricao=$_POST['descricao'];
 								
 								if ($nome_novo !== '' && $nome_novo!==$nome_antigo ) {
 									//ARQUIVO FOI RENOMEADO
@@ -131,14 +133,14 @@
 									$url="https://guilherme.cerestoeste.com.br/publicacoes/".$nome_novo;
 									if (!file_exists($_FILES['uploadedfile']['tmp_name']) || !is_uploaded_file($_FILES['uploadedfile']['tmp_name'])) {
 										//NAO FOI FEITO UPLOAD DE UM ARQUIVO
-										$sql = "UPDATE publicacoes SET NOME='$nome_novo', URL='$url', DESCRICAO='$descricao' WHERE ID_PUBLICACAO='$id'";
+										$sql = "UPDATE publicacoes SET NOME='$nome_novo', URL='$url', DESCRICAO='$descricao', FK_TIPO_PUBLICACAO='$tipo_publicacao' WHERE ID_PUBLICACAO='$id'";
 							            	if ($resultS = mysqli_query($con, $sql)) {
 							            		echo "<script>Swal.fire(
 							                        'Sucesso!',
 							                        'A publicação foi editada com sucesso!',
 							                        'success'
 							                        ).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";	
 							            	}else{
 							            		echo "<script>Swal.fire({
@@ -146,7 +148,7 @@
 							                        title: 'Oops...',
 							                        text: 'Não foi possivel inserir a publicação renomeada no bd, tente novamente mais tarde!',
 							                        }).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";							            			
 							            	}
 									}else{
@@ -154,14 +156,14 @@
 										if (unlink($target_path_old)) {
 										//DELETAR ARQUIVO ANTIGO E UPLOAD DO NOVO
 											if (move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
-												$sql = "UPDATE publicacoes SET NOME='$nome_novo', URL='$url', DESCRICAO='$descricao' WHERE ID_PUBLICACAO='$id'";
+												$sql = "UPDATE publicacoes SET NOME='$nome_novo', URL='$url', DESCRICAO='$descricao', FK_TIPO_PUBLICACAO='$tipo_publicacao' WHERE ID_PUBLICACAO='$id'";
 							            	if ($resultS = mysqli_query($con, $sql)) {
 							            		echo "<script>Swal.fire(
 							                        'Sucesso!',
 							                        'A publicação foi editada com sucesso!',
 							                        'success'
 							                        ).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";	
 							            	}else{
 							            		echo "<script>Swal.fire({
@@ -169,7 +171,7 @@
 							                        title: 'Oops...',
 							                        text: 'Não foi possivel inserir a publicação editada no bd, tente novamente mais tarde!',
 							                        }).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";							            			
 							            	}
 											}
@@ -179,7 +181,7 @@
 							                        title: 'Oops...',
 							                        text: 'Não foi possivel apagar o arquivo antigo, por favor tente novamente mais tarde!',
 							                        }).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";
 										}
 									}
@@ -188,14 +190,14 @@
 										//NAO FOI FEITO UPLOAD DE UM ARQUIVO
 
 										$url="https://guilherme.cerestoeste.com.br/publicacoes/".$nome_antigo;
-										$sql = "UPDATE publicacoes SET NOME='$nome_antigo', URL='$url', DESCRICAO='$descricao' WHERE ID_PUBLICACAO='$id'";
+										$sql = "UPDATE publicacoes SET NOME='$nome_antigo', URL='$url', DESCRICAO='$descricao', FK_TIPO_PUBLICACAO='$tipo_publicacao' WHERE ID_PUBLICACAO='$id'";
 							            	if ($resultS = mysqli_query($con, $sql)) {
 							            		echo "<script>Swal.fire(
 							                        'Sucesso!',
 							                        'A publicação foi editada com sucesso!',
 							                        'success'
 							                        ).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";	
 							            	}else{
 							            		echo "<script>Swal.fire({
@@ -203,7 +205,7 @@
 							                        title: 'Oops...',
 							                        text: 'Não foi possivel inserir a publicação renomeada no bd, tente novamente mais tarde!',
 							                        }).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";							            			
 							            	}
 									}else{
@@ -212,14 +214,14 @@
 										//DELETAR ARQUIVO ANTIGO E UPLOAD DO NOVO
 										$url="https://guilherme.cerestoeste.com.br/publicacoes/".$nome_antigo;
 											if (move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
-												$sql = "UPDATE publicacoes SET NOME='$nome_antigo', URL='$url', DESCRICAO='$descricao' WHERE ID_PUBLICACAO='$id'";
+												$sql = "UPDATE publicacoes SET NOME='$nome_antigo', URL='$url', DESCRICAO='$descricao', FK_TIPO_PUBLICACAO='$tipo_publicacao' WHERE ID_PUBLICACAO='$id'";
 							            	if ($resultS = mysqli_query($con, $sql)) {
 							            		echo "<script>Swal.fire(
 							                        'Sucesso!',
 							                        'A publicação foi editada com sucesso!',
 							                        'success'
 							                        ).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";	
 							            	}else{
 							            		echo "<script>Swal.fire({
@@ -227,7 +229,7 @@
 							                        title: 'Oops...',
 							                        text: 'Não foi possivel inserir a publicação editada no bd, tente novamente mais tarde!',
 							                        }).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";							            			
 							            	}
 											}
@@ -237,7 +239,7 @@
 							                        title: 'Oops...',
 							                        text: 'Não foi possivel apagar o arquivo antigo, por favor tente novamente mais tarde!',
 							                        }).then(function() {
-							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/adicionar_publicacao.php';
+							                            window.location = 'https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php';
 							                        });</script>";
 										}
 									}

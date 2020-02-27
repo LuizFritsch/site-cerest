@@ -44,6 +44,7 @@
 									<tr>
 										<th scope="col" id="tabela-publicacoes">ID</th>
 										<th scope="col">Nome da Publicação</th>
+										<th scope="col">Tipo de Publicação</th>
 										<th scope="col"><!--Visualizar--></th>
 										<th scope="col"><!--Editar--></th>
 										<th scope="col"><!--Excluir--></th>
@@ -60,6 +61,7 @@
 												echo "<tr>
 																	<th scope='row'>{$row['ID_PUBLICACAO']}</th>
 																	<td>{$row['NOME']}</td>
+																	<td>{$row['FK_TIPO_PUBLICACAO']}</td>
 																	<td><a type='button' target='_blank' href='{$row['URL']}' class='btn btn-primary'>Visualizar PDF</a></td>
 																	<td><a href=\"editar_publicacao.php?id=".$row['ID_PUBLICACAO']."&user-id=".$_ide."\" type='button' class='btn btn-warning'>Editar</a></td>
 																		<td><a type='button' class='btn btn-danger' href=\"delete_publicacao.php?id=".$row['ID_PUBLICACAO']."&user-id=".$_ide."\">Excluir</a></td>
