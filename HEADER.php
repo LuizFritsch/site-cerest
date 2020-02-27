@@ -78,8 +78,8 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="https://guilherme.cerestoeste.com.br/publicacoes_cerest.php#t">Publicações do CEREST</a>
-              <a class="dropdown-item" href="#">Publicações em Saúde Pública</a>
-              <a class="dropdown-item" href="#">Publicações Legais</a>
+              <a class="dropdown-item" href="https://guilherme.cerestoeste.com.br/publicacoes_saude_publica.php#t">Publicações em Saúde Pública</a>
+              <a class="dropdown-item" href="https://guilherme.cerestoeste.com.br/publicacoes_legais.php#t">Publicações Legais</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">Projetos/Pesquisa</a>
             </div>

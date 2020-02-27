@@ -11,7 +11,7 @@ $con=OpenCon();
 	<body>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Publicações do CEREST OESTE</h1>
+				<h1 id="t" class="text-justify">Publicações Legais</h1>
 				<div class="container">
 					<div class="row" id="equipe-cerest">
 						<?php
@@ -56,7 +56,7 @@ $con=OpenCon();
 						?>
 
 						<?php
-							$sql = "SELECT * FROM publicacoes WHERE FK_TIPO_PUBLICACAO = '1'";
+							$sql = "SELECT * FROM publicacoes WHERE FK_TIPO_PUBLICACAO = '2'";
 							$result=mysqli_query($con,$sql);
 							if(!$result) {
 								die('Não foi possivel selecionar as publicações: ' . mysqli_error());
