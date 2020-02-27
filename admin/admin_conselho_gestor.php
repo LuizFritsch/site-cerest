@@ -11,7 +11,7 @@
 				echo "<script>alert('Você não está logado ou não tem o nível de acesso necessário!')</script>";
 				echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/login.php');</script>";
 			}
-			include '../sinan/db_connection.php';
+			include '../database/db_connection.php';
 			$con=OpenCon();
 			$logado = $_SESSION['login'];
 			$func = $_SESSION['func'];

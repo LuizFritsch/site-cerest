@@ -1,6 +1,6 @@
 <?php
 if(isset($_GET['user-id'])){
-	include '../../sinan/db_connection.php';
+	include '../../database/db_connection.php';
 	$con=OpenCon();
 	if (mysqli_connect_errno()) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();

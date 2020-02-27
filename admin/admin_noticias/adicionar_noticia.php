@@ -17,7 +17,7 @@
 			$senh = $_SESSION['senha'];
 			$ide = $_SESSION['id'];
 		}
-		include '../../sinan/db_connection.php';
+		include '../../database/db_connection.php';
 		$con=OpenCon();
 		$logado = $_SESSION['login'];
 		$func = $_SESSION['func'];

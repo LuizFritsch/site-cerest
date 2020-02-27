@@ -15,7 +15,7 @@
 		$senh = $_SESSION['senha'];
 		$ide = $_SESSION['id'];
 		}
-		include '../../sinan/db_connection.php';
+		include '../../database/db_connection.php';
 		$con=OpenCon();
 		$logado = $_SESSION['login'];
 		$func = $_SESSION['func'];
@@ -73,6 +73,9 @@
 						</div>
 					</div>
 				</form>
+
+				<br>
+				
 			</div>
 		</main>
 		<?php include '../../footer.html'; ?>

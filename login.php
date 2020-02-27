@@ -18,7 +18,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 						<div class="row">
 							<div class="col-sm">
 								<div id="eventos" >
-									<form method="post" action="./sinan/ope.php" id="formlogin" name="formlogin" >
+									<form method="post" action="./database/log_in.php" id="formlogin" name="formlogin" >
 										<fieldset>
 											<legend>Já é cadastrado?</legend>
 											<div class="dividosa" id="dividosa">

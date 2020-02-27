@@ -17,7 +17,7 @@
 		$senh = $_SESSION['senha'];
 		$ide = $_SESSION['id'];
 		}
-		include '../../sinan/db_connection.php';
+		include '../../database/db_connection.php';
 		$con=OpenCon();
 		$id=$_GET['id'];
 		?>
@@ -114,7 +114,6 @@
 						<?php
 							if($_SERVER['REQUEST_METHOD'] == 'POST'){
 								$tipo_publicacao=$_POST['editar_tipo_publicacao'];
-								echo "<script>alert('$tipo_publicacao');</script>";
 								$nome_antigo=$row['NOME'];
 								if (isset($_POST['inputNomePDF']) && strpos($_POST['inputNomePDF'], ".pdf")) {
 									$nome_novo=$_POST['inputNomePDF']; 

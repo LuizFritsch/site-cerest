@@ -1,6 +1,6 @@
 <?php include 'HEADER.php'; ?>
 <?php
-include './sinan/db_connection.php';
+include './database/db_connection.php';
 $con=OpenCon();
 ?>
 <!DOCTYPE html>
