@@ -68,7 +68,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 																	<p class="card-text text-center">Esta opção é para pessoas que fazem parte dos núcleos em saúde do trabalhador.</p>
 																	<p class="card-text text-center">Será solicitado informações relacionadas a você, ao secretário de saúde e do presidente do conselho municipal de saúde do seu municipio.</p>
 																	<p class="card-text text-center"><strong>*Caso opte por esta opção, sua solicitação será avaliada antes de liberarmos seu acesso.</strong></p>
-																	<a type="button" class="btn btn-success" href="https://guilherme.cerestoeste.com.br/solicitar_usuario.php#t">Solicitar</a>
+																	<a type="button" class="btn btn-success" href="https://guilherme.cerestoeste.com.br/criar_conta.php#t">Solicitar</a>
 																</div>
 															</div>
 														</div>
@@ -78,7 +78,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 																	<h5 class="card-title">Sou um usuário Comum</h5>
 																	<hr>
 																	<p class="card-text text-center">Esta opção é para quem apenas deseja se cadastrar para receber emails sobre eventos ou realizar comentários nas páginas de noticia.</p>
-																	<a type="button" class="btn btn-success" href="https://guilherme.cerestoeste.com.br/solicitar_usuario.php#t">Solicitar</a>
+																	<a type="button" class="btn btn-success" href="https://guilherme.cerestoeste.com.br/criar_conta.php#t"></a>
 																</div>
 															</div>
 														</div>
