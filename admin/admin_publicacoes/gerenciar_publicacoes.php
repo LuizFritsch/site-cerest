@@ -5,6 +5,8 @@
 		<title>Gerenciar Publicacoes</title>
 		 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 		 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+		 <script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+		 <script src="https://http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 	</head>
 	<body>
 		<?php
@@ -36,17 +38,9 @@
 						</div>
 						<br>
 						<br>
-						<div class="form-group">
-							<h6>Pesquisar Publicação:</h6>
-							<input type="text" class="form-control" id="inputPesquisarPublicacao" name="inputPesquisarPublicacao" placeholder="Digite o parte do nome da Publicação">
-						</div>
-						<div class="table-responsive">
-							<table class="table table-striped" id="example">
-								<script type="text/javascript">
-									$(document).ready(function() {
-									    $('#example').DataTable();
-									} );
-								</script>
+						<div class="table-responsive tabela">
+							<table class="table table-striped display" id="example">
+								
 								<thead>
 									<tr>
 										<th scope="col" id="tabela-publicacoes">ID</th>
@@ -85,6 +79,35 @@
 
 			</div>
 		</main>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('#example').dataTable();
+			} );
+		</script>
+		<script type="text/javascript">
+			$('#example').dataTable( {
+				"language": {
+				  	"emptyTable": "Não há nenhuma publicação",
+				  	"info": "Mostrando _START_ de _END_ de um total de _TOTAL_ entradas",
+				  	"infoEmpty": "Mostrando 0 de um total de 0 entradas",
+				  	"infoFiltered":   "(filtrado de um total de _MAX_ total entradas)",
+			        "infoPostFix":    "",
+			        "thousands":      ".",
+			        "lengthMenu":     "Mostrar _MENU_ publicações",
+				  	"loadingRecords": "Carregando...",
+			        "processing":     "Processando...",
+			        "search":         "Buscar:",
+				  	"searchPlaceholder": "Filtre por qualquer coisa aqui...",
+			        "zeroRecords":    "Não há dados",
+				    "paginate": {
+				      "first":      "Primeira",
+	            	  "last":       "ÚLtima",
+				      "previous": "Anterior",
+				      "next": "Próximo"
+			    }
+			  }
+			} );
+		</script>
 		<?php include '../../footer.html'; ?>
 	</body>
 </html>

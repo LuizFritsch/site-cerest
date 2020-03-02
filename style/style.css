@@ -866,3 +866,10 @@ table.dataTable thead .sorting_desc_disabled:after,
 table.dataTable thead .sorting_desc_disabled:before {
 bottom: .5em;
 }
+
+#example_filter > label > input{
+  width: 100% !important;
+}
+#example_filter{
+  width: 100% !important;
+}
