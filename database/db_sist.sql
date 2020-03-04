@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 04-Mar-2020 às 10:32
+-- Generation Time: 04-Mar-2020 às 11:06
 -- Versão do servidor: 5.6.41-84.1
 -- versão do PHP: 7.2.7
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `vinilpub_guilherme_cerest`
 --
-CREATE DATABASE IF NOT EXISTS `vinilpub_guilherme_cerest` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `vinilpub_guilherme_cerest`;
 
 -- --------------------------------------------------------
 
@@ -61,6 +59,19 @@ CREATE TABLE IF NOT EXISTS `contato` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `estado`
+--
+
+CREATE TABLE IF NOT EXISTS `estado` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `NOME_UNIQUE` (`NOME`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `funcoes`
 --
 
@@ -82,6 +93,21 @@ CREATE TABLE IF NOT EXISTS `funcoes_conselho` (
   `NOME_FUNCAO` varchar(70) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ID_FUNCAO_CONSELHO`),
   KEY `ID_FUNCAO_CONSELHO` (`ID_FUNCAO_CONSELHO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `municipio`
+--
+
+CREATE TABLE IF NOT EXISTS `municipio` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `NOME` varchar(250) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FK_ID_ESTADO` int(11) NOT NULL,
+  PRIMARY KEY (`ID`,`FK_ID_ESTADO`),
+  UNIQUE KEY `NOME_UNIQUE` (`NOME`),
+  KEY `fk_municipio_estado1_idx` (`FK_ID_ESTADO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -160,6 +186,32 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `usuario_comum`
+--
+
+CREATE TABLE IF NOT EXISTS `usuario_comum` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `USUARIO` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `SENHA` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `NOME_COMPLETO` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `CPF` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `RG` varchar(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `TELEFONE` varchar(14) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `ENDERECO` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `EMAIL` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `LOCAL_TRABALHO` varchar(150) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FK_ID_MUNICIPIO` int(11) NOT NULL,
+  `FK_ID_ESTADO` int(11) NOT NULL,
+  PRIMARY KEY (`ID`,`FK_ID_MUNICIPIO`,`FK_ID_ESTADO`),
+  UNIQUE KEY `USUARIO_UNIQUE` (`USUARIO`),
+  UNIQUE KEY `CPF_UNIQUE` (`CPF`),
+  UNIQUE KEY `RG_UNIQUE` (`RG`),
+  KEY `fk_usuario_comum_municipio1_idx` (`FK_ID_MUNICIPIO`,`FK_ID_ESTADO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `usuario_nucleo`
 --
 
@@ -191,6 +243,12 @@ ALTER TABLE `contato`
   ADD CONSTRAINT `fk_contato_tipo1` FOREIGN KEY (`FK_ID_TIPO`) REFERENCES `tipo` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
+-- Limitadores para a tabela `municipio`
+--
+ALTER TABLE `municipio`
+  ADD CONSTRAINT `fk_municipio_estado1` FOREIGN KEY (`FK_ID_ESTADO`) REFERENCES `estado` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Limitadores para a tabela `publicacoes`
 --
 ALTER TABLE `publicacoes`
@@ -201,6 +259,12 @@ ALTER TABLE `publicacoes`
 --
 ALTER TABLE `usuarios`
   ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`FK_ID_FUNCAO`) REFERENCES `funcoes` (`ID_FUNCAO`);
+
+--
+-- Limitadores para a tabela `usuario_comum`
+--
+ALTER TABLE `usuario_comum`
+  ADD CONSTRAINT `fk_usuario_comum_municipio1` FOREIGN KEY (`FK_ID_MUNICIPIO`,`FK_ID_ESTADO`) REFERENCES `municipio` (`ID`, `FK_ID_ESTADO`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `usuario_nucleo`
