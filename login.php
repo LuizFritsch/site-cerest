@@ -1,8 +1,8 @@
 <?php include 'HEADER.php'; ?>
 <?php
 	if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#msg');</script>";
-}
+		echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#msg');</script>";
+	}
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,8 +55,8 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 												<span aria-hidden="true">&times;</span>
 												</button>
 											</div>
-											<div class="modal-body modal-dialog modal-lg">
-												<div class="modal-body modal-dialog mmodal-lg">
+											<div class="modal-body modal-dialog modal-lg" style="pointer-events: all;">
+												<div class="modal-body modal-dialog mmodal-lg" style="pointer-events: all;">
 													
 													<div class="row text-center">
 														
@@ -77,8 +77,8 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/rela
 																<div class="card-body">
 																	<h5 class="card-title">Sou um usuário Comum</h5>
 																	<hr>
-																	<p class="card-text text-center">Esta opção é para quem apenas deseja se cadastrar para receber emails sobre eventos ou realizar comentários nas páginas de noticia.</p>
-																	<a type="button" class="btn btn-success" href="https://guilherme.cerestoeste.com.br/criar_conta.php#t"></a>
+																	<p class="card-text text-center">Esta opção é para quem apenas deseja se cadastrar em eventos, para receber emails sobre, ou realizar comentários nas páginas de noticia.</p>
+																	<a type="button" class="btn btn-success" href="https://guilherme.cerestoeste.com.br/criar_conta.php#t">Solicitar</a>
 																</div>
 															</div>
 														</div>
