@@ -63,7 +63,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-6">
@@ -100,7 +100,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 					
 					<div class="form-group">
 						<h6>Email</h6>
-						<input type="text" class="form-control" id="email" name="inputNome" placeholder="Digite o seu email..." required="">
+						<input type="email" class="form-control" id="email" name="inputNome" placeholder="Digite o seu email..." required="">
 					</div>
 					
 					
@@ -119,13 +119,14 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 						});
 					</script>
 					
+					<hr>
+					<div class="form-group">
+						<div class="form-row">
+							<button type="submit" class="btn btn-success btn-lg btn-block btn-lg btn-block">Criar Conta</button>
+						</div>
+					</div>
+					<hr>
 				</form>
-				<br>
-				<hr>
-				<div class="form-row">
-					<button type="submit" class="btn btn-success btn-lg btn-block btn-lg btn-block">Criar Conta</button>
-				</div>
-				<hr>
 				<br>
 			</div>
 		</main>
