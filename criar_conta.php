@@ -1,8 +1,8 @@
 <?php include 'HEADER.php'; ?>
 <?php
 	if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
-		echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/login.php');</script>";
-	}
+echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/login.php');</script>";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,42 +50,57 @@
 						<h6>Nome Completo</h6>
 						<input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Digite o seu nome..." required="">
 					</div>
-					<div class="form-row">
-						<div class="form-group col-md-6">
-							<h6>Celular</h6>
-							<input type="text" class="form-control" placeholder="(00) 0 0000-0000" id="celular" name="celular" required="">
-						</div>
-						<div class="form-group col-md-6">
-							<h6>CPF</h6>
-							<input type="text" class="form-control" placeholder="000.000.000-00" id="cpf" name="cpf" required="">
-						</div>
-					</div>
+					
 					<div class="form-group">
-						<h6>Nome de Usuário</h6>
-						<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Digite o seu nome de Usuário..." required="">
+						<div class="form-row">
+							<div class="col-md-6">
+								<h6>Celular</h6>
+								<input type="text" class="form-control" placeholder="(00) 0 0000-0000" id="celular" name="celular" required="">
+							</div>
+							<div class="col-md-6">
+								<h6>CPF</h6>
+								<input type="text" class="form-control" placeholder="000.000.000-00" id="cpf" name="cpf" required="">
+							</div>
+						</div>
 					</div>
+					
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<h6>Nome de Usuário</h6>
+								<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Digite o seu nome de Usuário..." required="">
+							</div>
+							<div class="col-md-6">
+								<h6>Senha</h6>
+								<input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha..." required="">
+							</div>
+						</div>
+					</div>
+					
 					<div class="form-group">
 						<h6>Endereço</h6>
 						<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o seu endereço..." required="">
 					</div>
-
-					<div class="form-row">
-						<div class="col-md-6">
-							<h6>Estado</h6>
-							<select class="form-control" id="estados" required="">
-								<option value=""></option>
-							</select>
-						</div>
-						<div class="col-md-6">
-							<h6>Municipio</h6>
-							<select class="form-control" id="cidades" required="">
-							</select>
+					
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<h6>Estado</h6>
+								<select class="form-control" id="estados" required="">
+									<option value=""></option>
+								</select>
+							</div>
+							<div class="col-md-6">
+								<h6>Municipio</h6>
+								<select class="form-control" id="cidades" required="">
+								</select>
+							</div>
 						</div>
 					</div>
 					
 					<div class="form-group">
 						<h6>Email</h6>
-						<input type="text" class="form-control" id="email" name="inputNome" placeholder="Digite o seu nome..." required="">
+						<input type="text" class="form-control" id="email" name="inputNome" placeholder="Digite o seu email..." required="">
 					</div>
 					
 					
