@@ -24,7 +24,7 @@
 						
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
-								<a href='admin_conselho_gestor.php#t'><img src="../img/conselho_gestor.png"class="card-img-top" alt="..."></a>
+								<a href='admin_conselho_gestor.php#t'><!--<img src="../img/conselho_gestor.png"class="card-img-top" alt="...">--></a>
 								<div class="card-body text-center">
 									<h5 class="card-title mb-0">-</h5>
 									<div class="card-text text-black-50">
@@ -36,7 +36,7 @@
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<!--<img src="./img/equipe/ADRIANA.jpg"class="card-img-top" alt="...">-->
-								<a href='admin_noticias.php#t'><img src="../img/noticias.png"class="card-img-top" alt="..."></a>
+								<a href='admin_noticias.php#t'><!--<img src="../img/noticias.png"class="card-img-top" alt="...">--></a>
 								<div class="card-body text-center">
 									<h5 class="card-title mb-0">-</h5>
 									<div class="card-text text-black-50">
@@ -48,7 +48,7 @@
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<!--<img src="./img/equipe/ADRIANA.jpg"class="card-img-top" alt="...">-->
-								<a href='./admin_publicacoes/gerenciar_publicacoes.php'><img src="../img/publicacoes.png"class="card-img-top" alt="..."></a>
+								<a href='./admin_publicacoes/gerenciar_publicacoes.php'><!--<img src="../img/publicacoes.png"class="card-img-top" alt="...">--></a>
 								<div class="card-body text-center">
 									<h5 class="card-title mb-0">-</h5>
 									<div class="card-text text-black-50">
