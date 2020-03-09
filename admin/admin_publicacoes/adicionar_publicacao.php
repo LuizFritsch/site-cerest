@@ -44,15 +44,14 @@
 						<div class="form-group">
 							<h6>Tipo da Publicacao</h6>
 							<?php
-								$sql_select="SELECT * FROM tipo_publicacoes";
-								$resultado=mysqli_query($con,$sql_select);
-								if(!$resultado) {
-									die('Could not get data: ' . mysqli_error($con));
+								if ($stmt=mysqli_prepare($con,$sql_select="SELECT * FROM tipo_publicacoes")) {
+									mysqli_stmt_execute($stmt);
+									mysqli_stmt_bind_result($stmt,$idp,$tipop);
 								}
 								echo"<select class='form-control' id='tipo_publicacao' name='tipo_publicacao' required>";
-								while($row = mysqli_fetch_array($resultado)) {
+								while(mysqli_stmt_fetch($stmt)) {
 									//echo "<td contenteditable='true' name='funcao{$row['FK_ID_FUNCAO']}'>{$row['NOME']}</td>";
-									echo "<option value='{$row['ID_TIPO_PUBLICACAO']}'>{$row['TIPO_PUBLICACAO']}</option>";
+									echo "<option value='$idp'>$tipop</option>";
 								}		
 								echo "</select>";
 								?>
