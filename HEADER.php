@@ -38,6 +38,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
     crossorigin="anonymous"></script>
     
     <script type="text/javascript" src="https://guilherme.cerestoeste.com.br/script/script.js"></script>
+    <script type="text/javascript" src="https://guilherme.cerestoeste.com.br/script/gambiarra.js"></script>
   </head>
   <body>
     
