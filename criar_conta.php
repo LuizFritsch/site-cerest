@@ -7,7 +7,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 <!DOCTYPE html>
 <html>
 	<head>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function () {
@@ -37,19 +37,11 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 				});
 			});
 		</script>
+
+
 		<script type="text/javascript">
-			$(function(){
-				$("input[name=cpf]")[0].oninvalid = function () {
-					this.setCustomValidity("Por favor, insira um cpf válido...");
-				};
-			});
-			$(function(){
-					$("input[name=senha]")[0].oninvalid = function () {
-						this.setCustomValidity("Sua senha deve conter letras maiúsculas, minúsculas e números...");
-					};
-			});
-		</script>
-		<script type="text/javascript">
+			
+			//Funcao bloquear submit sem preencher (todos campos - 1)
 			$(document).ready(function() {
 			  validate();
 			  $('input').on('keyup', validate);
@@ -74,6 +66,92 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 			    $("input[type=submit]").prop("disabled", true);
 			  }
 			}
+
+
+		</script>
+
+
+		<script type="text/javascript">
+			$(document).ready(function () {
+				$("#form").validate({
+				    rules:{
+				        nomeCompleto:  {
+				            required: true,
+				            minlength: 4
+				        },
+				        celular:{
+				            required: true,
+				            digits: true,
+				            minlength: 11,
+				            maxlength: 11
+				        },
+				        cpf:{
+				            required: true,
+				            digits: true,
+				            minlength: 11,
+				            maxlength: 11
+				        },
+				        usuario:{
+				            required: true
+				        },
+				        senha:{
+				            required: true
+				        },
+				        endereco:{
+				            required: true
+				        },
+				        estado:{
+				            required: true
+				        },
+				        cidade:{
+				            required: true
+				        },
+				        email:{
+				            required: true
+				        },
+				        localTrabalho:{
+				            required: true
+				        }
+				    },
+				    messages: {
+				        nomeCompleto:{
+				            required: "Seu nome é obrigatório...",
+				            minlength:  jQuery.format("Seu nome deve conter pelo menos {0} caracteres...")
+				        },
+				       	Celular:{
+				            required: "Seu nmr. de celular é obrigatório...",
+				            digits: "Esse campo só aceita números...",
+				            minlength: jQuery.format("Seu celular deve conter pelo menos {0} digitos...")
+				        },
+				        cpf:{
+				            required: "Seu cpf é obrigatório...",
+				            digits: "Esse campo só aceita números...",
+				            minlength: jQuery.format("Seu cpf deve conter pelo menos {0} digitos...")
+				        },
+				        usuario:{
+				            required: "Seu nome é obrigatório..."
+				        },
+				        senha:{
+				            required: "Seu nome é obrigatório..."
+				        },
+				        endereco:{
+				            required: "Seu nome é obrigatório..."
+				        },
+				        estado:{
+				            required: "Seu nome é obrigatório..."
+				        },
+				        cidade:{
+				            required: "Seu nome é obrigatório..."
+				        },
+				        email:{
+				            required: "Seu nome é obrigatório..."
+				        },
+				        localTrabalho:{
+				            required: "Seu nome é obrigatório..."
+				        }
+				    }
+				});
+			});
 		</script>
 		<title>Criar conta</title>
 	</head>
@@ -93,12 +171,11 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 						<div class="form-row">
 							<div class="col-md-6">
 								<h6>Celular*</h6>
-								<input type="text" class="form-control" placeholder="(00) 0 0000-0000" id="celular" name="celular" required="" max="11" maxlength="11" min="11">
+								<input type="text" class="form-control" placeholder="(00) 0 0000-0000" id="celular" name="celular" required="" maxlength="11" >
 							</div>
 							<div class="col-md-6">
 								<h6>CPF*</h6>
-								<input type="text" class="form-control" placeholder="000.000.000-00" id="cpf" name="cpf" required="" max="11" pattern="^(\d{3}\.\d{3}\.\d{3}\-\d{2})$
-" maxlength="11" min="11">
+								<input type="text" class="form-control" placeholder="000.000.000-00" id="cpf" name="cpf" required="" maxlength="11" >
 							</div>
 						</div>
 					</div>
@@ -144,7 +221,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 					
 					
 					<div class="form-group">
-						<h6>Local de trabalho*</h6>
+						<h6>Local de trabalho</h6>
 						<input type="text" class="form-control" id="localTrabalho" name="localTrabalho" placeholder="Digite o seu local de trabalho ou deixe em branco...">
 					</div>
 					
@@ -158,45 +235,20 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 						});
 					</script>
 					<script type="text/javascript">
-						$('#nomeCompleto').blur(function(){
-						    if($('#nomeCompleto').val().length < 6 || $('#nomeCompleto').val().length > 400)
-						    {
-						        alert('Nome de usuário deve ter entre 6 e 400 caracteres');
-						    }
-						});
-						var validator = $("#form").validate({
-						    rules: {
-						        nomeCompleto: "required",
-						        celular: "required",
-						        cpf: "required",
-						        usuario: "required",
-						        senha: "required",
-						        endereco: "required",
-						        estado: "required",
-						        cidade: "required",
-						        email: "required",
-						        username: {
-						            required: true,
-						            minlength: 2,
-						            remote: "users.php"
-						        }
-						    },
-						    messages: {
-						        //nomeCompleto: "Digite seu nome",
-						        celular: "Digite seu nº de celular",
-						        nomeCompleto: {
-						            required: "Enter a username",
-						            minlength: jQuery.format("Enter at least {0} characters"),
-						            remote: jQuery.format("{0} is already in use")
-						        }
-						    }
-						});
+						/*$(document).ready(function () {
+							$('#nomeCompleto').blur(function(){
+							    if($('#nomeCompleto').val().length < 6 || $('#nomeCompleto').val().length > 400)
+							    {
+							        alert('Nome de usuário deve ter entre 6 e 400 caracteres');
+							    }
+							});
+						});*/
 					</script>
 					
 					<hr>
 					<div class="form-group">
 						<div class="form-row">
-							<input type="submit" class="btn btn-success btn-lg btn-block btn-lg btn-block"></input>
+							<input type="submit" class="btn btn-success btn-lg btn-block btn-lg btn-block" value="Criar Conta"></input>
 						</div>
 					</div>
 					<hr>
