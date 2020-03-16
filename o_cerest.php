@@ -114,18 +114,19 @@ $con=OpenCon();
 					<h1>
 					Conselho Gestor do CEREST OESTE
 					</h1>
-					
-					<ul class="list-unstyled">
-						<li>O CEREST OESTE conta com a gestão participativa do Conselho Gestor:
-							<ul class="membros">
-								<li>Presidente: (segmento usuário);</li>
-								<li>Suplente do Presidente: (segmento gestor);</li>
-								<li>Secretário: (segmento usuário);</li>
-								<li>Suplente do Secretário: (segmento profissional de saúde).</li>
-							</ul>
-						</li>
-					</ul>
-					<form method="POST" >
+					<!--
+						<ul class="list-unstyled">
+							<li>O CEREST OESTE conta com a gestão participativa do Conselho Gestor:
+								<ul class="membros">
+									<li>Presidente: (segmento usuário);</li>
+									<li>Suplente do Presidente: (segmento gestor);</li>
+									<li>Secretário: (segmento usuário);</li>
+									<li>Suplente do Secretário: (segmento profissional de saúde).</li>
+								</ul>
+							</li>
+						</ul>
+					-->
+						<!--
 						<div class="card">
 							<h3 class="card-header text-center font-weight-bold text-uppercase py-4">Conselho gestor do CEREST</h3>
 							<div class="card-body">
@@ -164,10 +165,38 @@ $con=OpenCon();
 									
 								</div>
 							</div>
+						</div>-->
+
+
+
+
+						<!-------------------------------------------------------------------------->
+					<h5>O CEREST OESTE conta com a gestão participativa do Conselho Gestor:</h5>
+					<div class="container">
+						<div class="row" id="equipe-cerest">
+							<!--SELECT conselho_gestor.NOME, funcoes_conselho.nome_funcao FROM conselho_gestor INNER JOIN funcoes_conselho on conselho_gestor.FK_ID_FUNCAO=funcoes_conselho.ID_FUNCAO_CONSELHO-->
+							<!--card que deve ser repetido-->
+
+								<?php
+									$sql="SELECT conselho_gestor.NOME, funcoes_conselho.nome_funcao FROM conselho_gestor INNER JOIN funcoes_conselho on conselho_gestor.FK_ID_FUNCAO=funcoes_conselho.ID_FUNCAO_CONSELHO";
+									$result=mysqli_query($con,$sql);
+									if(!$result ) {
+										die('Could not get data: ' . mysql_error());
+									}
+									while($row = mysqli_fetch_array($result)) {
+										echo "<div class='col-xl-3 col-md-6 mb-4'>
+									<div class='card border-0 shadow'>
+										<div class='card-body text-center'>
+											<h5 class='card-title mb-0'>{$row['NOME']}</h5>
+											<div class='card-text text-black-50'><b>{$row['nome_funcao']}</b></div>
+										</div>
+									</div>
+								</div>";
+									}
+								?>
+							<!---->
 						</div>
-						
-						
-					</form>
+					</div>
 				</div>
 				<p></p>
 			</div>
