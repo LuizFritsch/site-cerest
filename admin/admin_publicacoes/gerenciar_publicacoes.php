@@ -6,7 +6,6 @@
 		 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 		 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 		 <script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
-		 <script src="https://http://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 	</head>
 	<body>
 		<?php

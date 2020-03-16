@@ -6,21 +6,21 @@
 	</head>
 	<body>
 		<?php
-		if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
+			if(($_SESSION['id']!=1) || (!isset($_SESSION['login'])) && (!isset($_SESSION['senha']))){
 			echo "<script>alert('Você não está logado ou não tem o nível de acesso necessário!')</script>";
 			echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/login.php');</script>";
-		}else{
+			}else{
+				$logado = $_SESSION['login'];
+				$func = $_SESSION['func'];
+				$senh = $_SESSION['senha'];
+				$ide = $_SESSION['id'];
+			}
+			include '../../database/db_connection.php';
+			$con=OpenCon();
 			$logado = $_SESSION['login'];
 			$func = $_SESSION['func'];
 			$senh = $_SESSION['senha'];
 			$ide = $_SESSION['id'];
-		}
-		include '../database/db_connection.php';
-		$con=OpenCon();
-		$logado = $_SESSION['login'];
-		$func = $_SESSION['func'];
-		$senh = $_SESSION['senha'];
-		$ide = $_SESSION['id'];
 		?>
 		<main>
 			<div class="content text-break">
@@ -31,9 +31,13 @@
 						<input type="text" class="form-control" name="nomeFuncao" placeholder="Digite o nome da função que será adicionada ao conselho gestor...">
 					</div>
 				</form>
-				<button type="submit" id="save" name="save" class="btn btn-success save">Adicionar Função</button>
+				<div class="form-group">
+					<hr>
+					<a type="submit" class="btn btn-success btn-lg btn-block btn-lg btn-block">Adicionar Função</a>
+					<hr>
+				</div>
 			</div>
 		</main>
-		<?php include '../footer.html'; ?>
+		<?php include '../../footer.html'; ?>
 	</body>
 </html>
