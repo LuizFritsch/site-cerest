@@ -28,7 +28,7 @@
 								<div class="card-body text-center">
 									<h5 class="card-title mb-0">-</h5>
 									<div class="card-text text-black-50">
-										<a href='admin_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
+										<a href='./conselho_gestor/gerenciar_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
 									</div>
 								</div>
 							</div>
