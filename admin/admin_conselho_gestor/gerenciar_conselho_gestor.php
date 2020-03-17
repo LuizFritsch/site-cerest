@@ -42,6 +42,7 @@
 										<th scope="col" id="tabela-publicacoes">ID</th>
 										<th scope="col">Função</th>
 										<th scope="col">Membro</th>
+										<th scope="col"><!--Editar--></th>
 										<th scope="col"><!--Excluir--></th>
 									</tr>
 								</thead>
@@ -58,9 +59,8 @@
 																	<th scope='row'>{$row['ID_MEMBRO']}</th>
 																	<td>{$row['nome_funcao']}</td>
 																	<td>{$row['NOME']}</td>
+																	<td><a href=\"editar_membro_funcao_conselho.php?id=".$row['ID_MEMBRO']."&user-id=".$_ide."\" type='button' class='btn btn-warning'>Editar</a></td>
 																	<td><a type='button' class='btn btn-danger' href=\"delete_funcao.php?id=".$row['ID_MEMBRO']."&user-id=".$_ide."\">Excluir Funcao E membro</a></td>
-																	<input type='hidden' name='tamanho' value='{$row['nome_funcao']}'>
-																	<input type='hidden' name='tamanho' value='{$row['NOME']}'>
 
 													</tr>";
 												array_push($x,$row['FK_ID_FUNCAO']);
