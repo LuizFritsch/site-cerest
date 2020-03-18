@@ -53,7 +53,7 @@
 											if(!$result ) {
 												die('Could not get data: ' . mysql_error());
 											}
-											$x=[];
+											//$x=[];
 											while($row = mysqli_fetch_array($result)) {
 												echo "<tr>
 																	<th scope='row'>{$row['ID_MEMBRO']}</th>
@@ -63,7 +63,7 @@
 																	<td><a type='button' class='btn btn-danger' href=\"delete_membro_funcao.php?id=".$row['ID_MEMBRO']."&fkmembro=".$row['FK_ID_FUNCAO']."&user-id=".$_ide."\">Excluir Funcao E membro</a></td>
 
 													</tr>";
-												array_push($x,$row['FK_ID_FUNCAO']);
+												//array_push($x,$row['FK_ID_FUNCAO']);
 											}
 											echo "<input type='hidden' id='str_var' name='str_var' value='<?php print base64_encode(serialize($x)) ?>''>;"
 									?>
