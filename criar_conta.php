@@ -73,7 +73,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 
 		<script type="text/javascript">
 			$(document).ready(function () {
-				$("#form").validate({
+				$("#input-progress").validate({
 				    rules:{
 				        nomeCompleto:  {
 				            required: true,
@@ -83,13 +83,13 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 				            required: true,
 				            digits: true,
 				            minlength: 11,
-				            maxlength: 11
+				            maxlength: 15
 				        },
 				        cpf:{
 				            required: true,
 				            digits: true,
 				            minlength: 11,
-				            maxlength: 11
+				            maxlength: 15
 				        },
 				        usuario:{
 				            required: true
@@ -110,41 +110,43 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 				            required: true
 				        },
 				        localTrabalho:{
-				            required: true
+				            required: false
 				        }
 				    },
 				    messages: {
 				        nomeCompleto:{
 				            required: "Seu nome é obrigatório...",
-				            minlength:  jQuery.format("Seu nome deve conter pelo menos {0} caracteres...")
+				            minlength: jQuery.format("Seu nome deve conter pelo menos {0} caracteres...")
 				        },
 				       	Celular:{
 				            required: "Seu nmr. de celular é obrigatório...",
 				            digits: "Esse campo só aceita números...",
 				            minlength: jQuery.format("Seu celular deve conter pelo menos {0} digitos...")
+				            maxlength: jQuery.format("Seu celular deve conter menos que {0} digitos...")
 				        },
 				        cpf:{
 				            required: "Seu cpf é obrigatório...",
 				            digits: "Esse campo só aceita números...",
 				            minlength: jQuery.format("Seu cpf deve conter pelo menos {0} digitos...")
+				            maxlength: jQuery.format("Seu cpf deve conter menos que {0} digitos...")
 				        },
 				        usuario:{
-				            required: "Seu nome é obrigatório..."
+				            required: "Você precisa criar um usuário..."
 				        },
 				        senha:{
-				            required: "Seu nome é obrigatório..."
+				            required: "Você precisa criar uma senha..."
 				        },
 				        endereco:{
-				            required: "Seu nome é obrigatório..."
+				            required: "Seu endereço é obrigatório..."
 				        },
 				        estado:{
-				            required: "Seu nome é obrigatório..."
+				            required: "Por favor, selecione um estado..."
 				        },
 				        cidade:{
-				            required: "Seu nome é obrigatório..."
+				            required: "Por favor, selecione uma cidade..."
 				        },
 				        email:{
-				            required: "Seu nome é obrigatório..."
+				            required: "Seu email é obrigatório..."
 				        },
 				        localTrabalho:{
 				            required: "Seu nome é obrigatório..."
@@ -158,15 +160,23 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 	<body>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Criar contra</h1>
+				<h1 id="t" class="text-center">Criar contra</h1>
+				<div id="progress-inputs" class="progress">
+					<div class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-vluemax="100" style="width:0%;">
+						<span class="sr-only">0%</span>
+					</div>
+				</div>
+				<small class="form-text text-muted">Este é o seu progresso</small>
+
+				<hr>
 				
-				<form method="POST" id="form" action="">
+				<form method="POST" id="input-progress" role="form">
 					
 					<div class="form-group">
 						<h6>Nome Completo*</h6>
 						<input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Digite o seu nome..." required="">
 					</div>
-					
+					<br>
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-6">
@@ -179,7 +189,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 							</div>
 						</div>
 					</div>
-
+					<br>
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-6">
@@ -187,17 +197,48 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 								<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Digite o seu nome de Usuário..." required="">
 							</div>
 							<div class="col-md-6">
-								<h6>Senha*</h6>
+								<h6 data-toggle="tooltip" data-placement="top" title="Sua senha deve conter pelo menos: 1 caracter minusculo, 1 caracter maiusculo e 1 caracter especial...">Senha*</h6>
 								<input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha..." required="" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$">
+								<small id="emailHelp" class="form-text text-muted">Sua senha deve conter pelo menos: 1 caracter minusculo, 1 caracter maiusculo e tamanho maior que 6 digitos...</small>
 							</div>
+							<script type="text/javascript">
+								$("input[pattern]").blur(function(){
+								  var elem = $(this);	 
+								  var pattern = new RegExp(elem.attr("pattern"));
+								})
+							</script>
+							<script type="text/javascript">
+								$(document).ready(function(){
+									function updateInputProgress(){
+										var filledFields = 0;
+										$("#input-progress").find("input, select, textarea").each(function(){
+											if($(this).val() != ""){
+												filledFields++;
+											}
+										});
+										
+										var percent = Math.ceil(100 * filledFields / totalFields);
+										$("#progress-inputs .progress-bar").attr("aria-valuenow", percent).width(percent + "%").find(".sr-only").html(percent + "% Complete");
+										
+										return percent;
+									}
+									
+									//Input Progress
+									var totalFields = $("#input-progress").find("input, select, textarea").length-1;
+									$("#input-progress").click(function(){
+										updateInputProgress();
+									});
+									
+								});
+							</script>
 						</div>
 					</div>
-					
+					<br>
 					<div class="form-group">
 						<h6>Endereço*</h6>
 						<input type="text" class="form-control" id="endereco" name="endereco" placeholder="Digite o seu endereço..." required="">
 					</div>
-					
+					<br>
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-6">
@@ -213,18 +254,17 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 							</div>
 						</div>
 					</div>
-					
+					<br>
 					<div class="form-group">
 						<h6>Email*</h6>
 						<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu email..." required="">
 					</div>
-					
-					
+					<br>					
 					<div class="form-group">
 						<h6>Local de trabalho</h6>
 						<input type="text" class="form-control" id="localTrabalho" name="localTrabalho" placeholder="Digite o seu local de trabalho ou deixe em branco...">
 					</div>
-					
+					<br>
 					<script type="text/javascript">
 						$("#telefone, #celular").mask("(99) 99999-9999");
 						$("#cpf").mask("999.999.999-99");
@@ -251,6 +291,7 @@ echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/logi
 							<input type="submit" class="btn btn-success btn-lg btn-block btn-lg btn-block" value="Criar Conta"></input>
 						</div>
 					</div>
+					<br>
 					<hr>
 				</form>
 				<br>

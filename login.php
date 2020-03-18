@@ -12,7 +12,7 @@
 	<body>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Login</h1>
+				<h1 id="t" class="text-center">Login</h1>
 				<div class="content text-break">
 					<div class="container">
 						

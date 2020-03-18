@@ -8,7 +8,7 @@
 	<body>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Contato</h1>
+				<h1 id="t" class="text-center">Contato</h1>
 				<div class="container">
 					<div class="row">
 						<div class="col-sm">

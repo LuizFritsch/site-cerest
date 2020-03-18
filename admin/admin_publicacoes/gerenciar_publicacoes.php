@@ -27,7 +27,7 @@
 		?>
 		<main>
 			<div class="content text-justify">
-				<h1 id="t" class="text-justify">Gerenciar Publicações</h1>
+				<h1 id="t" class="text-center">Gerenciar Publicações</h1>
 				<form>
 					<div id="divPublicacoes">
 						<div class="form-group">

@@ -18,7 +18,7 @@
 		?>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Relatório Semestral dos Núcleos em ST</h1>
+				<h1 id="t" class="text-center">Relatório Semestral dos Núcleos em ST</h1>
 				<?php
 				echo" <h4>Bem vindo $logado<h4>";
 				echo" <br>";

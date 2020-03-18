@@ -24,7 +24,7 @@
 		?>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Painel de Controle -> Gerenciar Noticias</h1>
+				<h1 id="t" class="text-center">Painel de Controle -> Gerenciar Noticias</h1>
 				<div class="container">
 					<div class="row" id="equipe-cerest">
 						<div class="col-xl-3 col-md-6 mb-4">

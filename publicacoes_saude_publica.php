@@ -11,7 +11,7 @@ $con=OpenCon();
 	<body>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Publicações em Saúde Pública</h1>
+				<h1 id="t" class="text-center">Publicações em Saúde Pública</h1>
 				<div class="container">
 					<div class="row" id="equipe-cerest">
 						<?php

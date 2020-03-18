@@ -7,7 +7,7 @@
 	<body>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Abrangência do CEREST OESTE:</h1>
+				<h1 id="t" class="text-center">Abrangência do CEREST OESTE:</h1>
 				<p class="text-justify"></p>
 				<div class="atendimento text-center">
 					<img alt="mapa de abrangencia do cerest oeste" src="./img/mapaAbrangencia.png" class="zoom responsive img-fluid">
@@ -19,20 +19,6 @@
 					Núcleos Municipais em Saúde do Trabalhador:
 					</strong>
 				</p>
-				<!--
-				<div id="class1" class="image-container">
-													<button class="">An image</button>
-													<a href="">An Image</a>
-				</div>
-				<div id="class1-container" class="text-container">
-													<p>Some Content1</p>
-				</div>
-				<div id="class2" class="image-container">
-													<a href="">An Image</a>
-				</div>
-				<div id="class2-container" class="text-container">
-													<p>Some Content2</p>
-				</div>-->
 				<div class="row">
 					<div class="col-4">
 						<div class="list-group" id="list-tab" role="tablist">

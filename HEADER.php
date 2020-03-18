@@ -86,7 +86,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
             </div>
           </li>
           <?php
-          if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+          if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==2){
             //se o usuario estiver logado, mostra a aba relatorio nucleos no menu
           if ($activePage == 'relatorio_nucleos') {
             //se o usuario logado estiver na pagina relatorio nucleos, a aba relatorio fica em negrito no menu

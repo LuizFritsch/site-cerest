@@ -32,12 +32,7 @@
 				echo" <br>";
 				?>
 				<div>
-					<form>
-						<div class="form-group">
-							<h6>Tags</h6>
-							<!--<input type="text" class="form-control" id="inputCNES" placeholder="Digite o titulo da noticia...">-->
-						</div>
-						
+					<form>						
 						<div class="form-group">
 							<h6>Título da Noticia</h6>
 							<input type="text" class="form-control" name="inputTitulo" id="inputTitulo" placeholder="Digite o titulo da noticia...">

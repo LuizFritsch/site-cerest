@@ -47,7 +47,12 @@
 						</div>
 						<br>
 
-						<button type="submit" class="btn btn-success">Salvar alterações</button>
+						<div class="form-group">
+							<hr>
+								<button type="submit" class="btn btn-success btn-block btn-lg btn-block">Salvar alterações</button>
+							<hr>
+						</div>
+						
 
 					</form>
 					<?php

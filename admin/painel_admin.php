@@ -18,7 +18,7 @@
 		?>
 		<main>
 			<div class="content text-break">
-				<h1 id="t" class="text-justify">Painel de controle</h1>
+				<h1 id="t" class="text-center">Painel de controle</h1>
 				<div class="container">
 					<div class="row" id="equipe-cerest">
 						
