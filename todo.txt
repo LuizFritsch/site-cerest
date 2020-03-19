@@ -1,0 +1,12 @@
+-Editar Perfil e dados de usuario
+-Cadastro
+-Eventos
+-CRUD Equipe
+
+------------------
+
+Criar conta:
+-Fixar barra de progresso
+-Validar cpf
+-Validar email (permitir apenas dominios conhecidos)
+-Criar um metodo para verificar se ja existe o usuario ou o cpf no banco

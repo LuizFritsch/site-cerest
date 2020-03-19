@@ -59,7 +59,7 @@
 			</script>
 
 			<div class="content text-break">
-				<h1 id="t" class="text-center">Adicionar Função para o conselho Gestor</h1>
+				<h1 id="t" class="text-center">Adicionar Função e Membro Conselho Gestor</h1>
 				<form method="POST">
 					<div class="form-group">
 						<h6>Digite a Função:</h6>
@@ -81,7 +81,6 @@
 						$nomeFuncao=$_POST['nomeFuncao'];
 						$nomeMembro=$_POST['nomeMembro'];
 						$sql = "INSERT INTO funcoes_conselho (ID_FUNCAO_CONSELHO,NOME_FUNCAO) VALUES(DEFAULT,'$nomeFuncao');INSERT INTO conselho_gestor (ID_MEMBRO,NOME,FK_ID_FUNCAO) VALUES (DEFAULT,'$nomeMembro', (SELECT ID_FUNCAO_CONSELHO FROM funcoes_conselho WHERE NOME_FUNCAO='$nomeFuncao'))";
-						echo "<script>alert('$sql');</script>";
 						if ($resultS = mysqli_multi_query($con, $sql)) {
 							echo "<script>Swal.fire(
 									'Sucesso!',
