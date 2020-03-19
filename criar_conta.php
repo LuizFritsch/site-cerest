@@ -299,18 +299,24 @@
 							$cidade=$_POST['cidade'];
 							$email=$_POST['email'];
 							$localTrabalho=$_POST['localTrabalho'];
-							$sql1="SELECT ID_ESTADO FROM estados WHERE NOME_ESTADO LIKE $estado";
+							
+							$sql1="SELECT ID FROM estado WHERE NOME LIKE '$estado'";
 							$res=mysqli_query($con, $sql1);
-							$fk_id_estado= mysqli_fetch_assoc($res);
-							$sql2="SELECT ID_CIDADE FROM cidades WHERE NOME_CIDADE LIKE $cidade";
-							$fk_id_cidade= mysqli_fetch_assoc($resu=mysqli_query($con, $sql2));
-							$sql3="INSERT INTO usuario_comum(ID_USUARIO,NOME_COMPLETO,ENDERECO,EMAIL,SENHA,FK_ID_ESTADO,FK_ID_MUNICIPIO,LOCAL_TRABALHO,CPF,RG,CELULAR) VALUES (DEFAULT,$nomeCompleto,$endereco,$email,$senha,$fk_id_estado,$fk_id_cidade,$localTrabalho,$cpf,$rg,$celular)";
-							echo "$sql3";
-							$resultS = mysqli_query($con, $sql3);
-							if($resultS === FALSE) { 
-							   die(mysqli_error());
-							}
-							if ($resultS) {
+							$row=mysqli_fetch_assoc($res);
+							$fk_id_estado=$row['ID'];
+
+
+
+
+							$sql2="SELECT ID FROM municipio WHERE NOME LIKE '$cidade'";
+							$res2=mysqli_query($con, $sql2);
+							$row2=mysqli_fetch_assoc($res2);
+							$fk_id_cidade=$row2['ID'];
+
+
+
+							$sql3="INSERT INTO usuario_comum(ID,NOME_COMPLETO,ENDERECO,EMAIL,SENHA,FK_ID_ESTADO,FK_ID_MUNICIPIO,LOCAL_TRABALHO,CPF,RG,CELULAR,USUARIO) VALUES (DEFAULT,'$nomeCompleto','$endereco','$email','$senha','$fk_id_estado','$fk_id_cidade','$localTrabalho','$cpf','$rg','$celular','$usuario')";
+							if ($resultS = mysqli_query($con, $sql3)) {
 								echo "<script>Swal.fire(
 										'Sucesso!',
 									    'Seu usuário foi criado com sucesso!',
