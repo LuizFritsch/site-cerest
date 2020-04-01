@@ -313,10 +313,11 @@
 							$res2=mysqli_query($con, $sql2);
 							$row2=mysqli_fetch_assoc($res2);
 							$fk_id_cidade=$row2['ID'];
+							$funcao=2;
+							$sql3="INSERT INTO usuario_comum(ID,NOME_COMPLETO,ENDERECO,EMAIL,SENHA,FK_ID_ESTADO,FK_ID_MUNICIPIO,LOCAL_TRABALHO,CPF,RG,CELULAR,USUARIO,FK_ID_FUNCAO) VALUES (DEFAULT,'$nomeCompleto','$endereco','$email','$senha','$fk_id_estado','$fk_id_cidade','$localTrabalho','$cpf','$rg','$celular','$usuario','$funcao')";
+							
 
 
-
-							$sql3="INSERT INTO usuario_comum(ID,NOME_COMPLETO,ENDERECO,EMAIL,SENHA,FK_ID_ESTADO,FK_ID_MUNICIPIO,LOCAL_TRABALHO,CPF,RG,CELULAR,USUARIO) VALUES (DEFAULT,'$nomeCompleto','$endereco','$email','$senha','$fk_id_estado','$fk_id_cidade','$localTrabalho','$cpf','$rg','$celular','$usuario')";
 							if ($resultS = mysqli_query($con, $sql3)) {
 								echo "<script>Swal.fire(
 										'Sucesso!',

@@ -9,4 +9,5 @@ Criar conta:
 -Fixar barra de progresso
 -Validar cpf
 -Validar email (permitir apenas dominios conhecidos)
+-Faltou o campo RG
 -Criar um metodo para verificar se ja existe o usuario ou o cpf no banco
