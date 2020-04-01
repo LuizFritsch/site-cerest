@@ -44,7 +44,7 @@
 
 		<script type="text/javascript">
 			
-			//Funcao bloquear submit sem preencher (todos campos - 1)
+			//Funcao bloquear submit sem preencher todos campos
 			$(document).ready(function() {
 			  validate();
 			  $('input').on('keyup', validate);
@@ -63,7 +63,7 @@
 			    }
 			  });
 
-			  if (inputsWithValues >= (myInputs.length-1)) {
+			  if (inputsWithValues >= (myInputs.length)) {
 			    $("input[type=submit]").prop("disabled", false);
 			  } else {
 			    $("input[type=submit]").prop("disabled", true);

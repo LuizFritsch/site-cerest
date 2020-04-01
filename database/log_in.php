@@ -35,9 +35,9 @@ if(mysqli_num_rows($result)>0){
 	}
 }elseif (mysqli_num_rows($results)>0) {
 	while($row = mysqli_fetch_array($results)) {
-		$_SESSION['login']=$row["NOME"];
+		$_SESSION['login']=$row["USUARIO"];
 		$_SESSION['senha']=$row["SENHA"];
-		$_SESSION['func']=$row["ID_USUARIO"];
+		$_SESSION['func']=$row["ID"];
 		$_SESSION['id']=$row["FK_ID_FUNCAO"];
 	}
 	if ($_SESSION['id']==1) {
