@@ -27,6 +27,8 @@ if(mysqli_num_rows($result)>0){
 	if ($_SESSION['id']==1) {
 		header('location:https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t');
 	}elseif ($_SESSION['id']==2) {
+		header('location:https://guilherme.cerestoeste.com.br/index.php#t');
+	}elseif ($_SESSION['id']==3) {
 		header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t');
 	}else{
 		header('location:https://guilherme.cerestoeste.com.br/');
@@ -41,7 +43,7 @@ if(mysqli_num_rows($result)>0){
 	if ($_SESSION['id']==1) {
 		header('location:https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t');
 	}elseif ($_SESSION['id']==2) {
-		header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t');
+		header('location:https://guilherme.cerestoeste.com.br/index.php#t');
 	}else{
 		header('location:https://guilherme.cerestoeste.com.br/');
 	}
