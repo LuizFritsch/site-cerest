@@ -16,7 +16,8 @@ será igual a 1, se não, se não tiver registros seu valor será 0. Dependendo 
 resultado ele redirecionará para a página site.php ou retornara  para a página
 do formulário inicial para que se possa tentar novamente realizar o login */
 $senhaHash=md5($senha);
-$results=mysqli_query($con,"SELECT * FROM usuario_comum WHERE USUARIO = '$login' AND SENHA= '$senhaHash'");
+$sql="SELECT * FROM usuario_comum WHERE USUARIO = '$login' AND SENHA= '$senhaHash'";
+$results=mysqli_query($con,$sql);
 if(mysqli_num_rows($result)>0){
 	while($row = mysqli_fetch_array($result)) {
 		$_SESSION['login']=$row["NOME"];
@@ -44,10 +45,11 @@ if(mysqli_num_rows($result)>0){
 		header('location:https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t');
 	}elseif ($_SESSION['id']==2) {
 		header('location:https://guilherme.cerestoeste.com.br/index.php#t');
+	}elseif ($_SESSION['id']==3) {
+		header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t');
 	}else{
 		header('location:https://guilherme.cerestoeste.com.br/');
 	}
-	exit;
 }
 else{
 	header('location:https://guilherme.cerestoeste.com.br/login.php');

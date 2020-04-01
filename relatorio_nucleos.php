@@ -6,14 +6,14 @@
 	</head>
 	<body>
 		<?php
-		if(isset($_SESSION['login']) && isset($_SESSION['senha'])){
+		if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $_SESSION['id']==3){
 		$logado = $_SESSION['login'];
 		$func = $_SESSION['func'];
 		$senh = $_SESSION['senha'];
 		$ide = $_SESSION['id'];
 		}else{
-		echo "<script>alert('Você não está logado ou não tem o nível de acesso necessário!')</script>";
-		echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/login.php');</script>";
+			echo "<script>alert('Você não está logado ou não tem o nível de acesso necessário!')</script>";
+			echo "<script>window.location.replace('https://guilherme.cerestoeste.com.br/');</script>";
 		}
 		?>
 		<main>
