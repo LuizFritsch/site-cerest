@@ -70,6 +70,9 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
           <li class="nav-item <?= ($activePage == 'abrangencia') ? 'active':''; ?>">
             <a class="nav-link" href="https://guilherme.cerestoeste.com.br/abrangencia.php#t">Abrangência</a>
           </li>
+          <li class="nav-item <?= ($activePage == 'eventos') ? 'active':''; ?>">
+            <a class="nav-link" href="https://guilherme.cerestoeste.com.br/eventos.php#t">Eventos</a>
+          </li>
           <li class="nav-item <?= ($activePage == 'contato') ? 'active':''; ?>">
             <a class="nav-link" href="https://guilherme.cerestoeste.com.br/contato.php#t">Contato</a>
           </li>
