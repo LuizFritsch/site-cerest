@@ -16,21 +16,35 @@ $con=OpenCon();
 				<h5>Eventos abertos</h5>
 				<?php
 					$sqlEventosAbertos="SELECT * FROM eventos WHERE STATUS=1";
-
 					$resultEventosAbertos=mysqli_query($con,$sqlEventosAbertos);
 					if(!$resultEventosAbertos) {
 						die('Nao foi possivel coletar os dados dos eventos que estao abertos: ' . mysql_error($con));
 					}else{
-						while($row = mysqli_fetch_array($resultEventosAbertos)) {
-						echo "<div class='col-xl-3 col-md-6 mb-4'>
-								<div class='card border-0 shadow'>
-									<div class='card-body text-center'>
-										<h5 class='card-title mb-0'>{$row['NOME']}</h5>
-										<div class='card-text text-black-50'><b>{$row['DESCRICAO']}</b></div>
+						if(isset($_SESSION['login']) && isset($_SESSION['func'])){
+							while($row = mysqli_fetch_array($resultEventosAbertos)) {
+								echo "<div class='col-xl-3 col-md-6 mb-4'>
+									<div class='card border-0 shadow'>
+										<div class='card-body text-center'>
+											<h5 class='card-title mb-0'>{$row['NOME']}</h5>
+											<div class='card-text text-black-50'><b>{$row['DESCRICAO']}</b></div>
+											<a class='mt-auto btn btn-lg btn-block btn-success'>Inscrever-me</a>
+										</div>
 									</div>
-								</div>
-							  </div>";
+								  </div>";
+							}
+						}else{
+							while($row = mysqli_fetch_array($resultEventosAbertos)) {
+								echo "<div class='col-xl-3 col-md-6 mb-4'>
+									<div class='card border-0 shadow'>
+										<div class='card-body text-center'>
+											<h5 class='card-title mb-0'>{$row['NOME']}</h5>
+											<div class='card-text text-black-50'><b>{$row['DESCRICAO']}</b></div>
+										</div>
+									</div>
+								  </div>";
+							}
 						}
+						
 					}
 				?>
 				<hr>
