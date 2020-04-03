@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 02-Abr-2020 às 10:53
+-- Generation Time: 03-Abr-2020 às 09:40
 -- Versão do servidor: 5.6.41-84.1
 -- versão do PHP: 7.2.7
 
@@ -21,6 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `vinilpub_guilherme_cerest`
 --
+CREATE DATABASE IF NOT EXISTS `vinilpub_guilherme_cerest` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+USE `vinilpub_guilherme_cerest`;
 
 -- --------------------------------------------------------
 
