@@ -8,6 +8,9 @@ $con=OpenCon();
 	<head>
 		<title>Eventos</title>
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
 	</head>
 	<body>
 		<main>
@@ -15,9 +18,11 @@ $con=OpenCon();
 				<h1 id="t" class="text-justify">Eventos</h1>
 				<!--EVENTOS QUE ESTAO ATIVOS-->
 				<br>
-				<div class="container">
-					<div class="row">
+				
 						<?php
+						//abertos
+						//fechados
+						//tabela todos c filtro
 							$sqlEventosAbertos="SELECT * FROM eventos WHERE STATUS_INSCRICOES=1";
 							$resultEventosAbertos=mysqli_query($con,$sqlEventosAbertos);
 							if(!$resultEventosAbertos OR $resultEventosAbertos==NULL) {
@@ -25,16 +30,20 @@ $con=OpenCon();
 							}else{
 								if(isset($_SESSION['login']) && isset($_SESSION['func'])){
 
-									//SELECIONAR TODOS OS DADOS DE EVENTOS, ONDE USUARIO NAO ESTA INSCRITO
+									//SELECIONAR TODOS OS DADOS DE EVENTOS, ONDE USUARIO ESTA INSCRITO
 									$ide = $_SESSION['func'];
-									$sq="SELECT * FROM eventos INNER JOIN inscritos_eventos on inscritos_eventos.FK_ID_USUARIO='$ide' AND eventos.ID=inscritos_eventos.FK_ID_EVENTO AND eventos.STATUS_INSCRICOES=1";
-									echo "<b><h4>Eventos que voce ja esta inscrito</h4></b>";
+									$sq="SELECT * FROM eventos INNER JOIN inscritos_eventos on inscritos_eventos.FK_ID_USUARIO='$ide' AND eventos.ID=inscritos_eventos.FK_ID_EVENTO";
 									$resultJaInscritos=mysqli_query($con,$sq);
+									echo "<br>";
+									echo "<hr>";
+									echo "<br>";
+									echo "<b><h4>Eventos que voce ja esta inscrito</h4></b>";
+									echo "<br>";
+									echo "<div class='container'>
+											<div class='row'>";
 									while($row = mysqli_fetch_array($resultJaInscritos)) {
 										$data_inicio=date_format(date_create($row['DATA_INICIO']),'d/m/Y');
 										$data_fim=date_format(date_create($row['DATA_FIM']),'d/m/Y');
-										echo "<div class='container'>
-												<div class='row'>";
 										echo "<form method='POST'>";
 										echo "<div class='card' style='width: 20rem;'>
 												  <div class='card-body d-flex flex-column'>
@@ -52,9 +61,10 @@ $con=OpenCon();
 												  </div>
 												</div>";
 										echo "</form>";
-										echo "</div></div>";
 									}
-									$sqll="SELECT eventos.NOME,eventos.DESCRICAO,eventos.DATA_INICIO,eventos.DATA_FIM,eventos.ID FROM eventos INNER JOIN inscritos_eventos on inscritos_eventos.FK_ID_USUARIO='$ide' AND eventos.ID!=inscritos_eventos.FK_ID_EVENTO AND eventos.STATUS_INSCRICOES=1";
+										echo "</div></div>";
+									//SELECIONAR TODOS OS DADOS DE EVENTOS, ONDE USUARIO NAO ESTA INSCRITO
+									$sqll="SELECT * FROM eventos WHERE eventos.STATUS_INSCRICOES=1 AND NOT EXISTS(SELECT * FROM inscritos_eventos WHERE inscritos_eventos.FK_ID_USUARIO='$ide' AND FK_ID_EVENTO=eventos.ID)";
 									$resultEventosNaoInscrito=mysqli_query($con,$sqll);
 									echo "<br>";
 									echo "<hr>";
@@ -77,7 +87,6 @@ $con=OpenCon();
 													<p class='card-text'>até</p>
 													<p class='card-text'>$data_fim</p>	
 												    <br>
-													<p class='card-text'>ID:{$row['ID']}</p>
 													<input type='hidden' name='idevento' value='{$row['ID']}'></input>
 												    <input type='hidden' name='idusuario' value='$ide'></input>
 												    <button class='mt-auto btn btn-lg btn-block btn-success' type='submit'>Inscrever-se</button>
@@ -87,6 +96,8 @@ $con=OpenCon();
 										echo "</div></div>";
 									}
 								}else{
+									echo "<div class='container'>
+											<div class='row'>";
 									while($row = mysqli_fetch_array($resultEventosAbertos)) {
 										$data_inicio=date_format(date_create($row['DATA_INICIO']),'d/m/Y');
 										$data_fim=date_format(date_create($row['DATA_FIM']),'d/m/Y');
@@ -104,6 +115,7 @@ $con=OpenCon();
 												  </div>
 												</div>";
 									}
+									echo "</div></div>";
 								}
 								
 							}
@@ -114,19 +126,6 @@ $con=OpenCon();
 								$idusuario=$_POST['idusuario'];
 								$sqlInserirUsuarioEvento="INSERT INTO inscritos_eventos(ID,FK_ID_USUARIO,FK_ID_EVENTO) VALUES(DEFAULT,'$idusuario','$idevento')";
 
-								//###################################################################################################################################
-								//###################################################################################################################################
-								//###################################################################################################################################
-								//###################################################################################################################################
-								//###################################################################################################################################
-								//###################################################################################################################################
-								//verificar se ja esta inscrito
-								//###################################################################################################################################
-								//###################################################################################################################################
-								//###################################################################################################################################
-								//###################################################################################################################################
-								//###################################################################################################################################
-								//###################################################################################################################################
 								echo "$sqlInserirUsuarioEvento";
 								if ($resultSa = mysqli_query($con, $sqlInserirUsuarioEvento)) {
 											echo "<script>Swal.fire(
@@ -183,6 +182,78 @@ $con=OpenCon();
 					</div>
 				</div>
 				<br>
+				<hr>
+				<br>
+				<!--Todos Eventos-->
+				<b><h4>Todos eventos</h4></b>
+				<br>
+				<div class="container">
+					<div class="row">
+						<div class="table-responsive tabela">
+							<table class="table table-striped display" id="eventos">
+								
+								<thead>
+									<tr>
+										<th scope="col" id="tabela-eventos">Nome do evento</th>
+										<th scope="col">Descricao</th>
+										<th scope="col">Data de Inicio</th>
+										<th scope="col">Data de Termino</th>
+										<th scope="col"><!--Excluir--></th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
+										$sql="SELECT * FROM eventos";
+										$result=mysqli_query($con,$sql);
+											if(!$result ) {
+												die('Could not get data: ' . mysql_error());
+											}
+											while($row = mysqli_fetch_array($result)) {
+												$data_inicio=date_format(date_create($row['DATA_INICIO']),'d/m/Y');
+												$data_fim=date_format(date_create($row['DATA_FIM']),'d/m/Y');
+												echo "<tr>
+														<td scope='row'>{$row['NOME']}</td>
+														<td>{$row['DESCRICAO']}</td>
+														<td>$data_inicio</td>
+														<td>$data_fim</td>
+														<td><a>Inscrever-se</a></td>
+													</tr>";
+											}
+									?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+				<script type="text/javascript">
+			$(document).ready(function() {
+				$('#eventos').dataTable();
+			} );
+		</script>
+		<script type="text/javascript">
+			$('#eventos').dataTable( {
+				"language": {
+				  	"emptyTable": "Não há nenhum evento",
+				  	"info": "Mostrando _START_ de _END_ de um total de _TOTAL_ eventos",
+				  	"infoEmpty": "Mostrando 0 de um total de 0 eventos",
+				  	"infoFiltered":   "(filtrado de um total de _MAX_ total eventos)",
+			        "infoPostFix":    "",
+			        "thousands":      ".",
+			        "lengthMenu":     "Mostrar _MENU_ eventos",
+				  	"loadingRecords": "Carregando...",
+			        "processing":     "Processando...",
+			        "search":         "Buscar:",
+				  	"searchPlaceholder": "Filtre por qualquer coisa aqui...",
+			        "zeroRecords":    "Não há dados",
+				    "paginate": {
+				      "first":      "Primeira",
+	            	  "last":       "ÚLtima",
+				      "previous": "Anterior",
+				      "next": "Próximo"
+			    }
+			  }
+			} );
+		</script>
 			</div>
 			
 		</main>
