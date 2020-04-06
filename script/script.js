@@ -41,6 +41,17 @@ $(document).ready(function(){
     })
 });
 
+$(document).ready(function(){
+  var btn = document.querySelector(".btn-inscrito");
+
+  btn.addEventListener("mouseover", function() {
+    this.textContent = "Cancelar Inscricao";
+  })
+  btn.addEventListener("mouseout", function() {
+    this.textContent = "Ja esta inscrito neste evento";
+  })
+});
+
 /**
 jQuery(document).ready(function(){
 

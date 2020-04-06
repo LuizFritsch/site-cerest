@@ -11,6 +11,7 @@ $con=OpenCon();
 		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+		<link rel="stylesheet" type="text/css" href="./style/style.css">
 	</head>
 	<body>
 		<main>
@@ -203,21 +204,35 @@ $con=OpenCon();
 								</thead>
 								<tbody>
 									<?php
-										$sql="SELECT * FROM eventos";
+										$sql="SELECT * FROM eventos ORDER BY STATUS_INSCRICOES DESC";
 										$result=mysqli_query($con,$sql);
 											if(!$result ) {
-												die('Could not get data: ' . mysql_error());
+												die('Nao foi possivel : ' . mysql_error());
 											}
 											while($row = mysqli_fetch_array($result)) {
+												$sqlUsuarioInscrito = "SELECT COUNT(1) FROM inscritos_eventos WHERE inscritos_eventos.FK_ID_USUARIO='$ide' and FK_ID_EVENTO='{$row['ID']}'";
+												$estaInscrito  = mysqli_query($con,$sqlUsuarioInscrito);
+													
 												$data_inicio=date_format(date_create($row['DATA_INICIO']),'d/m/Y');
 												$data_fim=date_format(date_create($row['DATA_FIM']),'d/m/Y');
 												echo "<tr>
 														<td scope='row'>{$row['NOME']}</td>
 														<td>{$row['DESCRICAO']}</td>
 														<td>$data_inicio</td>
-														<td>$data_fim</td>
-														<td><a>Inscrever-se</a></td>
-													</tr>";
+														<td>$data_fim</td>";
+												if (!isset($_SESSION['login'])) {
+													echo "<td><a href='login.php' class='mt-auto btn btn-lg btn-block btn-secondary'>Realize Login para se Inscrever</a></td>";
+												}elseif($estaInscrito==0 AND $row['STATUS_INSCRICOES']==1){
+													echo "<td><button class='mt-auto btn btn-lg btn-block btn-success' type='submit'>Inscrever-se</button></td>";
+												}elseif ($estaInscrito==1 AND $row['STATUS_INSCRICOES']==1) {
+													echo "<td><button class='mt-auto btn btn-lg btn-block btn-success btn-inscrito' id='btn-inscrito' type='submit'>Ja esta inscrito neste evento</button></td>";
+												}elseif ($estaInscrito==0 AND $row['STATUS_INSCRICOES']==0) {
+													echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' type='submit' disabled>Evento encerrado</button></td>";
+												}elseif ($estaInscrito==1 AND $row['STATUS_INSCRICOES']==0) {
+													echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' type='submit' disabled>Evento encerrado</button></td>";
+												}
+														
+													echo "</tr>";
 											}
 									?>
 								</tbody>

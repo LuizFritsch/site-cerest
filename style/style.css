@@ -914,3 +914,17 @@ bottom: .5em;
   color: red;
   background-color: #acf;
 }
+
+.btn-inscrito:hover {
+  background-color:red;
+  border-color: red;
+}
+
+.btn-inscrito:hover::after {
+  background-color:red;
+  border-color: red;
+}
+.btn-inscrito:hover:::active {
+  background-color:red;
+  border-color: red;
+}
