@@ -121,32 +121,7 @@ $con=OpenCon();
 								
 							}
 						?>
-						<?php
-							if($_SERVER['REQUEST_METHOD'] == 'POST'){					
-								$idevento=$_POST['idevento'];
-								$idusuario=$_POST['idusuario'];
-								$sqlInserirUsuarioEvento="INSERT INTO inscritos_eventos(ID,FK_ID_USUARIO,FK_ID_EVENTO) VALUES(DEFAULT,'$idusuario','$idevento')";
-
-								echo "$sqlInserirUsuarioEvento";
-								if ($resultSa = mysqli_query($con, $sqlInserirUsuarioEvento)) {
-											echo "<script>Swal.fire(
-													'Sucesso!',
-											        'Edição efetuada com sucesso!',
-											        'success'
-											      ).then(function() {
-											      		window.location = 'https://guilherme.cerestoeste.com.br/eventos.php#t';
-											      });</script>";	
-								}else{
-											echo "<script>Swal.fire({
-													icon: 'error',
-											        title: 'Oops...',
-											        text: 'Não foi possivel editar, tente novamente mais tarde!',
-											      }).then(function() {
-											      		window.location = 'https://guilherme.cerestoeste.com.br/eventos.php#t'
-											      });</script>";							            			
-								}
-							}
-						?>
+						
 					</div>
 				</div>
 				<br>
@@ -199,7 +174,7 @@ $con=OpenCon();
 										<th scope="col">Descricao</th>
 										<th scope="col">Data de Inicio</th>
 										<th scope="col">Data de Termino</th>
-										<th scope="col"><!--Excluir--></th>
+										<th scope="col"><!--Status Inscricao--></th>
 									</tr>
 								</thead>
 								<tbody>
@@ -209,30 +184,32 @@ $con=OpenCon();
 											if(!$result ) {
 												die('Nao foi possivel : ' . mysql_error());
 											}
-											while($row = mysqli_fetch_array($result)) {
-												$sqlUsuarioInscrito = "SELECT COUNT(1) FROM inscritos_eventos WHERE inscritos_eventos.FK_ID_USUARIO='$ide' and FK_ID_EVENTO='{$row['ID']}'";
-												$estaInscrito  = mysqli_query($con,$sqlUsuarioInscrito);
-													
-												$data_inicio=date_format(date_create($row['DATA_INICIO']),'d/m/Y');
-												$data_fim=date_format(date_create($row['DATA_FIM']),'d/m/Y');
+											$one=1;	
+											while($rowww = mysqli_fetch_array($result)) {
+												$sqlUsuarioInscrito = "SELECT COUNT('$one') as boo FROM inscritos_eventos WHERE inscritos_eventos.FK_ID_USUARIO='$ide' and FK_ID_EVENTO='{$rowww['ID']}'";
+												$res  = mysqli_query($con,$sqlUsuarioInscrito);
+												$estaInscrit=mysqli_fetch_assoc($res);
+												$estaInscrito=$estaInscrit['boo'];
+												echo "$estaInscrito";
+												$data_inicio=date_format(date_create($rowww['DATA_INICIO']),'d/m/Y');
+												$data_fim=date_format(date_create($rowww['DATA_FIM']),'d/m/Y');
 												echo "<tr>
-														<td scope='row'>{$row['NOME']}</td>
-														<td>{$row['DESCRICAO']}</td>
+														<th scope='row'>{$rowww['NOME']}</th>
+														<td>{$rowww['DESCRICAO']}</td>
 														<td>$data_inicio</td>
 														<td>$data_fim</td>";
 												if (!isset($_SESSION['login'])) {
 													echo "<td><a href='login.php' class='mt-auto btn btn-lg btn-block btn-secondary'>Realize Login para se Inscrever</a></td>";
-												}elseif($estaInscrito==0 AND $row['STATUS_INSCRICOES']==1){
+												}elseif($estaInscrito==0 AND $rowww['STATUS_INSCRICOES']==1){
 													echo "<td><button class='mt-auto btn btn-lg btn-block btn-success' type='submit'>Inscrever-se</button></td>";
-												}elseif ($estaInscrito==1 AND $row['STATUS_INSCRICOES']==1) {
-													echo "<td><button class='mt-auto btn btn-lg btn-block btn-success btn-inscrito' id='btn-inscrito' type='submit'>Ja esta inscrito neste evento</button></td>";
-												}elseif ($estaInscrito==0 AND $row['STATUS_INSCRICOES']==0) {
-													echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' type='submit' disabled>Evento encerrado</button></td>";
-												}elseif ($estaInscrito==1 AND $row['STATUS_INSCRICOES']==0) {
-													echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' type='submit' disabled>Evento encerrado</button></td>";
+												}elseif($estaInscrito==1 AND $rowww['STATUS_INSCRICOES']==1){
+													echo "<td><button class='mt-auto btn btn-lg btn-block btn-success btn-inscrito' id='btn-inscrito' type='submit'>Ja estou inscrito neste evento</button></td>";
+												}elseif($estaInscrito==0 AND $rowww['STATUS_INSCRICOES']==0){
+													echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Evento encerrado</button></td>";
+												}elseif($estaInscrito==1 AND $rowww['STATUS_INSCRICOES']==0){
+													echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Participei deste evento</button></td>";
 												}
-														
-													echo "</tr>";
+												echo "</tr>";
 											}
 									?>
 								</tbody>
@@ -240,7 +217,33 @@ $con=OpenCon();
 						</div>
 					</div>
 				</div>
-				<script type="text/javascript">
+		<?php
+							if($_SERVER['REQUEST_METHOD'] == 'POST'){					
+								$idevento=$_POST['idevento'];
+								$idusuario=$_POST['idusuario'];
+								$sqlInserirUsuarioEvento="INSERT INTO inscritos_eventos(ID,FK_ID_USUARIO,FK_ID_EVENTO) VALUES(DEFAULT,'$idusuario','$idevento')";
+
+								echo "$sqlInserirUsuarioEvento";
+								if ($resultSa = mysqli_query($con, $sqlInserirUsuarioEvento)) {
+											echo "<script>Swal.fire(
+													'Sucesso!',
+											        'Edição efetuada com sucesso!',
+											        'success'
+											      ).then(function() {
+											      		window.location = 'https://guilherme.cerestoeste.com.br/eventos.php#t';
+											      });</script>";	
+								}else{
+											echo "<script>Swal.fire({
+													icon: 'error',
+											        title: 'Oops...',
+											        text: 'Não foi possivel editar, tente novamente mais tarde!',
+											      }).then(function() {
+											      		window.location = 'https://guilherme.cerestoeste.com.br/eventos.php#t'
+											      });</script>";							            			
+								}
+							}
+						?>
+		<script type="text/javascript">
 			$(document).ready(function() {
 				$('#eventos').dataTable();
 			} );

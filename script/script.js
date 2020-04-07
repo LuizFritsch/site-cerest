@@ -42,14 +42,15 @@ $(document).ready(function(){
 });
 
 $(document).ready(function(){
-  var btn = document.querySelector(".btn-inscrito");
-
-  btn.addEventListener("mouseover", function() {
-    this.textContent = "Cancelar Inscricao";
-  })
-  btn.addEventListener("mouseout", function() {
-    this.textContent = "Ja esta inscrito neste evento";
-  })
+  var allButtons = document.querySelectorAll(".btn-inscrito");
+  for (var i = 0; i < allButtons.length; i++) {
+    allButtons[i].addEventListener("mouseover", function() {
+      this.textContent = "Cancelar Inscricao";
+    })
+    allButtons[i].addEventListener("mouseout", function() {
+      this.textContent = "Ja esta inscrito neste evento";
+    })
+  }
 });
 
 /**
