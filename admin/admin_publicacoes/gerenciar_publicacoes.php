@@ -55,7 +55,7 @@
 										$sql="SELECT * FROM publicacoes";
 										$result=mysqli_query($con,$sql);
 											if(!$result ) {
-												die('Could not get data: ' . mysql_error());
+												die('Could not get data: ' . mysqli_error($con));
 											}
 											while($row = mysqli_fetch_array($result)) {
 												echo "<tr>

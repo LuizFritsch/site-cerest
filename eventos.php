@@ -15,80 +15,85 @@ $con=OpenCon();
 	</head>
 	<body>
 		<main>
-			<div class="content text-break">
-				<h1 id="t" class="text-justify">Eventos</h1>
+			<div class="content text-justify">
+				<h1 id="t" class="text-center">Eventos</h1>
 				<br>
-				<div class="container">
-					<div class="row">
-						<div class="table-responsive tabela" id="trab">
-							<div id="trabs">
-								<table class="table table-striped display" id="eventos">
-									<thead>
-										<tr>
-											<th scope="col" id="tabela-eventos">Nome do evento</th>
-											<th scope="col">Descricao</th>
-											<th scope="col">Data de Inicio</th>
-											<th scope="col">Data de Termino</th>
-											<th scope="col"><!--Status Inscricao--></th>
-										</tr>
-									</thead>
-									<tbody>
-										<?php
-											$sql="SELECT * FROM eventos ORDER BY STATUS_INSCRICOES DESC";
-											$result=mysqli_query($con,$sql);
-												if(!$result ) {
-													die('Nao foi possivel : ' . mysql_error());
-												}
-												while($rowww = mysqli_fetch_array($result)) {
-													$sqlUsuarioInscrito = "SELECT COUNT(1) as boo FROM inscritos_eventos WHERE inscritos_eventos.FK_ID_USUARIO='$ide' and FK_ID_EVENTO='{$rowww['ID']}'";
-													$res  = mysqli_query($con,$sqlUsuarioInscrito);
-													$estaInscrit=mysqli_fetch_assoc($res);
-													$data_inicio=date_format(date_create($rowww['DATA_INICIO']),'d/m/Y');
-													$data_fim=date_format(date_create($rowww['DATA_FIM']),'d/m/Y');
-													echo "<tr>
-															<th scope='row'>{$rowww['NOME']}</th>
-															<td>{$rowww['DESCRICAO']}</td>
-															<td>$data_inicio</td>
-															<td>$data_fim</td>";
-													if (!isset($_SESSION['login'])) {
-														echo "<td><a href='login.php' class='mt-auto btn btn-lg btn-block btn-secondary'>Realize Login para se Inscrever</a></td>";
-													}elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==1){
-														echo "<form method='POST'><td><button class='mt-auto btn btn-lg btn-block btn-success' type='submit'>Inscrever-se</button></td>";
-														echo "<input type='hidden' name='tipoRequisicao' value='1'></input>";
-														echo "<input type='hidden' name='idevento' value='{$rowww['ID']}'></input>
-													    <input type='hidden' name='idusuario' value='$ide'></input></form>";	
-													}elseif($estaInscrit['boo']==1 AND $rowww['STATUS_INSCRICOES']==1){
-														echo "<form method='POST'><td><button class='mt-auto btn btn-lg btn-block btn-success btn-inscrito' id='btn-inscrito' type='submit'>Ja estou inscrito neste evento</button></td>";
-														echo "<input type='hidden' name='tipoRequisicao' value='0'></input>";
-														echo "<input type='hidden' name='idevento' value='{$rowww['ID']}'></input>
-													    <input type='hidden' name='idusuario' value='$ide'></input></form>";
-													}elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==0){
-														echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Evento encerrado</button></td>";
-													}elseif($estaInscrit['boo']==1 AND $rowww['STATUS_INSCRICOES']==0){
-														echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Participei deste evento</button></td>";
-													}
-													echo "</tr>";
-												}
-										?>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+				<div id="divPublicacoes">
+				<div class="table-responsive tabela">
+					<table class="table table-striped display" id="eventos">
+						<thead>
+							<tr>
+								<th scope="col" id="tabela-eventos">Nome do evento</th>
+								<th scope="col">Descricao</th>
+								<th scope="col">Data de Inicio</th>
+								<th scope="col">Data de Termino</th>
+								<th scope="col"><!--Status Inscricao--></th>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+								$sql="SELECT * FROM eventos ORDER BY STATUS_INSCRICOES DESC";
+								$result=mysqli_query($con,$sql);
+								if(!$result ) {
+									die('Nao foi possivel : ' . mysqli_error($con));
+								}
+								while($rowww = mysqli_fetch_array($result)) {
+									$sqlUsuarioInscrito = "SELECT COUNT(1) as boo FROM inscritos_eventos WHERE inscritos_eventos.FK_ID_USUARIO='$ide' and FK_ID_EVENTO='{$rowww['ID']}'";
+									$res  = mysqli_query($con,$sqlUsuarioInscrito);
+									$estaInscrit=mysqli_fetch_assoc($res);
+									$data_inicio=date_format(date_create($rowww['DATA_INICIO']),'d/m/Y');
+									$data_fim=date_format(date_create($rowww['DATA_FIM']),'d/m/Y');
+									echo "<tr>
+											<td>{$rowww['NOME']}</td>
+											<td>{$rowww['DESCRICAO']}</td>
+											<td>$data_inicio</td>
+											<td>$data_fim</td>";
+									if (!isset($_SESSION['login'])) {
+										echo "<td><a href='login.php' class='mt-auto btn btn-lg btn-block btn-secondary'>Realize Login para se Inscrever</a></td>";
+									}elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==1){
+										echo "<form method='POST' id='form{$rowww['ID']}'>";
+										echo "<td>
+												<button class='mt-auto btn btn-lg btn-block btn-success' type='submit'>Inscrever-se</button>
+											  </td>";
+										echo "<input type='hidden' name='tipoRequisicao' value='1'></input>";
+										echo "<input type='hidden' name='idevento' value='{$rowww['ID']}'></input>";
+										echo "<input type='hidden' name='idusuario' value='$ide'></input>";
+										echo "</form>";
+									}elseif($estaInscrit['boo']==1 AND $rowww['STATUS_INSCRICOES']==1){
+										echo "<form method='POST' id='form{$rowww['ID']}'>";
+										echo "<td>
+												<button class='mt-auto btn btn-lg btn-block btn-success btn-inscrito' id='btn-inscrito' type='submit'>Ja estou inscrito neste evento</button>
+											  </td>";
+										echo "<input type='hidden' name='tipoRequisicao' value='0'></input>";
+										echo "<input type='hidden' name='idevento' value='{$rowww['ID']}'></input>";
+										echo "<input type='hidden' name='idusuario' value='$ide'></input>";
+										echo "</form>";
+										}elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==0){
+											echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Evento encerrado</button></td>";
+										}elseif($estaInscrit['boo']==1 AND $rowww['STATUS_INSCRICOES']==0){
+											echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Participei deste evento</button></td>";
+										}
+									echo "</tr>";
+								}
+							?>
+						</tbody>
+					</table>
+				</div>
 				</div>
 						<?php
 							if($_SERVER['REQUEST_METHOD'] == 'POST'){					
 								if ($_POST['tipoRequisicao']==1) {
 									$idevento=$_POST['idevento'];
 									$idusuario=$_POST['idusuario'];
-									$sqlInserirUsuarioEvento="INSERT IGNORE INTO inscritos_eventos(FK_ID_USUARIO,FK_ID_EVENTO) VALUES('$idusuario','$idevento')";
+									$sqlInserirUsuarioEvento="INSERT INTO inscritos_eventos(FK_ID_USUARIO,FK_ID_EVENTO) VALUES ('$idusuario','$idevento')";
+									echo "$sqlInserirUsuarioEvento";
 									if ($resultSa = mysqli_query($con, $sqlInserirUsuarioEvento)) {
 												echo "<script>Swal.fire(
 														'Sucesso!',
 												        'Inscricao efetuada com sucesso!',
 												        'success'
 												      ).then(function() {
-												      		$('#trabs').load(location.href+' #trabs>*','');
+												      		window.location.replace('https://guilherme.cerestoeste.com.br/eventos.php');
 												      });</script>";	
 									}else{
 												echo "<script>Swal.fire({
@@ -96,7 +101,7 @@ $con=OpenCon();
 												        title: 'Oops...',
 												        text: 'Não foi possivel lhe inscrever neste evente, tente novamente mais tarde!',
 												      }).then(function() {
-												      		$('#trabs').load(location.href+' #trabs>*','');
+												      		window.location.replace('https://guilherme.cerestoeste.com.br/eventos.php');
 												      });</script>";							            			
 									}
 								}elseif ($_POST['tipoRequisicao']==0) {
@@ -109,7 +114,7 @@ $con=OpenCon();
 												        'Sua inscricao foi cancelada com sucesso!',
 												        'success'
 												      ).then(function() {
-													      	$('#trabs').load(location.href+' #trabs>*','');
+													      	window.location.replace('https://guilherme.cerestoeste.com.br/eventos.php');
 												      });</script>";	
 									}else{
 												echo "<script>Swal.fire({
@@ -117,7 +122,7 @@ $con=OpenCon();
 												        title: 'Oops...',
 												        text: 'Não foi possivel cancelar sua inscricao, tente novamente mais tarde!',
 												      }).then(function() {
-												      		$('#trabs').load(location.href+' #trabs>*','');
+												      		window.location.replace('https://guilherme.cerestoeste.com.br/eventos.php');
 												      });</script>";							            			
 									}
 								}
@@ -127,6 +132,21 @@ $con=OpenCon();
 			$(document).ready(function() {
 				$('#eventos').dataTable();
 			} );
+		</script>
+		<script type="text/javascript">
+			$(document).ready(function () {             
+			  $('.dataTables_filter input[type="search"]').css(
+			     {'width':'100%'}
+			  );
+			});
+		</script>
+		<script type="text/javascript">
+			document.addEventListener("touchstart", function() {}, true);
+		</script>
+		<script type="text/javascript">
+		    if ( window.history.replaceState ) {
+		        window.history.replaceState( null, null, window.location.href );
+		    }
 		</script>
 		<script type="text/javascript">
 			$('#eventos').dataTable( {

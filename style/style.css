@@ -915,7 +915,7 @@ bottom: .5em;
   background-color: #acf;
 }
 
-.btn-inscrito:hover {
+.btn-inscrito:hover,.btn-inscrito:active {
   background-color:red;
   border-color: red;
 }
@@ -927,4 +927,11 @@ bottom: .5em;
 .btn-inscrito:hover:::active {
   background-color:red;
   border-color: red;
+}
+
+#eventos_filter input {
+  width: 100%;
+}
+#eventos_filter {
+  width: 100%;
 }
