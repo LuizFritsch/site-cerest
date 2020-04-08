@@ -51,7 +51,7 @@
 									<div class="modal-dialog modal-dialog-centered modal-lg text-center" role="document">
 										<div class="modal-content modal-lg text-center">
 											<div class="modal-header modal-lg text-center">
-												<h5 class="modal-title text-center col-8">Cadastro</h5>
+												<h3 class="modal-title text-center col-14">Cadastro</h3>
 												<button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
 													<span aria-hidden="true">&times;</span>
 												</button>
