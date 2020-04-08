@@ -6,6 +6,12 @@
 	</head>
 	<body>
 		<main>
+			<?php
+				$file = fopen("ip.txt","a");
+				$ip=$_SERVER['REMOTE_ADDR']."\n";
+				fwrite($file,$ip);
+				fclose($file);
+			?>
 			<div class="content text-break">
 				<h1 id="t" class="text-center">Inicio</h1>
 				<p class="text-justify">O Centro Regional de Referência em Saúde do Trabalhador da Região Oeste do Rio Grande do Sul, é um serviço do Sistema Único de Saúde (SUS), com sede em Alegrete. Possui abrangência regional atendendo os municípios da 10ª Coordenadoria Regional de Saúde. A Rede Nacional de Atenção Integral à Saúde do Trabalhador (RENAST), regulamentada pela PORTARIA DE CONSOLIDAÇÃO do Ministério da Saúde nº 3 de 28 de setembro de 2017, tem o objetivo de disseminar ações de Saúde do Trabalhador articuladas às demais redes do SUS.</p>
