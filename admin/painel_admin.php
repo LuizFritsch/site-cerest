@@ -60,9 +60,12 @@
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
 								<!--<img src="./img/equipe/ADRIANA.jpg"class="card-img-top" alt="...">-->
+								<a href='./admin_eventos/gerenciar_eventos.php'><!--<img src="../img/publicacoes.png"class="card-img-top" alt="...">--></a>
 								<div class="card-body text-center">
 									<h5 class="card-title mb-0">-</h5>
-									<div class="card-text text-black-50">Estamos trabalhando nesta funcionalidade ainda...</div>
+									<div class="card-text text-black-50">
+										<a href="./admin_eventos/gerenciar_eventos.php">Gerenciar Eventos</a>
+									</div>
 								</div>
 							</div>
 						</div>

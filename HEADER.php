@@ -110,6 +110,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
               <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor/gerenciar_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
               <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
               <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php#t'>Gerenciar Publicações</a>
+              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_eventos/gerenciar_eventos.php#t'>Gerenciar Eventos</a>
               <div role='separator' class='dropdown-divider'></div>
               <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de Administração</a>
             </div>
@@ -124,6 +125,7 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
               <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor/gerenciar_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
               <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
               <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php#t'>Gerenciar Publicações</a>
+              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_eventos/gerenciar_eventos.php#t'>Gerenciar Eventos</a>
               <div role='separator' class='dropdown-divider'></div>
               <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de Administração</a>
             </div>
