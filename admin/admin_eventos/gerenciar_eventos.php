@@ -47,6 +47,7 @@
 									<tr>
 										<th scope="col" id="tabela-eventos">ID</th>
 										<th scope="col">Nome do evento</th>
+										<th scope="col">Descricao do evento</th>
 										<th scope="col">Status Inscricao</th>
 										<th scope="col"><!--Visualizar/Editar Evento--></th>
 										<th scope="col"><!--Editar--></th>
@@ -64,7 +65,8 @@
 												//BOOLEAN STATUS COM 
 												echo "<tr>
 																	<th scope='row'>{$row['ID']}</th>
-																	<td>{$row['NOME']}</td>";
+																	<td>{$row['NOME']}</td>
+																	<td>{$row['DESCRICAO']}</td>";
 																	if ($row['STATUS_INSCRICOES']==1) {
 																		echo "<td><input id='statsInscricoes{$row['ID']}' name='statsInscricoes{$row['ID']}' type='checkbox' checked data-toggle='toggle' data-on='Abertas' data-off='Fechadas' data-onstyle='success' data-offstyle='danger' onchange='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})' onclick='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})'></td>";
 																	}elseif ($row['STATUS_INSCRICOES']==0) {
@@ -108,7 +110,7 @@
 				}).then((result) => {
 				  if (result.value) {
 				    $.ajax({
-	                    url:'excluirEvento.php',
+	                    url:'excluir_evento.php',
 	                    method:'POST',
 	                    data:{
 	                       idEvento:idEvento
@@ -144,7 +146,7 @@
 				if(statsInscricoes == true){
 			       statusInscricoes=1;
 			    	$.ajax({
-                       url:'alteraStatusInscricao.php',
+                       url:'altera_status_inscricao.php',
                        method:'POST',
                        data:{
                            idEvento:idEvento,
@@ -161,7 +163,7 @@
 			    }else{
 			       statusInscricoes=0;
 			       $.ajax({
-                       url:'alteraStatusInscricao.php',
+                       url:'altera_status_inscricao.php',
                        method:'POST',
                        data:{
                            idEvento:idEvento,
