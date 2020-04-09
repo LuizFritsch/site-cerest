@@ -283,7 +283,7 @@
 						<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu email..." required="">
 						<div id="disponibilidadeemail" ></div>
 					</div>
-					<script type="text/javascript">
+					<!--<script type="text/javascript">
 						/*$(document).ready(function(){
 							$("input").keyup(function(){
 								var nomeInput = $(this).attr("name");
@@ -310,7 +310,7 @@
 						    	}
 							});
 						});*/
-					</script>
+					</script>-->
 			
 
 					<script>
