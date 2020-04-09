@@ -190,6 +190,34 @@
 							<div class="col-md-6">
 								<h6>Nome de Usuário*</h6>
 								<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Digite o seu nome de Usuário..." required="">
+								<div id="disponibilidadeusuario" ></div>
+								<script>
+									$(document).ready(function(){
+
+									    $("#usuario").keyup(function(){
+
+									      var username = $(this).val().trim();
+
+									      if(username != ''){
+
+									         $.ajax({
+									            url: './database/verificar_usuario.php',
+									            type: 'post',
+									            data: {username: username},
+									            success: function(response){
+
+									                $('#disponibilidadeusuario').html(response);
+
+									             }
+									         });
+									      }else{
+									         $("#disponibilidadeusuario").html("");
+									      }
+
+									    });
+
+									});
+								</script>
 							</div>
 							<div class="col-md-6">
 								<h6 data-toggle="tooltip" data-placement="top" title="Sua senha deve conter pelo menos: 1 caracter minusculo, 1 caracter maiusculo e 1 caracter especial...">Senha*</h6>
@@ -253,7 +281,65 @@
 					<div class="form-group">
 						<h6>Email*</h6>
 						<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu email..." required="">
+						<div id="disponibilidadeemail" ></div>
 					</div>
+					<script type="text/javascript">
+						/*$(document).ready(function(){
+							$("input").keyup(function(){
+								var nomeInput = $(this).attr("name");
+								var valor = $(this).val().trim();
+								var divDisponibilidade="";
+								divDisponibilidade = divDisponibilidade.concat("#disponibilidade",nomeInput);
+								if (valor != '') {
+									if (nomeInput=="cpf" || nomeInput=="email" || nomeInput=="usuario") {
+										var verificar="";
+										verificar= verificar.concat('./database/verificar_',nomeInput,'.php');
+										$.ajax({
+												url: verificar,
+									            type: 'post',
+									            data: {email: email},
+									            success: function(response){
+
+									                $('#disponibilidadeemail').html(response);
+
+									            }
+									    });
+									}								
+								}else{
+						    		$(divDisponibilidade).html("");
+						    	}
+							});
+						});*/
+					</script>
+			
+
+					<script>
+									$(document).ready(function(){
+
+									    $("#email").keyup(function(){
+
+									      var email = $(this).val().trim();
+
+									      if(email != ''){
+
+									         $.ajax({
+									            url: './database/verificar_email.php',
+									            type: 'post',
+									            data: {email: email},
+									            success: function(response){
+
+									                $('#disponibilidadeemail').html(response);
+
+									             }
+									         });
+									      }else{
+									         $("#disponibilidadeemail").html("");
+									      }
+
+									    });
+
+									});
+								</script>
 					<br>					
 					<div class="form-group">
 						<h6>Local de trabalho</h6>
@@ -290,51 +376,69 @@
 					<?php
 						
 						if($_SERVER['REQUEST_METHOD'] == 'POST'){
-							$nomeCompleto=$_POST['nomeCompleto'];
-							$celular=preg_replace('/[^0-9]/', '',$_POST['celular']);
-							$cpf=preg_replace('/[^0-9]/', '',$_POST['cpf']);
-							$usuario=$_POST['usuario'];
-							$senha=md5($_POST['senha']);
-							$endereco=$_POST['endereco'];
-							$estado=$_POST['estado'];
-							$cidade=$_POST['cidade'];
-							$email=$_POST['email'];
-							$localTrabalho=$_POST['localTrabalho'];
-							
-							$sql1="SELECT ID FROM estado WHERE NOME LIKE '$estado'";
-							$res=mysqli_query($con, $sql1);
-							$row=mysqli_fetch_assoc($res);
-							$fk_id_estado=$row['ID'];
+							if ($_POST['disponibilidadeUsuario']==1 AND $_POST['disponibilidadeEmail']==1) {
+								$nomeCompleto=$_POST['nomeCompleto'];
+								$celular=preg_replace('/[^0-9]/', '',$_POST['celular']);
+								$cpf=preg_replace('/[^0-9]/', '',$_POST['cpf']);
+								$usuario=$_POST['usuario'];
+								$senha=md5($_POST['senha']);
+								$endereco=$_POST['endereco'];
+								$estado=$_POST['estado'];
+								$cidade=$_POST['cidade'];
+								$email=$_POST['email'];
+								$localTrabalho=$_POST['localTrabalho'];
+								
+								$sql1="SELECT ID FROM estado WHERE NOME LIKE '$estado'";
+								$res=mysqli_query($con, $sql1);
+								$row=mysqli_fetch_assoc($res);
+								$fk_id_estado=$row['ID'];
 
 
 
 
-							$sql2="SELECT ID FROM municipio WHERE NOME LIKE '$cidade'";
-							$res2=mysqli_query($con, $sql2);
-							$row2=mysqli_fetch_assoc($res2);
-							$fk_id_cidade=$row2['ID'];
-							$funcao=2;
-							$sql3="INSERT INTO usuario_comum(ID,NOME_COMPLETO,ENDERECO,EMAIL,SENHA,FK_ID_ESTADO,FK_ID_MUNICIPIO,LOCAL_TRABALHO,CPF,RG,CELULAR,USUARIO,FK_ID_FUNCAO) VALUES (DEFAULT,'$nomeCompleto','$endereco','$email','$senha','$fk_id_estado','$fk_id_cidade','$localTrabalho','$cpf','$rg','$celular','$usuario','$funcao')";
-							
+								$sql2="SELECT ID FROM municipio WHERE NOME LIKE '$cidade'";
+								$res2=mysqli_query($con, $sql2);
+								$row2=mysqli_fetch_assoc($res2);
+								$fk_id_cidade=$row2['ID'];
+								$funcao=2;
+								$sql3="INSERT INTO usuario_comum(ID,NOME_COMPLETO,ENDERECO,EMAIL,SENHA,FK_ID_ESTADO,FK_ID_MUNICIPIO,LOCAL_TRABALHO,CPF,RG,CELULAR,USUARIO,FK_ID_FUNCAO) VALUES (DEFAULT,'$nomeCompleto','$endereco','$email','$senha','$fk_id_estado','$fk_id_cidade','$localTrabalho','$cpf','$rg','$celular','$usuario','$funcao')";
+								
 
 
-							if ($resultS = mysqli_query($con, $sql3)) {
-								echo "<script>Swal.fire(
-										'Sucesso!',
-									    'Seu usuário foi criado com sucesso!',
-									    'success'
-								    ).then(function() {
-								        window.location = 'https://guilherme.cerestoeste.com.br/login.php#t';
-								        });</script>";
-							}else{
-								echo "<script>Swal.fire({
-									icon: 'error',
-								    title: 'Oops...',
-								    text: 'Não foi possivel criar um usuário, tente novamente mais tarde!',
-								    }).then(function() {
-								    	window.location = 'https://guilherme.cerestoeste.com.br/login.php#t';
-								    });</script>";
+								if ($resultS = mysqli_query($con, $sql3)) {
+									echo "<script>Swal.fire(
+											'Sucesso!',
+										    'Seu usuário foi criado com sucesso!',
+										    'success'
+									    ).then(function() {
+									        window.location = 'https://guilherme.cerestoeste.com.br/login.php#t';
+									        });</script>";
+								}else{
+									echo "<script>Swal.fire({
+										icon: 'error',
+									    title: 'Oops...',
+									    text: 'Não foi possivel criar um usuário, tente novamente mais tarde!',
+									    }).then(function() {
+									    	window.location = 'https://guilherme.cerestoeste.com.br/login.php#t';
+									    });</script>";
+								}
+							}elseif($_POST['disponibilidadeUsuario']==0 OR $_POST['disponibilidadeEmail']==0){
+								if ($_POST['disponibilidadeUsuario']==0 ) {
+									echo "<script>Swal.fire({
+										icon: 'error',
+									    title: 'Oops, nao foi possivel criar sua conta...',
+									    text: 'este usuario ja esta em uso, por favor tente com outro!',
+									    });</script>";
+								}elseif ($_POST['disponibilidadeEmail']==0) {
+									echo "<script>Swal.fire({
+										icon: 'error',
+									    title: 'Oops, nao foi possivel criar sua conta...',
+									    text: 'este email ja esta em uso, por favor tente com outro!',
+									    });</script>";
+								}
+								
 							}
+							
 						}
 					?>
 
