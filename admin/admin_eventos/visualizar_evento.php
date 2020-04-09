@@ -30,7 +30,7 @@
 		?>
 		<main>
 			<div class="content text-justify">
-				<h1 id="t" class="text-center">Gerenciar Eventos</h1>
+				<h1 id="t" class="text-center">Visualizar Inscritos</h1>
 				<form>
 					<div id="divPublicacoes">
 						<br>
@@ -110,18 +110,18 @@
 		<script type="text/javascript">
 			$('#example').dataTable( {
 				"language": {
-				  	"emptyTable": "Não há nenhum evento disponivel",
-				  	"info": "Mostrando _START_ de _END_ de um total de _TOTAL_ entradas",
-				  	"infoEmpty": "Mostrando 0 de um total de 0 entradas",
-				  	"infoFiltered":   "(filtrado de um total de _MAX_ total entradas)",
+				  	"emptyTable": "Não há nenhum inscrito neste evento",
+				  	"info": "Mostrando _START_ de _END_ de um total de _TOTAL_ inscritos",
+				  	"infoEmpty": "Mostrando 0 de um total de 0 inscritos",
+				  	"infoFiltered":   "(filtrado de um total de _MAX_ total inscritos)",
 			        "infoPostFix":    "",
 			        "thousands":      ".",
-			        "lengthMenu":     "Mostrar _MENU_ eventos",
+			        "lengthMenu":     "Mostrar _MENU_ inscritos",
 				  	"loadingRecords": "Carregando...",
 			        "processing":     "Processando...",
 			        "search":         "Buscar:",
 				  	"searchPlaceholder": "Filtre por qualquer coisa aqui...",
-			        "zeroRecords":    "Não há nenhum evento disponivel",
+			        "zeroRecords":    "Não há nenhum inscrito neste evento",
 				    "paginate": {
 				      "first":      "Primeira",
 	            	  "last":       "ÚLtima",

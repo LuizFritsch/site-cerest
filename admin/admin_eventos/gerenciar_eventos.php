@@ -48,7 +48,7 @@
 										<th scope="col" id="tabela-eventos">ID</th>
 										<th scope="col">Nome do evento</th>
 										<th scope="col">Status Inscricao</th>
-										<th scope="col">Lista de Inscritos</th>
+										<th scope="col"><!--Visualizar/Editar Evento--></th>
 										<th scope="col"><!--Editar--></th>
 										<th scope="col"><!--Excluir--></th>
 									</tr>
@@ -70,9 +70,9 @@
 																	}elseif ($row['STATUS_INSCRICOES']==0) {
 																		echo "<td><input id='statsInscricoes{$row['ID']}' name='statsInscricoes{$row['ID']}' type='checkbox' data-toggle='toggle' data-on='Abertas' data-off='Fechadas' data-onstyle='success' data-offstyle='danger' onchange='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})' onclick='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})'></td>";
 																	}
-																	echo" <td><a href=\"visualizar_inscritos.php?idEvento=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-info'>Visualizar Inscritos</a></td>
+																	echo" <td><a href=\"visualizar_evento.php?idEvento=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-info'>Visualizar Evento</a></td>
 																		  <td><a href=\"editar_evento.php?idEvento=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-warning'>Editar</a></td>
-																		  <td><a type='button' class='btn btn-danger' href=\"delete_evento.php?id=".$row['ID']."&user-id=".$_ide."\">Excluir</a></td>
+																		  <td><a type='button' class='btn btn-danger' onclick='excluirEvento({$row['ID']})'>Excluir</a></td>
 																	     </tr>";
 											}
 									?>
@@ -86,6 +86,56 @@
 
 			</div>
 		</main>
+
+		<script type="text/javascript">
+			function excluirEvento(idEvento){
+				const swalWithBootstrapButtons = Swal.mixin({
+				  customClass: {
+				    confirmButton: 'btn btn-success',
+				    cancelButton: 'btn btn-danger'
+				  },
+				  buttonsStyling: false
+				})
+
+				swalWithBootstrapButtons.fire({
+				  title: 'Tem certeza que deseja excluir este evento?',
+				  text: "Voce nao sera capaz de reverter esta decisao!",
+				  icon: 'warning',
+				  showCancelButton: true,
+				  confirmButtonText: 'Sim, eu desejo excluir!',
+				  cancelButtonText: 'Nao, eu nao desejo mais excluir!',
+				  reverseButtons: true
+				}).then((result) => {
+				  if (result.value) {
+				    $.ajax({
+	                    url:'excluirEvento.php',
+	                    method:'POST',
+	                    data:{
+	                       idEvento:idEvento
+	                    },
+	                    success:function(response){
+	                        Swal.fire(
+								'Sucesso!',
+								'O evento foi excluido com sucesso!',
+								'success'
+							).then(function() {
+								location.reload();
+							});
+	                    }
+	                });
+				  } else if (
+				    /* Read more about handling dismissals below */
+				    result.dismiss === Swal.DismissReason.cancel
+				  ) {
+				    swalWithBootstrapButtons.fire(
+				      'Cancelado',
+				      'Seu evento nao foi excluido e ta seguro :)',
+				      'error'
+				    )
+				  }
+				})
+			}
+		</script>
 		
 		<script type="text/javascript">
 			function alteraStatusInscricao(idEvento,statsInscricoes){
