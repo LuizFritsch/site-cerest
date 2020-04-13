@@ -167,16 +167,32 @@
 				
 				<form method="POST" id="input-progress" role="form">
 					
-					<div class="form-group">
-						<h6>Nome Completo*</h6>
-						<input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Digite o seu nome..." required="">
-					</div>
-					<br>
+					
+
+
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-6">
+								<h6>Nome Completo*</h6>
+						<input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Digite o seu nome..." required="">
+							</div>
+							<div class="col-md-6">
 								<h6>Celular*</h6>
 								<input type="text" pattern="[0-9]*" class="form-control" placeholder="(00) 0 0000-0000" id="celular" name="celular" required="">
+							</div>
+						</div>
+					</div>
+
+					<br>
+
+
+
+
+					<div class="form-group">
+						<div class="form-row">
+							<div class="col-md-6">
+								<h6>RG*</h6>
+								<input type="text" pattern="[0-9]*"	 class="form-control" placeholder="Digite o seu RG..." id="rg" name="rg" required="">
 							</div>
 							<div class="col-md-6">
 								<h6>CPF*</h6>
@@ -349,6 +365,7 @@
 					<script type="text/javascript">
 						$("#telefone, #celular").mask("(99) 99999-9999");
 						$("#cpf").mask("999.999.999-99");
+						$("#rg").mask("999.999.999-9");
 						$('#email').mask("A", {
 							translation: {
 							"A": { pattern: /[\w@\-.+]/, recursive: true }
@@ -377,16 +394,17 @@
 						
 						if($_SERVER['REQUEST_METHOD'] == 'POST'){
 							if ($_POST['disponibilidadeUsuario']==1 AND $_POST['disponibilidadeEmail']==1) {
-								$nomeCompleto=$_POST['nomeCompleto'];
-								$celular=preg_replace('/[^0-9]/', '',$_POST['celular']);
-								$cpf=preg_replace('/[^0-9]/', '',$_POST['cpf']);
-								$usuario=$_POST['usuario'];
-								$senha=md5($_POST['senha']);
-								$endereco=$_POST['endereco'];
-								$estado=$_POST['estado'];
-								$cidade=$_POST['cidade'];
-								$email=$_POST['email'];
-								$localTrabalho=$_POST['localTrabalho'];
+								$nomeCompleto=mysqli_real_escape_string($con,$_POST['nomeCompleto']);
+								$celular=mysqli_real_escape_string($con,preg_replace('/[^0-9]/', '',$_POST['celular']));
+								$cpf=mysqli_real_escape_string($con,preg_replace('/[^0-9]/', '',$_POST['cpf']));
+								$rg=mysqli_real_escape_string($con,preg_replace('/[^0-9]/', '',$_POST['rg']));
+								$usuario=mysqli_real_escape_string($con,$_POST['usuario']);
+								$senha=md5(mysqli_real_escape_string($con,$_POST['senha']));
+								$endereco=mysqli_real_escape_string($con,$_POST['endereco']);
+								$estado=mysqli_real_escape_string($con,$_POST['estado']);
+								$cidade=mysqli_real_escape_string($con,$_POST['cidade']);
+								$email=mysqli_real_escape_string($con,$_POST['email']);
+								$localTrabalho=mysqli_real_escape_string($con,$_POST['localTrabalho']);
 								
 								$sql1="SELECT ID FROM estado WHERE NOME LIKE '$estado'";
 								$res=mysqli_query($con, $sql1);
