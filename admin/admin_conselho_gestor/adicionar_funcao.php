@@ -78,8 +78,8 @@
 				
 				<?php
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
-						$nomeFuncao=$_POST['nomeFuncao'];
-						$nomeMembro=$_POST['nomeMembro'];
+						$nomeFuncao= mysqli_real_escape_string($con,$_POST['nomeFuncao']);
+						$nomeMembro= mysqli_real_escape_string($con,$_POST['nomeMembro']);
 						$sql = "INSERT INTO funcoes_conselho (ID_FUNCAO_CONSELHO,NOME_FUNCAO) VALUES(DEFAULT,'$nomeFuncao');INSERT INTO conselho_gestor (ID_MEMBRO,NOME,FK_ID_FUNCAO) VALUES (DEFAULT,'$nomeMembro', (SELECT ID_FUNCAO_CONSELHO FROM funcoes_conselho WHERE NOME_FUNCAO='$nomeFuncao'))";
 						if ($resultS = mysqli_multi_query($con, $sql)) {
 							echo "<script>Swal.fire(

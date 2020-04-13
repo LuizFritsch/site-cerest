@@ -2,11 +2,12 @@
 // session_start inicia a sessão
 include 'db_connection.php';
 session_start();
-// as variáveis login e senha recebem os dados digitados na página anterior
-$login=$_POST['inputUsuario'];
-$senha=$_POST['inputSenha'];
+
 // as próximas 3 linhas são responsáveis em se conectar com o bando de dados.
 $con = OpenCon();
+// as variáveis login e senha recebem os dados digitados na página anterior
+$senha=mysqli_real_escape_string($con,$_POST['inputSenha']);
+$login=mysqli_real_escape_string($con,$_POST['inputUsuario']);
 // A variavel $result pega as varias $login e $senha, faz uma
 //pesquisa na tabela de usuarios
 $result=mysqli_query($con,"SELECT * FROM usuarios WHERE NOME = '$login' AND SENHA= '$senha'");
@@ -16,6 +17,7 @@ será igual a 1, se não, se não tiver registros seu valor será 0. Dependendo 
 resultado ele redirecionará para a página site.php ou retornara  para a página
 do formulário inicial para que se possa tentar novamente realizar o login */
 $senhaHash=md5($senha);
+
 $sql="SELECT * FROM usuario_comum WHERE USUARIO = '$login' AND SENHA= '$senhaHash'";
 $results=mysqli_query($con,$sql);
 if(mysqli_num_rows($result)>0){

@@ -5,8 +5,8 @@ if(isset($_GET['user-id'])){
 	if (mysqli_connect_errno()) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
-	$id=$_GET['id'];
-	$fk=$_GET['fkmembro'];
+	$id= mysqli_real_escape_string($con,$_GET['id']);
+	$fk= mysqli_real_escape_string($con,$_GET['fkmembro']);
 	$sql="DELETE FROM conselho_gestor WHERE ID_MEMBRO='$id'"; 
 	$sql2="DELETE FROM funcoes_conselho WHERE ID_FUNCAO_CONSELHO='$fk'";
 	if (mysqli_query($con,$sql)) {

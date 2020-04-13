@@ -5,8 +5,7 @@
       echo "Failed to connect to MySQL: " . mysqli_connect_error();
    }
    if(isset($_POST['username'])){
-      $username = $_POST['username'];
-
+      $username =  mysqli_real_escape_string($con,$_POST['username']);
       $query = "SELECT COUNT(*) as cntUser from usuario_comum where USUARIO='".$username."'";
 
       $result = mysqli_query($con,$query);

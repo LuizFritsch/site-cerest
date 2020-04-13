@@ -4,13 +4,8 @@
 	if (mysqli_connect_errno()) {
 		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
-	$id=$_POST['id'];
-	$idEvento=$_POST['idEvento'];
-	$sql="DELETE FROM inscritos_eventos WHERE FK_ID_USUARIO='$id' AND FK_ID_EVENTO='$idEvento'";
-	$ip=$sql;
-	$file = fopen("SQL.txt","a");
-	fwrite($file,$ip);
-	fclose($file);
-			
+	$id= mysqli_real_escape_string($con,$_POST['id']);
+	$idEvento= mysqli_real_escape_string($con,$_POST['idEvento']);
+	$sql="DELETE FROM inscritos_eventos WHERE FK_ID_USUARIO='$id' AND FK_ID_EVENTO='$idEvento'";			
 	mysqli_query($con,$sql);
 ?> 

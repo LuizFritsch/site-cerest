@@ -10,7 +10,6 @@ Criar conta:
 -Validar cpf
 -Validar email (permitir apenas dominios conhecidos)
 -Faltou o campo RG
--Criar um metodo para verificar se ja existe o usuario ou o cpf no banco
 -Redirecionar para pagina anterior do login (enviar nome da pagina por post para login, e do login redirecionar)
 
 
