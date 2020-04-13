@@ -6,11 +6,22 @@
 ------------------
 
 Criar conta:
--Fixar barra de progresso
--Validar cpf
--Validar email (permitir apenas dominios conhecidos)
--Faltou o campo RG
--Redirecionar para pagina anterior do login (enviar nome da pagina por post para login, e do login redirecionar)
 
 
 -passar verificacoes no admin eventos para pasta do bd
+
+
+
+I would do it this way:
+
+1) Upon completion of registration, flag account as inactive (pending confirmation), and create two strings of random characters.
+
+2) Store both strings in the database and associate them with the user.
+
+3) Email a link to the user that has a link back to a page on your site and contains both strings.
+
+Ex: www.mysite.com/confirm.php?auth1=j0832r2&auth2=fji4j32ion
+
+4) Have your page check that both codes match, and if so, flag the account as active.
+
+Hope this helps.

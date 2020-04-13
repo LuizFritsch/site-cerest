@@ -54,6 +54,7 @@
 									<tr>
 										<th scope="col" id="tabela-eventos">Nome Completo</th>
 										<th scope="col">CPF</th>
+										<th scope="col">RG</th>
 										<th scope="col">Celular</th>
 										<th scope="col">Email</th>
 										<th scope="col">Endereco</th>
@@ -74,6 +75,7 @@
 												echo "<tr>
 															<th scope='row'>{$row['NOME_COMPLETO']}</th>
 															<td>{$row['CPF']}</td>													
+															<td>{$row['RG']}</td>													
 															<td>{$row['CELULAR']}</td>
 															<td>{$row['EMAIL']}</td>
 															<td>{$row['ENDERECO']}</td>
