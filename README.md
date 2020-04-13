@@ -24,4 +24,4 @@ As **funcionalidades** para o **administrador** do sistema incluem:
 
 **Site antigo: [cerestoeste.com.br](https://www.cerestoeste.com.br)**
 
-**Site novo: [guilhermecerestoeste.com.br](https://www.cerestoeste.com.br)**
+**Site novo: [guilherme.cerestoeste.com.br](https://www.guilherme.cerestoeste.com.br)**
