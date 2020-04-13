@@ -27,7 +27,7 @@ $con=OpenCon();
 								<th scope="col">Descricao</th>
 								<th scope="col">Data de Inicio</th>
 								<th scope="col">Data de Termino</th>
-								<th scope="col"><!--Status Inscricao--></th>
+								<th scope="col">Status</th>
 							</tr>
 						</thead>
 						<tbody>
