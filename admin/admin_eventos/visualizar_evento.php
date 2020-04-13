@@ -30,7 +30,19 @@
 		?>
 		<main>
 			<div class="content text-justify">
-				<h1 id="t" class="text-center">Visualizar Inscritos</h1>
+
+				<?php
+					$idEvent=$_GET['idEvento'];
+					$sqlss="SELECT  * FROM eventos WHERE ID='$idEvent'";
+					$resultss=mysqli_query($con,$sqlss);
+					if(!$resultss) {
+						die('Could not get data: ' . mysqli_error($con));
+					}
+					$evento = mysqli_fetch_array($resultss);
+					$nomeEvento=$evento['NOME'];
+				?>
+
+				<h1 id="t" class="text-center"><?php echo "$nomeEvento"; ?></h1>
 				<form>
 					<div id="divPublicacoes">
 						<br>
