@@ -62,15 +62,23 @@ $con=OpenCon();
 												<td>$data_inicio</td>
 												<td>$data_fim</td>";
 
-										/**se o usuario nao esta logado*/
-										if (!isset($_SESSION['login'])) {
+										/**se o usuario nao esta logado e as inscricoes estiverem*/
+										if (!isset($_SESSION['login']) AND $rowww['STATUS_INSCRICOES']==1) {
 										/***/
 											/**apresenta o botao para realizar login*/
 											echo "<td><a href='login.php' class='mt-auto btn btn-lg btn-block btn-secondary'>Realize Login para se Inscrever</a></td>";
 											/***/
+										}
+										/**se o usuario nao esta logado e as inscricoes estiverem fechadas*/
+										elseif (!isset($_SESSION['login']) AND $rowww['STATUS_INSCRICOES']==0) {
+										/***/
+											/**apresenta que o evento ja esta encerrado*/
+											echo "<td><a href='login.php' class='mt-auto btn btn-lg btn-block btn-secondary'>Evento encerrado</a></td>";
+											/***/
 
+										}
 										/**Se o usuario nao esta inscrito e as inscricoes daquele evento estiverem abertas*/
-										}elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==1){
+										elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==1){
 										/***/
 											/**apresenta um botao de se inscrever*/
 											echo "<form method='POST' id='form{$rowww['ID']}'>";
