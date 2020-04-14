@@ -33,35 +33,60 @@ $con=OpenCon();
 						<tbody>
 							<?php
 								try {
+
+									//seleciona todos eventos ordenado por eventos que estao com as inscricoes abertas
 									$sql="SELECT * FROM eventos ORDER BY STATUS_INSCRICOES DESC";
 									$result=mysqli_query($con,$sql);
-									if(!$result ) {
+									
+									if(!$result) {
 										die('Nao foi possivel : ' . mysqli_error($con));
 									}
+									//se tiver algum registro
 									while($rowww = mysqli_fetch_array($result)) {
+										
+										/**seleciona os eventos que o usuario logado esta inscrito*/
 										$sqlUsuarioInscrito = "SELECT COUNT(1) as boo FROM inscritos_eventos WHERE inscritos_eventos.FK_ID_USUARIO='$ide' and FK_ID_EVENTO='{$rowww['ID']}'";
 										$res  = mysqli_query($con,$sqlUsuarioInscrito);
 										$estaInscrit=mysqli_fetch_assoc($res);
+										/***/
+
+										/**converte as datas de inicio e fim para o formato BR, pois o bd armazena no americano*/
 										$data_inicio=date_format(date_create($rowww['DATA_INICIO']),'d/m/Y');
 										$data_fim=date_format(date_create($rowww['DATA_FIM']),'d/m/Y');
+										/***/
+
+										/**printa nome, descricao, data_inicio, data_fim*/
 										echo "<tr>
 												<td>{$rowww['NOME']}</td>
 												<td>{$rowww['DESCRICAO']}</td>
 												<td>$data_inicio</td>
 												<td>$data_fim</td>";
+
+										/**se o usuario nao esta logado*/
 										if (!isset($_SESSION['login'])) {
+										/***/
+											/**apresenta o botao para realizar login*/
 											echo "<td><a href='login.php' class='mt-auto btn btn-lg btn-block btn-secondary'>Realize Login para se Inscrever</a></td>";
+											/***/
+
+										/**Se o usuario nao esta inscrito e as inscricoes daquele evento estiverem abertas*/
 										}elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==1){
+										/***/
+											/**apresenta um botao de se inscrever*/
 											echo "<form method='POST' id='form{$rowww['ID']}'>";
 											echo "<td>
 													<button class='mt-auto btn btn-lg btn-block btn-success' type='submit'>Inscrever-se</button>
 												  </td>";
+											/**inputs escondidos contendo idEvento, tipoRequisicao se 1 entao inscreve o usuario se 0 entao cancela a inscricao*/
 											echo "<input type='hidden' name='tipoRequisicao' value='1'></input>";
 											echo "<input type='hidden' name='idevento' value='{$rowww['ID']}'></input>";
 											echo "<input type='hidden' name='idusuario' value='$ide'></input>";
 											echo "</form>";
+										/**Se o usuario esta inscrito e as inscricoes daquele evento estiverem abertas*/
 										}elseif($estaInscrit['boo']==1 AND $rowww['STATUS_INSCRICOES']==1){
+										/***/
 											echo "<form method='POST' id='form{$rowww['ID']}'>";
+											/**inputs escondidos contendo idEvento, tipoRequisicao se 1 entao inscreve o usuario se 0 entao cancela a inscricao*/
 											echo "<td>
 													<button class='mt-auto btn btn-lg btn-block btn-success btn-inscrito' id='btn-inscrito' type='submit'>Ja estou inscrito neste evento</button>
 												  </td>";
@@ -69,8 +94,10 @@ $con=OpenCon();
 											echo "<input type='hidden' name='idevento' value='{$rowww['ID']}'></input>";
 											echo "<input type='hidden' name='idusuario' value='$ide'></input>";
 											echo "</form>";
+											/**Se o usuario nao esta inscrito e as inscricoes daquele evento estiverem fechadas apresenta apenas evento encerrado*/
 											}elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==0){
 												echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Evento encerrado</button></td>";
+											/**Se o usuario esta inscrito e as inscricoes daquele evento estiverem fechadas apresenta participei deste evento*/
 											}elseif($estaInscrit['boo']==1 AND $rowww['STATUS_INSCRICOES']==0){
 												echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Participei deste evento</button></td>";
 											}
