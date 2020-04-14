@@ -89,7 +89,7 @@
 				        },
 				        rg:{
 				            required: true,
-				            minlength: 10,
+				            minlength: 13,
 				            maxlength: 13
 				        },
 				        cpf:{
@@ -129,8 +129,8 @@
 				        },
 				        rg:{
 				            required: "Seu rg é obrigatório...",
-				            minlength: jQuery.format("Seu rg deve conter pelo menos {0} digitos..."),
-				            maxlength: jQuery.format("Seu rg deve conter menos que {0} digitos...")
+				            minlength: jQuery.format("Seu rg deve conter pelo menos 10 digitos..."),
+				            maxlength: jQuery.format("Seu rg deve conter 10 digitos apenas...")
 				        },
 				        cpf:{
 				            required: "Seu cpf é obrigatório...",
@@ -167,7 +167,7 @@
 			<div class="content text-break">
 				<h1 id="t" class="text-center">Criar contra</h1>
 				<div id="progress-inputs" class="progress">
-					<div class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-vluemax="100" style="width:0%;">
+					<div class="progress-bar bg-success" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%;">
 						<span class="sr-only">0%</span>
 					</div>
 				</div>
@@ -273,7 +273,7 @@
 									}
 									
 									//Input Progress
-									var totalFields = $("#input-progress").find("input, select, textarea").length-1;
+									var totalFields = $("#input-progress").find("input, select, textarea").length+1;
 									$("#input-progress").click(function(){
 										updateInputProgress();
 									});
