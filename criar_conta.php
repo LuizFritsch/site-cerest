@@ -87,6 +87,11 @@
 				            minlength: 11,
 				            maxlength: 15
 				        },
+				        rg:{
+				            required: true,
+				            minlength: 10,
+				            maxlength: 13
+				        },
 				        cpf:{
 				            required: true,
 				            minlength: 11,
@@ -121,6 +126,11 @@
 				            required: "Seu nmr. de celular é obrigatório...",
 				            minlength: jQuery.format("Seu celular deve conter pelo menos {0} digitos..."),
 				            maxlength: jQuery.format("Seu celular deve conter menos que {0} digitos...")
+				        },
+				        rg:{
+				            required: "Seu rg é obrigatório...",
+				            minlength: jQuery.format("Seu rg deve conter pelo menos {0} digitos..."),
+				            maxlength: jQuery.format("Seu rg deve conter menos que {0} digitos...")
 				        },
 				        cpf:{
 				            required: "Seu cpf é obrigatório...",
