@@ -7,10 +7,16 @@
 	<body>
 		<main>
 			<?php
-				$file = fopen("ip.txt","a");
+
 				$ip=$_SERVER['REMOTE_ADDR']."\n";
-				fwrite($file,$ip);
-				fclose($file);
+				$sql3="INSERT INTO ips_entraram_site(ip) VALUES ('$ip')";
+				try {
+					include './database/db_connection.php';
+					$con=OpenCon();
+				    mysqli_query($con, $sql3);
+				} catch (Exception $e) {
+					closeCon($con);
+				}
 			?>
 			<div class="content text-break">
 				<h1 id="t" class="text-center">Inicio</h1>

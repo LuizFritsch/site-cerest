@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title>Atendimento</title>
 	</head>
 	<body>
 		<main>

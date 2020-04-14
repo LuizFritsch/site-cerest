@@ -47,6 +47,8 @@
 					<div id="divPublicacoes">
 						<br>
 						<br>
+						<hr>
+						
 						<div class="table-responsive tabela">
 							<table class="table table-striped display" id="example">
 								

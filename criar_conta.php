@@ -13,6 +13,9 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
     	<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
 		<script type="text/javascript">
+			/**
+			Funcao que le o json com estados e suas respectivas cidades, e preenche os selects com as opcoes
+			*/
 			$(document).ready(function () {
 				$.getJSON('estados_cidades.json', function (data) {
 					var items = [];
@@ -44,7 +47,9 @@
 
 		<script type="text/javascript">
 			
-			//Funcao bloquear submit sem preencher todos campos
+			/**
+			Funcao bloquear submit sem preencher todos campos
+			*/
 			$(document).ready(function() {
 			  validate();
 			  $('input').on('keyup', validate);
@@ -53,16 +58,17 @@
 			function validate() {
 			  var inputsWithValues = 0;
 			  
-			  // get all input fields except for type='submit'
+			  //pega todos inputs exceto o de submit
 			  var myInputs = $("input:not([type='submit'])");
 
 			  myInputs.each(function(e) {
-			    // if it has a value, increment the counter
+			    //se o input tem valor, incrementa o contador
 			    if ($(this).val()) {
 			      inputsWithValues += 1;
 			    }
 			  });
 
+			  //se o nmr de inputs preenchidos forem maior ou igual o numero de inputs, desbloqueia o submit
 			  if (inputsWithValues >= (myInputs.length)) {
 			    $("input[type=submit]").prop("disabled", false);
 			  } else {
@@ -75,6 +81,9 @@
 
 
 		<script type="text/javascript">
+			/**
+			Validacao dos inputs usando jquery
+			*/
 			$(document).ready(function () {
 				$("#input-progress").validate({
 				    rules:{
@@ -218,6 +227,9 @@
 								<input type="text" class="form-control" id="usuario" name="usuario" placeholder="Digite o seu nome de Usuário..." required="">
 								<div id="disponibilidadeusuario" ></div>
 								<script>
+									/**
+										funcao para verificar se ja existe um usuario igual no bd em tempo real, utilizando ajax
+									*/
 									$(document).ready(function(){
 
 									    $("#usuario").keyup(function(){
@@ -257,23 +269,26 @@
 								})
 							</script>
 							<script type="text/javascript">
+								/**
+									Funcao que modifica o progresso da barra de progresso
+								*/
 								$(document).ready(function(){
 									function updateInputProgress(){
-										var filledFields = 0;
+										var inputsPreenchidos = 0;
 										$("#input-progress").find("input, select, textarea").each(function(){
 											if($(this).val() != ""){
-												filledFields++;
+												inputsPreenchidos++;
 											}
 										});
 										
-										var percent = Math.ceil(100 * filledFields / totalFields);
-										$("#progress-inputs .progress-bar").attr("aria-valuenow", percent).width(percent + "%").find(".sr-only").html(percent + "% Complete");
+										var percentual = Math.ceil(100 * inputsPreenchidos / nmrTotalInputs);
+										$("#progress-inputs .progress-bar").attr("aria-valuenow", percentual).width(percentual + "%").find(".sr-only").html(percentual + "% Complete");
 										
-										return percent;
+										return percentual;
 									}
 									
 									//Input Progress
-									var totalFields = $("#input-progress").find("input, select, textarea").length+1;
+									var nmrTotalInputs = $("#input-progress").find("input, select, textarea").length+1;
 									$("#input-progress").click(function(){
 										updateInputProgress();
 									});
@@ -309,63 +324,28 @@
 						<input type="email" class="form-control" id="email" name="email" placeholder="Digite o seu email..." required="">
 						<div id="disponibilidadeemail" ></div>
 					</div>
-					<!--<script type="text/javascript">
-						/*$(document).ready(function(){
-							$("input").keyup(function(){
-								var nomeInput = $(this).attr("name");
-								var valor = $(this).val().trim();
-								var divDisponibilidade="";
-								divDisponibilidade = divDisponibilidade.concat("#disponibilidade",nomeInput);
-								if (valor != '') {
-									if (nomeInput=="cpf" || nomeInput=="email" || nomeInput=="usuario") {
-										var verificar="";
-										verificar= verificar.concat('./database/verificar_',nomeInput,'.php');
-										$.ajax({
-												url: verificar,
-									            type: 'post',
-									            data: {email: email},
-									            success: function(response){
-
-									                $('#disponibilidadeemail').html(response);
-
-									            }
-									    });
-									}								
-								}else{
-						    		$(divDisponibilidade).html("");
-						    	}
-							});
-						});*/
-					</script>-->
-			
-
 					<script>
-									$(document).ready(function(){
-
-									    $("#email").keyup(function(){
-
-									      var email = $(this).val().trim();
-
-									      if(email != ''){
-
-									         $.ajax({
-									            url: './database/verificar_email.php',
-									            type: 'post',
-									            data: {email: email},
-									            success: function(response){
-
-									                $('#disponibilidadeemail').html(response);
-
-									             }
-									         });
-									      }else{
-									         $("#disponibilidadeemail").html("");
-									      }
-
-									    });
-
+						/**
+							funcao para verificar se ja existe um email igual no bd em tempo real, utilizando ajax
+						*/
+						$(document).ready(function(){
+							$("#email").keyup(function(){
+								var email = $(this).val().trim();
+								if(email != ''){
+									$.ajax({
+										url: './database/verificar_email.php',
+										type: 'post',
+										data: {email: email},
+										success: function(response){
+											$('#disponibilidadeemail').html(response);
+										}
 									});
-								</script>
+								}else{
+									$("#disponibilidadeemail").html("");
+								}
+							});
+						});
+					</script>
 					<br>					
 					<div class="form-group">
 						<h6>Local de trabalho</h6>
@@ -373,6 +353,9 @@
 					</div>
 					<br>
 					<script type="text/javascript">
+						/**
+							funcao que cria as mascaras dos inputs 
+						*/
 						$("#telefone, #celular").mask("(99) 99999-9999");
 						$("#cpf").mask("999.999.999-99");
 						$("#rg").mask("999.999.999-9");
@@ -381,18 +364,7 @@
 							"A": { pattern: /[\w@\-.+]/, recursive: true }
 							}
 						});
-					</script>
-					<script type="text/javascript">
-						/*$(document).ready(function () {
-							$('#nomeCompleto').blur(function(){
-							    if($('#nomeCompleto').val().length < 6 || $('#nomeCompleto').val().length > 400)
-							    {
-							        alert('Nome de usuário deve ter entre 6 e 400 caracteres');
-							    }
-							});
-						});*/
-					</script>
-					
+					</script>					
 					<hr>
 					<div class="form-group">
 						<div class="form-row">
@@ -401,73 +373,81 @@
 					</div>
 
 					<?php
-						
-						if($_SERVER['REQUEST_METHOD'] == 'POST'){
-							if ($_POST['disponibilidadeUsuario']==1 AND $_POST['disponibilidadeEmail']==1) {
-								$nomeCompleto=mysqli_real_escape_string($con,$_POST['nomeCompleto']);
-								$celular=mysqli_real_escape_string($con,preg_replace('/[^0-9]/', '',$_POST['celular']));
-								$cpf=mysqli_real_escape_string($con,preg_replace('/[^0-9]/', '',$_POST['cpf']));
-								$rg=mysqli_real_escape_string($con,preg_replace('/[^0-9]/', '',$_POST['rg']));
-								$usuario=mysqli_real_escape_string($con,$_POST['usuario']);
-								$senha=md5(mysqli_real_escape_string($con,$_POST['senha']));
-								$endereco=mysqli_real_escape_string($con,$_POST['endereco']);
-								$estado=mysqli_real_escape_string($con,$_POST['estado']);
-								$cidade=mysqli_real_escape_string($con,$_POST['cidade']);
-								$email=mysqli_real_escape_string($con,$_POST['email']);
-								$localTrabalho=mysqli_real_escape_string($con,$_POST['localTrabalho']);
-								
-								$sql1="SELECT ID FROM estado WHERE NOME LIKE '$estado'";
-								$res=mysqli_query($con, $sql1);
-								$row=mysqli_fetch_assoc($res);
-								$fk_id_estado=$row['ID'];
+						try {
+								if($_SERVER['REQUEST_METHOD'] == 'POST'){
+								if ($_POST['disponibilidadeUsuario']==1 AND $_POST['disponibilidadeEmail']==1) {
+									$nomeCompleto=mysqli_real_escape_string($con,$_POST['nomeCompleto']);
+									$celular=mysqli_real_escape_string($con,preg_replace('/[^0-9]/', '',$_POST['celular']));
+									$cpf=mysqli_real_escape_string($con,preg_replace('/[^0-9]/', '',$_POST['cpf']));
+									$rg=mysqli_real_escape_string($con,preg_replace('/[^0-9]/', '',$_POST['rg']));
+									$usuario=mysqli_real_escape_string($con,$_POST['usuario']);
+									$senha=md5(mysqli_real_escape_string($con,$_POST['senha']));
+									$endereco=mysqli_real_escape_string($con,$_POST['endereco']);
+									$estado=mysqli_real_escape_string($con,$_POST['estado']);
+									$cidade=mysqli_real_escape_string($con,$_POST['cidade']);
+									$email=mysqli_real_escape_string($con,$_POST['email']);
+									$localTrabalho=mysqli_real_escape_string($con,$_POST['localTrabalho']);
+									
+									$sql1="SELECT ID FROM estado WHERE NOME LIKE '$estado'";
+									$res=mysqli_query($con, $sql1);
+									$row=mysqli_fetch_assoc($res);
+									$fk_id_estado=$row['ID'];
 
 
 
 
-								$sql2="SELECT ID FROM municipio WHERE NOME LIKE '$cidade'";
-								$res2=mysqli_query($con, $sql2);
-								$row2=mysqli_fetch_assoc($res2);
-								$fk_id_cidade=$row2['ID'];
-								$funcao=2;
-								$sql3="INSERT INTO usuario_comum(ID,NOME_COMPLETO,ENDERECO,EMAIL,SENHA,FK_ID_ESTADO,FK_ID_MUNICIPIO,LOCAL_TRABALHO,CPF,RG,CELULAR,USUARIO,FK_ID_FUNCAO) VALUES (DEFAULT,'$nomeCompleto','$endereco','$email','$senha','$fk_id_estado','$fk_id_cidade','$localTrabalho','$cpf','$rg','$celular','$usuario','$funcao')";
-								
+									$sql2="SELECT ID FROM municipio WHERE NOME LIKE '$cidade'";
+									$res2=mysqli_query($con, $sql2);
+									$row2=mysqli_fetch_assoc($res2);
+									$fk_id_cidade=$row2['ID'];
+									$funcao=2;
+									$sql3="INSERT INTO usuario_comum(ID,NOME_COMPLETO,ENDERECO,EMAIL,SENHA,FK_ID_ESTADO,FK_ID_MUNICIPIO,LOCAL_TRABALHO,CPF,RG,CELULAR,USUARIO,FK_ID_FUNCAO) VALUES (DEFAULT,'$nomeCompleto','$endereco','$email','$senha','$fk_id_estado','$fk_id_cidade','$localTrabalho','$cpf','$rg','$celular','$usuario','$funcao')";
+									
 
 
-								if ($resultS = mysqli_query($con, $sql3)) {
-									echo "<script>Swal.fire(
-											'Sucesso!',
-										    'Seu usuário foi criado com sucesso!',
-										    'success'
-									    ).then(function() {
-									        window.location = 'https://guilherme.cerestoeste.com.br/login.php#t';
-									        });</script>";
-								}else{
-									echo "<script>Swal.fire({
-										icon: 'error',
-									    title: 'Oops...',
-									    text: 'Não foi possivel criar um usuário, tente novamente mais tarde!',
-									    }).then(function() {
-									    	window.location = 'https://guilherme.cerestoeste.com.br/login.php#t';
-									    });</script>";
-								}
-							}elseif($_POST['disponibilidadeUsuario']==0 OR $_POST['disponibilidadeEmail']==0){
-								if ($_POST['disponibilidadeUsuario']==0 ) {
-									echo "<script>Swal.fire({
-										icon: 'error',
-									    title: 'Oops, nao foi possivel criar sua conta...',
-									    text: 'este usuario ja esta em uso, por favor tente com outro!',
-									    });</script>";
-								}elseif ($_POST['disponibilidadeEmail']==0) {
-									echo "<script>Swal.fire({
-										icon: 'error',
-									    title: 'Oops, nao foi possivel criar sua conta...',
-									    text: 'este email ja esta em uso, por favor tente com outro!',
-									    });</script>";
+									if ($resultS = mysqli_query($con, $sql3)) {
+										echo "<script>Swal.fire(
+												'Sucesso!',
+											    'Seu usuário foi criado com sucesso!',
+											    'success'
+										    ).then(function() {
+										        window.location = 'https://guilherme.cerestoeste.com.br/login.php#t';
+										        });</script>";
+									}else{
+										echo "<script>Swal.fire({
+											icon: 'error',
+										    title: 'Oops...',
+										    text: 'Não foi possivel criar um usuário, tente novamente mais tarde!',
+										    }).then(function() {
+										    	window.location = 'https://guilherme.cerestoeste.com.br/login.php#t';
+										    });</script>";
+									}
+								}elseif($_POST['disponibilidadeUsuario']==0 OR $_POST['disponibilidadeEmail']==0){
+									if ($_POST['disponibilidadeUsuario']==0 ) {
+										echo "<script>Swal.fire({
+											icon: 'error',
+										    title: 'Oops, nao foi possivel criar sua conta...',
+										    text: 'este usuario ja esta em uso, por favor tente com outro!',
+										    });</script>";
+									}elseif ($_POST['disponibilidadeEmail']==0) {
+										echo "<script>Swal.fire({
+											icon: 'error',
+										    title: 'Oops, nao foi possivel criar sua conta...',
+										    text: 'este email ja esta em uso, por favor tente com outro!',
+										    });</script>";
+									}
+									
 								}
 								
 							}
-							
+						} catch (Exception $e) {
+							echo "<script>Swal.fire({
+											icon: 'error',
+										    title: 'Oops, aconteceu algum erro...',
+										    text: 'por favor, tente mais tarde!',
+										    });</script>";
 						}
+						
 					?>
 
 					<br>
