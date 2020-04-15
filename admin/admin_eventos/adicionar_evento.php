@@ -2,10 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Adicionar Publicacoes</title>
-		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+		<title>Adicionar Eventos</title>
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
@@ -61,11 +58,15 @@
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<h6>Data Inicio:</h6>
-							<input type='text' data-date-format="dd/mm/yyyy" class="form-control" id="dataInicio" />
+							<input type='text' data-date-format="dd/mm/yyyy" value="<?php echo date("d-m-Y"); ?>" class="form-control" id="dataInicio" />
+							<?php
+								$var=date("d-m-Y");
+								echo "$var";
+							?>
 						</div>
 						<div class="form-group col-md-6">
 							<h6>Data Fim:</h6>
-							<input type='text' data-date-format="dd/mm/yyyy" class="form-control" id="dataFim" />
+							<input type='text' data-date-format="dd/mm/yyyy" value="<?php echo date("d-m-Y"); ?>" class="form-control" id="dataFim" />
 						</div>
 					</div>
 					

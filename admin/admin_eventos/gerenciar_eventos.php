@@ -35,7 +35,7 @@
 					<div id="divPublicacoes">
 						<div class="form-group">
 							<hr>
-							<a type="button" class="btn btn-success btn-lg btn-block btn-lg btn-block" href="./adicionar_eventos.php#t">Adicionar Evento</a>
+							<a type="button" class="btn btn-success btn-lg btn-block btn-lg btn-block" href="./adicionar_evento.php#t">Adicionar Evento</a>
 							<hr>
 						</div>
 						<br>
