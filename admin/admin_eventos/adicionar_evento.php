@@ -65,7 +65,21 @@
 							<input type='text' data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y"); ?>" class="form-control" id="dataFim" name="dataFim" />
 						</div>
 					</div>
-					
+					<script type="text/javascript">
+						$(document).ready(function(){
+							var regex="/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/";
+							$("#dataInicio").change(function() {
+								if (!$("#dataInicio").val().match(regex)) {
+									 $("#dataInicio").css("border-color: red");
+								}
+							});
+							$("#dataFim").change(function() {
+								if (!$("#dataFim").val().match(regex)) {
+									 $("#dataFim").css("border-color: red");
+								}
+							});
+						});
+					</script>
 					<script>
 					  $( function() {
 					    var dateFormat = "mm/dd/yy",
@@ -108,43 +122,76 @@
 					</script>
 					
 					<script type="text/javascript">
-						$( document ).ready(function() {
+						function FormataStringData(data) {
+						  var dia  = data.split("/")[0];
+						  var mes  = data.split("/")[1];
+						  var ano  = data.split("/")[2];
+
+						  return ano + '-' + ("0"+mes).slice(-2) + '-' + ("0"+dia).slice(-2);
+						  // Utilizo o .slice(-2) para garantir o formato com 2 digitos.
+						}
+						function comparaDatas(date1,date2){
+						     if (date1>date2) return true;
+						     else return false;
+						}
+  						$( document ).ready(function() {
 							$("#form-criar-evento").submit(function(){
 								var nomeEvento=$("#nomeEvento").val();
 								var descricaoEvento=$("#descricaoEvento").val();
 								var dataInicio=$("#dataInicio").val();
 								var dataFim=$("#dataFim").val();
-							
-								$.ajax({
-				                    url:'../../database/criar_evento.php',
-				                    method:'POST',
-				                    data:{
-				                       nomeEvento:nomeEvento,
-				                       descricaoEvento:descricaoEvento,
-				                       dataInicio:dataInicio,
-				                       dataFim,dataFim,
-				                       statusInscricoes:1
-				                    },
-				                    success:function(response){
-				                        Swal.fire(
-											'Sucesso!',
-											'O evento foi criado com sucesso!',
-											'success'
-										).then(function() {
-											window.location.href= "./gerenciar_eventos.php";
-										});
-				                    },
-				                    error:function(response) {
-				                    	Swal.fire(
-											'Erro!',
-											'Nao foi possivel criar o evento!',
-											'error'
-										).then(function() {
-											location.reload();
-										});	
-				                    }
-				                });
+								var dtIni = new Date(FormataStringData(dataInicio));
+								var dtFim = new Date(FormataStringData(dataFim));
 								
+
+								if (!nomeEvento || !descricaoEvento || !dataFim || !dataInicio) {
+
+									Swal.fire(
+											'Erro!',
+											'Nao foi possivel criar o evento, ha campos em branco!',
+											'error'
+										);
+
+								}else{
+									if (comparaDatas(dtIni,dtFim)) {
+										Swal.fire(
+												'Erro!',
+												'data final eh anterior a data de inicio!',
+												'error'
+											);
+									}else{
+										$.ajax({
+						                    url:'../../database/criar_evento.php',
+						                    method:'POST',
+						                    data:{
+						                       nomeEvento:nomeEvento,
+						                       descricaoEvento:descricaoEvento,
+						                       dataInicio:dataInicio,
+						                       dataFim,dataFim,
+						                       statusInscricoes:1
+						                    },
+						                    success:function(response){
+						                        Swal.fire(
+													'Sucesso!',
+													'O evento foi criado com sucesso!',
+													'success'
+												).then(function() {
+													window.location.href= "./gerenciar_eventos.php";
+												});
+						                    },
+						                    error:function(response) {
+						                    	Swal.fire(
+													'Erro!',
+													'Nao foi possivel criar o evento!',
+													'error'
+												).then(function() {
+													location.reload();
+												});	
+						                    }
+						                });
+									}
+									
+								}								
 								return false;
 							});
 						});

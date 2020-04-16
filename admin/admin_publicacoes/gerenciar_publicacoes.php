@@ -3,9 +3,17 @@
 <html>
 	<head>
 		<title>Gerenciar Publicacoes</title>
-		 <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-		 <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-		 <script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+
+
+		<!--<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>-->
+		
+		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
 	</head>
 	<body>
 		<?php
@@ -104,7 +112,17 @@
 				      "previous": "Anterior",
 				      "next": "Próximo"
 			    }
-			  }
+			  },
+			  	"Search": {
+            		"addClass": 'form-control input-lg col-xs-12'
+        		},
+        		"fnDrawCallback":function(){
+		            $("input[type='search']").attr("id", "searchBox");
+		            $('#dialPlanListTable').css('cssText', "margin-top: 0px !important;");
+		            $("select[name='dialPlanListTable_length'], #searchBox").removeClass("input-sm");
+		            $('#searchBox').css("width", "300px").focus();
+		            $('#dialPlanListTable_filter').removeClass('dataTables_filter');
+        		}
 			} );
 		</script>
 		<?php include '../../footer.html'; ?>

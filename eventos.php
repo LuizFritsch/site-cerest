@@ -7,11 +7,16 @@ $con=OpenCon();
 <html>
 	<head>
 		<title>Eventos</title>
-		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
 		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>
+		
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 		<link rel="stylesheet" type="text/css" href="./style/style.css">
+		<!--<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>-->
+		
+		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
 	</head>
 	<body>
 		<main>
@@ -189,16 +194,7 @@ $con=OpenCon();
 			} );
 		</script>
 
-		<script type="text/javascript">
-			/**
-				Tentativa de tornar o input de filtro do datatable responsivo
-			*/
-			$(document).ready(function () {             
-			  $('.dataTables_filter input[type="search"]').css(
-			  	{'width':'100%'}
-			  );
-			});
-		</script>
+		
 
 		<script type="text/javascript">
 			/**
@@ -240,7 +236,17 @@ $con=OpenCon();
 				      "previous": "Anterior",
 				      "next": "Próximo"
 			    }
-			  }
+			  },
+			  	"Search": {
+            		"addClass": 'form-control input-lg col-xs-12'
+        		},
+        		"fnDrawCallback":function(){
+		            $("input[type='search']").attr("id", "searchBox");
+		            $('#dialPlanListTable').css('cssText', "margin-top: 0px !important;");
+		            $("select[name='dialPlanListTable_length'], #searchBox").removeClass("input-sm");
+		            $('#searchBox').css("width", "300px").focus();
+		            $('#dialPlanListTable_filter').removeClass('dataTables_filter');
+        		}
 			} );
 		</script>
 			</div>

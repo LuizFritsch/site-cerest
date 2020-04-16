@@ -91,3 +91,15 @@ function nucleoAncora(p1, p2) {
         return false;
     });
 }
+
+
+/**
+  Funcao que n permite o reenvio de formulario
+*/
+$(document).ready(function(){
+  if ( window.history.replaceState ) {
+    window.history.replaceState( null, null, window.location.href );
+  }
+});
+        
+  

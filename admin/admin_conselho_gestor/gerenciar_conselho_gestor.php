@@ -99,7 +99,17 @@
 							      "previous": "Anterior",
 							      "next": "Próximo"
 						    }
-						  }
+						  },
+						  	"Search": {
+			            		"addClass": 'form-control input-lg col-xs-12'
+			        		},
+			        		"fnDrawCallback":function(){
+					            $("input[type='search']").attr("id", "searchBox");
+					            $('#dialPlanListTable').css('cssText', "margin-top: 0px !important;");
+					            $("select[name='dialPlanListTable_length'], #searchBox").removeClass("input-sm");
+					            $('#searchBox').css("width", "300px").focus();
+					            $('#dialPlanListTable_filter').removeClass('dataTables_filter');
+			        		}
 						} );
 					</script>
 
