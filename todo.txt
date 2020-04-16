@@ -5,8 +5,8 @@
 
 ------------------
 
-Criar conta:
 
+-Add nmr max inscritos nos eventos
 
 -passar verificacoes no admin eventos para pasta do bd
 
