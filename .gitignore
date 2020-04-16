@@ -6,3 +6,5 @@ admin/admin_conselho_gestor/error_log
 ip.txt
 
 admin/admin_eventos/SQL.txt
+
+database/error_log

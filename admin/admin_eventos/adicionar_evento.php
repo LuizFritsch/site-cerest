@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Adicionar Eventos</title>
+		<title>Criar Eventos</title>
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
@@ -38,35 +38,31 @@
 		?>
 		<main>
 			<div class="content text-justify">
-				<h1 id="t" class="text-center">Adicionar Eventos</h1>
+				<h1 id="t" class="text-center">Criar Evento</h1>
 				
-				<form method="POST">
+				<form method="POST" action="" id="form-criar-evento">
 					
 					<!--NOME-->
 					<div class="form-group">
 						<h6>Nome do evento</h6>
-						<input type="text" class="form-control" id="inputNomeEvento" placeholder="Digite o nome do evento...">
+						<input type="text" class="form-control" id="nomeEvento" placeholder="Digite o nome do evento...">
 					</div>
 
 					<!--DESCRICAO-->
 					<div class="form-group">
 						<h6>Descricao do evento</h6>
-						<input type="text" class="form-control" id="inputDescricaoEvento" placeholder="Digite a descricao do evento...">
+						<input type="text" class="form-control" id="descricaoEvento" placeholder="Digite a descricao do evento...">
 					</div>
 
 					<!--DATA INICIO-->
 					<div class="form-row">
 						<div class="form-group col-md-6">
 							<h6>Data Inicio:</h6>
-							<input type='text' data-date-format="dd/mm/yyyy" value="<?php echo date("d-m-Y"); ?>" class="form-control" id="dataInicio" />
-							<?php
-								$var=date("d-m-Y");
-								echo "$var";
-							?>
+							<input type='text' data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y"); ?>" class="form-control" id="dataInicio" name="dataInicio" />
 						</div>
 						<div class="form-group col-md-6">
 							<h6>Data Fim:</h6>
-							<input type='text' data-date-format="dd/mm/yyyy" value="<?php echo date("d-m-Y"); ?>" class="form-control" id="dataFim" />
+							<input type='text' data-date-format="dd/mm/yyyy" value="<?php echo date("d/m/Y"); ?>" class="form-control" id="dataFim" name="dataFim" />
 						</div>
 					</div>
 					
@@ -111,18 +107,59 @@
 						$('#dataFim').datepicker();
 					</script>
 					
-
-					<!--DATA 
-					<div class='input-group date' id='datetimepicker2'>
-	                    <label>Data Fim:</label>
-	                    <input type='text' data-date-format="DD-MM-YYYY" class="form-control" />
-	                    <span class="input-group-addon">
-						<span class="glyphicon glyphicon-calendar"></span>
-	                    </span>
-	                </div>FIM-->
+					<script type="text/javascript">
+						$( document ).ready(function() {
+							$("#form-criar-evento").submit(function(){
+								var nomeEvento=$("#nomeEvento").val();
+								var descricaoEvento=$("#descricaoEvento").val();
+								var dataInicio=$("#dataInicio").val();
+								var dataFim=$("#dataFim").val();
+							
+								$.ajax({
+				                    url:'../../database/criar_evento.php',
+				                    method:'POST',
+				                    data:{
+				                       nomeEvento:nomeEvento,
+				                       descricaoEvento:descricaoEvento,
+				                       dataInicio:dataInicio,
+				                       dataFim,dataFim,
+				                       statusInscricoes:1
+				                    },
+				                    success:function(response){
+				                        Swal.fire(
+											'Sucesso!',
+											'O evento foi criado com sucesso!',
+											'success'
+										).then(function() {
+											window.location.href= "./gerenciar_eventos.php";
+										});
+				                    },
+				                    error:function(response) {
+				                    	Swal.fire(
+											'Erro!',
+											'Nao foi possivel criar o evento!',
+											'error'
+										).then(function() {
+											location.reload();
+										});	
+				                    }
+				                });
+								
+								return false;
+							});
+						});
+					</script>
 
 					<!--INSCRICOES ABERTAS-->
 					<input type='hidden' name="statusInscricoes" id="statusInscricoes" value="1" class="form-control" />
+
+
+					<div class="form-group">
+						<button type="submit" id="save" name="save" class="btn btn-success btn-lg btn-block btn-lg btn-block save">Criar Evento</button>
+					</div>
+
+					<br>
+
 				</form>
 
 				<br>
