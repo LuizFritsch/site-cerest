@@ -20,6 +20,7 @@ As **funcionalidades** para o **administrador** do sistema incluem:
 * Gerenciar publicações.
 * Gerenciar conselho gestor.
 * Gerenciar Noticias
+* Gerenciar Eventos
 * [Outras funcionalidades ainda em progresso].
 
 **Site antigo: [cerestoeste.com.br](https://www.cerestoeste.com.br)**
