@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Gerenciar Publicacoes</title>
+		<title>Gerenciar Eventos</title>
 		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 		
@@ -78,7 +78,7 @@
 																		echo "<td><input id='statsInscricoes{$row['ID']}' name='statsInscricoes{$row['ID']}' type='checkbox' data-toggle='toggle' data-on='Abertas' data-off='Fechadas' data-onstyle='success' data-offstyle='danger' onchange='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})' onclick='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})'></td>";
 																	}
 																	echo" <td><a href=\"visualizar_evento.php?idEvento=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-info'>Visualizar Evento</a></td>
-																		  <td><a href=\"editar_evento.php?idEvento=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-warning'>Editar</a></td>
+																		  <td><a name='idEvento' href=\"editar_evento.php?idEvento=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-warning'>Editar</a></td>
 																		  <td><a type='button' class='btn btn-danger' onclick='excluirEvento({$row['ID']})'>Excluir</a></td>
 																	     </tr>";
 											}
