@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 03-Abr-2020 às 09:40
+-- Generation Time: 17-Abr-2020 às 14:27
 -- Versão do servidor: 5.6.41-84.1
 -- versão do PHP: 7.2.7
 
@@ -21,8 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `vinilpub_guilherme_cerest`
 --
-CREATE DATABASE IF NOT EXISTS `vinilpub_guilherme_cerest` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
-USE `vinilpub_guilherme_cerest`;
 
 -- --------------------------------------------------------
 
@@ -107,9 +105,19 @@ CREATE TABLE `funcoes_conselho` (
 --
 
 CREATE TABLE `inscritos_eventos` (
-  `ID` int(11) NOT NULL,
   `FK_ID_USUARIO` int(11) NOT NULL,
   `FK_ID_EVENTO` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `ips_entraram_site`
+--
+
+CREATE TABLE `ips_entraram_site` (
+  `ip` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `data` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -273,7 +281,6 @@ ALTER TABLE `funcoes_conselho`
 -- Indexes for table `inscritos_eventos`
 --
 ALTER TABLE `inscritos_eventos`
-  ADD PRIMARY KEY (`ID`),
   ADD KEY `FK_ID_USUARIO` (`FK_ID_USUARIO`),
   ADD KEY `FK_ID_EVENTO` (`FK_ID_EVENTO`);
 
@@ -378,12 +385,6 @@ ALTER TABLE `funcoes`
 --
 ALTER TABLE `funcoes_conselho`
   MODIFY `ID_FUNCAO_CONSELHO` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `inscritos_eventos`
---
-ALTER TABLE `inscritos_eventos`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `municipio`
