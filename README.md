@@ -8,6 +8,7 @@ Reformulação do site do cerest oeste utilizando tecnologias e frameworks atuai
 
 2. **Usuário comum**:
 * Cadastro simplificado para inscrição em eventos do cerest.
+* Inscricao em eventos do Cerest.
 * Comentários em noticias do cerest.
 * [Outras funcionalidades ainda em progresso].
 
@@ -19,8 +20,8 @@ E também **funcionalidade**s antigas que **não necessitam de criação de usu�
 As **funcionalidades** para o **administrador** do sistema incluem:
 * Gerenciar publicações.
 * Gerenciar conselho gestor.
-* Gerenciar Noticias
-* Gerenciar Eventos
+* Gerenciar Noticias.
+* Gerenciar Eventos.
 * [Outras funcionalidades ainda em progresso].
 
 **Site antigo: [cerestoeste.com.br](https://www.cerestoeste.com.br)**
