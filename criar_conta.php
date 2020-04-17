@@ -193,7 +193,7 @@
 						<div class="form-row">
 							<div class="col-md-6">
 								<h6>Nome Completo*</h6>
-						<input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Digite o seu nome..." required="">
+								<input type="text" class="form-control" id="nomeCompleto" name="nomeCompleto" placeholder="Digite o seu nome..." required="">
 							</div>
 							<div class="col-md-6">
 								<h6>Celular*</h6>
