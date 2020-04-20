@@ -32,6 +32,7 @@ $con=OpenCon();
 								<th scope="col">Descricao</th>
 								<th scope="col">Data de Inicio</th>
 								<th scope="col">Data de Termino</th>
+								<th scope="col">Vagas</th>
 								<th scope="col">Status</th>
 							</tr>
 						</thead>
@@ -65,7 +66,8 @@ $con=OpenCon();
 												<td>{$rowww['NOME']}</td>
 												<td>{$rowww['DESCRICAO']}</td>
 												<td>$data_inicio</td>
-												<td>$data_fim</td>";
+												<td>$data_fim</td>
+												<td>{$rowww['NMR_MAX_PARTICIPANTES']}</td>";
 
 										/**se o usuario nao esta logado e as inscricoes estiverem*/
 										if (!isset($_SESSION['login']) AND $rowww['STATUS_INSCRICOES']==1) {

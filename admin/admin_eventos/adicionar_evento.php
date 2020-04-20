@@ -6,7 +6,7 @@
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
-
+		<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 		<!--  jQuery -->
 		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
@@ -140,6 +140,7 @@
 								var descricaoEvento=$("#descricaoEvento").val();
 								var dataInicio=$("#dataInicio").val();
 								var dataFim=$("#dataFim").val();
+								var nmrVagas=$("#nmrVagas").val();
 								var dtIni = new Date(FormataStringData(dataInicio));
 								var dtFim = new Date(FormataStringData(dataFim));
 								
@@ -167,7 +168,8 @@
 						                       nomeEvento:nomeEvento,
 						                       descricaoEvento:descricaoEvento,
 						                       dataInicio:dataInicio,
-						                       dataFim,dataFim,
+						                       dataFim:dataFim,
+						                       nmrVagas:nmrVagas,
 						                       statusInscricoes:1
 						                    },
 						                    success:function(response){
@@ -199,8 +201,37 @@
 
 					<!--INSCRICOES ABERTAS-->
 					<input type='hidden' name="statusInscricoes" id="statusInscricoes" value="1" class="form-control" />
-
-
+					<h6>Vagas</h6>
+					<div class="input-group number-spinner">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+						</span>
+						<input type="number" pattern="\d*" name="nmrVagas" id="nmrVagas" class="form-control text-center" value="1">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+						</span>
+					</div>
+					<br>
+					<br>
+					<br>
+					<script type="text/javascript">
+						$(document).on('click', '.number-spinner button', function () {    
+							var btn = $(this),
+								oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+								newVal = 0;
+							
+							if (btn.attr('data-dir') == 'up') {
+								newVal = parseInt(oldValue) + 10;
+							} else {
+								if (oldValue > 1) {
+									newVal = parseInt(oldValue) - 10;
+								} else {
+									newVal = 1;
+								}
+							}
+							btn.closest('.number-spinner').find('input').val(newVal);
+						});
+					</script>
 					<div class="form-group">
 						<button type="submit" id="save" name="save" class="btn btn-success btn-lg btn-block btn-lg btn-block save">Criar Evento</button>
 					</div>
@@ -208,7 +239,7 @@
 					<br>
 
 				</form>
-
+				
 				<br>
 			</div>
 

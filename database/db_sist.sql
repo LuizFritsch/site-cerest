@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 17-Abr-2020 às 14:27
+-- Generation Time: 20-Abr-2020 às 10:43
 -- Versão do servidor: 5.6.41-84.1
 -- versão do PHP: 7.2.7
 
@@ -73,6 +73,7 @@ CREATE TABLE `eventos` (
   `DESCRICAO` varchar(400) COLLATE utf8_unicode_ci NOT NULL,
   `DATA_INICIO` date NOT NULL,
   `DATA_FIM` date NOT NULL,
+  `NMR_MAX_PARTICIPANTES` int(11) NOT NULL,
   `STATUS_INSCRICOES` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

@@ -53,6 +53,7 @@
 										<th scope="col" id="tabela-eventos">ID</th>
 										<th scope="col">Nome do evento</th>
 										<th scope="col">Descricao do evento</th>
+										<th scope="col">Vagas</th>
 										<th scope="col">Status Inscricao</th>
 										<th scope="col"><!--Visualizar/Editar Evento--></th>
 										<th scope="col"><!--Editar--></th>
@@ -71,7 +72,8 @@
 												echo "<tr>
 																	<th scope='row'>{$row['ID']}</th>
 																	<td>{$row['NOME']}</td>
-																	<td>{$row['DESCRICAO']}</td>";
+																	<td>{$row['DESCRICAO']}</td>
+																	<td>{$row['NMR_MAX_PARTICIPANTES']}</td>";
 																	if ($row['STATUS_INSCRICOES']==1) {
 																		echo "<td><input id='statsInscricoes{$row['ID']}' name='statsInscricoes{$row['ID']}' type='checkbox' checked data-toggle='toggle' data-on='Abertas' data-off='Fechadas' data-onstyle='success' data-offstyle='danger' onchange='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})' onclick='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})'></td>";
 																	}elseif ($row['STATUS_INSCRICOES']==0) {
