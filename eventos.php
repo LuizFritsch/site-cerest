@@ -29,9 +29,9 @@ $con=OpenCon();
 						<thead>
 							<tr>
 								<th scope="col" id="tabela-eventos">Nome do evento</th>
-								<th scope="col">Descricao</th>
-								<th scope="col">Data de Inicio</th>
-								<th scope="col">Data de Termino</th>
+								<th scope="col">Descrição</th>
+								<th scope="col">Data de Início</th>
+								<th scope="col">Data de Término</th>
 								<th scope="col">Vagas</th>
 								<th scope="col">Status</th>
 							</tr>
@@ -103,7 +103,7 @@ $con=OpenCon();
 											echo "<form method='POST' id='form{$rowww['ID']}'>";
 											/**inputs escondidos contendo idEvento, tipoRequisicao se 1 entao inscreve o usuario se 0 entao cancela a inscricao*/
 											echo "<td>
-													<button class='mt-auto btn btn-lg btn-block btn-success btn-inscrito' id='btn-inscrito' type='submit'>Ja estou inscrito neste evento</button>
+													<button class='mt-auto btn btn-lg btn-block btn-success btn-inscrito' id='btn-inscrito' type='submit'>Já estou inscrito neste evento</button>
 												  </td>";
 											echo "<input type='hidden' name='tipoRequisicao' value='0'></input>";
 											echo "<input type='hidden' name='idevento' value='{$rowww['ID']}'></input>";
