@@ -72,9 +72,6 @@
 												$das=$vgsOCupadas['vgsOc'];
 												$qtdVagasRestantes=$row['NMR_MAX_PARTICIPANTES']-$vgsOCupadas['vgsOc'];
 												$stts=$row['STATUS_INSCRICOES'];
-												if ($idEvento==35) {
-													echo "<script>alert('$stts');</script>";
-												}
 												echo "<tr>
 																	<th scope='row'>{$row['ID']}</th>
 																	<td>{$row['NOME']}</td>
