@@ -3,12 +3,6 @@
 <html>
 	<head>
 		<title>Gerenciar Eventos</title>
-		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-		
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-
-
 		<!--<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>-->
 		
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
@@ -54,6 +48,7 @@
 										<th scope="col">Nome do evento</th>
 										<th scope="col">Descricao do evento</th>
 										<th scope="col">Vagas</th>
+										<th scope="col">Vagas Disponiveis</th>
 										<th scope="col">Status Inscricao</th>
 										<th scope="col"><!--Visualizar/Editar Evento--></th>
 										<th scope="col"><!--Editar--></th>
@@ -68,12 +63,19 @@
 												die('Could not get data: ' . mysqli_error($con));
 											}
 											while($row = mysqli_fetch_array($result)) {
-												//BOOLEAN STATUS COM 
+												//BOOLEAN STATUS COM
+												$idEvento=$row['ID'];
+												$vg="SELECT COUNT(*) AS vgsOc FROM inscritos_eventos WHERE FK_ID_EVENTO='$idEvento'";
+												$res = mysqli_query($con,$vg);
+												$vgsOCupadas = mysqli_fetch_assoc($res);
+												$das=$vgsOCupadas['vgsOc'];
+												$qtdVagasRestantes=$row['NMR_MAX_PARTICIPANTES']-$vgsOCupadas['vgsOc'];
 												echo "<tr>
 																	<th scope='row'>{$row['ID']}</th>
 																	<td>{$row['NOME']}</td>
 																	<td>{$row['DESCRICAO']}</td>
-																	<td>{$row['NMR_MAX_PARTICIPANTES']}</td>";
+																	<td>{$row['NMR_MAX_PARTICIPANTES']}</td>
+																	<td>$qtdVagasRestantes</td>";
 																	if ($row['STATUS_INSCRICOES']==1) {
 																		echo "<td><input id='statsInscricoes{$row['ID']}' name='statsInscricoes{$row['ID']}' type='checkbox' checked data-toggle='toggle' data-on='Abertas' data-off='Fechadas' data-onstyle='success' data-offstyle='danger' onchange='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})' onclick='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})'></td>";
 																	}elseif ($row['STATUS_INSCRICOES']==0) {

@@ -7,10 +7,11 @@
 	$descricaoEvento=mysqli_real_escape_string($con,$_POST['descricaoEvento']);
 	$dataInicio=mysqli_real_escape_string($con,$_POST['dataInicio']);
 	$dataFim=mysqli_real_escape_string($con,$_POST['dataFim']);
+	$nmrVagas=mysqli_real_escape_string($con,$_POST['nmrVagas']);
 
 	$statusInscricao=1;
 	
-	$sql="UPDATE eventos SET NOME='$nomeEvento', DESCRICAO='$descricaoEvento', DATA_INICIO=STR_TO_DATE( '$dataInicio', '%d/%m/%Y' ), DATA_FIM=STR_TO_DATE( '$dataFim', '%d/%m/%Y' ) WHERE ID='$idEvento'";
+	$sql="UPDATE eventos SET NOME='$nomeEvento', DESCRICAO='$descricaoEvento', DATA_INICIO=STR_TO_DATE( '$dataInicio', '%d/%m/%Y' ), DATA_FIM=STR_TO_DATE( '$dataFim', '%d/%m/%Y' ), NMR_MAX_PARTICIPANTES='$nmrVagas' WHERE ID='$idEvento'";
 
 	if (mysqli_query($con,$sql)) {
 		return TRUE;

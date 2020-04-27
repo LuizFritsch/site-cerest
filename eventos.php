@@ -33,6 +33,7 @@ $con=OpenCon();
 								<th scope="col">Data de Início</th>
 								<th scope="col">Data de Término</th>
 								<th scope="col">Vagas</th>
+								<th scope="col">Vagas Restantes</th>
 								<th scope="col">Status</th>
 							</tr>
 						</thead>
@@ -49,6 +50,13 @@ $con=OpenCon();
 									}
 									//se tiver algum registro
 									while($rowww = mysqli_fetch_array($result)) {
+										
+										$idEvento=$rowww['ID'];
+										$vg="SELECT COUNT(*) AS vgsOc FROM inscritos_eventos WHERE FK_ID_EVENTO='$idEvento'";
+										$res = mysqli_query($con,$vg);
+										$vgsOCupadas = mysqli_fetch_assoc($res);
+										$das=$vgsOCupadas['vgsOc'];
+										$qtdVagasRestantes=$rowww['NMR_MAX_PARTICIPANTES']-$vgsOCupadas['vgsOc'];
 										
 										/**seleciona os eventos que o usuario logado esta inscrito*/
 										$sqlUsuarioInscrito = "SELECT COUNT(1) as boo FROM inscritos_eventos WHERE inscritos_eventos.FK_ID_USUARIO='$ide' and FK_ID_EVENTO='{$rowww['ID']}'";
@@ -67,7 +75,8 @@ $con=OpenCon();
 												<td>{$rowww['DESCRICAO']}</td>
 												<td>$data_inicio</td>
 												<td>$data_fim</td>
-												<td>{$rowww['NMR_MAX_PARTICIPANTES']}</td>";
+												<td>{$rowww['NMR_MAX_PARTICIPANTES']}</td>
+												<td>$qtdVagasRestantes</td>";
 
 										/**se o usuario nao esta logado e as inscricoes estiverem*/
 										if (!isset($_SESSION['login']) AND $rowww['STATUS_INSCRICOES']==1) {
@@ -85,7 +94,7 @@ $con=OpenCon();
 
 										}
 										/**Se o usuario nao esta inscrito e as inscricoes daquele evento estiverem abertas*/
-										elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==1){
+										elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==1 AND $qtdVagasRestantes>0){
 										/***/
 											/**apresenta um botao de se inscrever*/
 											echo "<form method='POST' id='form{$rowww['ID']}'>";
@@ -112,6 +121,10 @@ $con=OpenCon();
 											/**Se o usuario nao esta inscrito e as inscricoes daquele evento estiverem fechadas apresenta apenas evento encerrado*/
 											}elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==0){
 												echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Evento encerrado</button></td>";
+											/**Se o usuario esta inscrito e as inscricoes daquele evento estiverem fechadas apresenta participei deste evento*/
+											}elseif($estaInscrit['boo']==0 AND $rowww['STATUS_INSCRICOES']==1 AND $qtdVagasRestantes<=0){
+												echo "$qtdVagasRestantes";
+												echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Não há vagas dísponiveis</button></td>";
 											/**Se o usuario esta inscrito e as inscricoes daquele evento estiverem fechadas apresenta participei deste evento*/
 											}elseif($estaInscrit['boo']==1 AND $rowww['STATUS_INSCRICOES']==0){
 												echo "<td><button class='mt-auto btn btn-lg btn-block btn-secondary' disabled>Participei deste evento</button></td>";

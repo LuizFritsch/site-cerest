@@ -3,12 +3,12 @@
 <html>
 	<head>
 		<title>Editar Eventos</title>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
 
 		<!--  jQuery -->
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
 		<!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
 		<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
@@ -38,7 +38,7 @@
 		?>
 		<main>
 			<div class="content text-justify">
-				<h1 id="t" class="text-center">Criar Evento</h1>
+				<h1 id="t" class="text-center">Editar Evento</h1>
 				
 				<?php
 					if (!isset($_GET['idEvento'])) {
@@ -101,6 +101,38 @@
 							<input type='text' data-date-format="dd/mm/yyyy" value="<?php echo $data_fim; ?>" class="form-control" id="dataFim" name="dataFim" />
 						</div>
 					</div>
+
+					<h6>Vagas</h6>
+					<div class="input-group number-spinner">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" data-dir="dwn"><span class="glyphicon glyphicon-minus"></span></button>
+						</span>
+						<input type="number" pattern="\d*" name="nmrVagas" id="nmrVagas" class="form-control text-center" value="<?php echo (isset($row['NMR_MAX_PARTICIPANTES']))?$row['NMR_MAX_PARTICIPANTES']:'';?>">
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default" data-dir="up"><span class="glyphicon glyphicon-plus"></span></button>
+						</span>
+					</div>
+					<br>
+					<br>
+					<br>
+					<script type="text/javascript">
+						$(document).on('click', '.number-spinner button', function () {    
+							var btn = $(this),
+								oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+								newVal = 0;
+							
+							if (btn.attr('data-dir') == 'up') {
+								newVal = parseInt(oldValue) + 10;
+							} else {
+								if (oldValue > 1) {
+									newVal = parseInt(oldValue) - 10;
+								} else {
+									newVal = 1;
+								}
+							}
+							btn.closest('.number-spinner').find('input').val(newVal);
+						});
+					</script>
 					<!--ID-->
 					<input type="hidden" name="idEvento" id="idEvento" value="<?php echo $id_evento;?>">
 
@@ -182,14 +214,9 @@
 								var dataFim=$("#dataFim").val();
 								var dtIni = new Date(FormataStringData(dataInicio));
 								var dtFim = new Date(FormataStringData(dataFim));
-								
+								var nmrVagas=$("#nmrVagas").val();
 
 								if (!nomeEvento || !descricaoEvento || !dataFim || !dataInicio || !idEvento) {
-									alert(nomeEvento);
-									alert(descricaoEvento);
-									alert(dataFim);
-									alert(dataInicio);
-									alert(idEvento);
 									Swal.fire(
 											'Erro!',
 											'Nao foi possivel editar o evento, ha campos em branco!',
@@ -213,6 +240,7 @@
 						                       descricaoEvento:descricaoEvento,
 						                       dataInicio:dataInicio,
 						                       dataFim,dataFim,
+						                       nmrVagas:nmrVagas
 						                    },
 						                    success:function(response){
 						                        Swal.fire(
@@ -246,7 +274,7 @@
 
 
 					<div class="form-group">
-						<button type="submit" id="save" name="save" class="btn btn-success btn-lg btn-block btn-lg btn-block save">Finalizar Edicao</button>
+						<button type="submit" id="save" name="save" class="btn btn-success btn-lg btn-block btn-lg btn-block save">Finalizar Edição</button>
 					</div>
 
 					<br>
