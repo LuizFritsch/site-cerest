@@ -4,7 +4,8 @@
 	<head>
 		<title>Gerenciar Eventos</title>
 		<!--<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>-->
-		
+		<link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
@@ -70,6 +71,10 @@
 												$vgsOCupadas = mysqli_fetch_assoc($res);
 												$das=$vgsOCupadas['vgsOc'];
 												$qtdVagasRestantes=$row['NMR_MAX_PARTICIPANTES']-$vgsOCupadas['vgsOc'];
+												$stts=$row['STATUS_INSCRICOES'];
+												if ($idEvento==35) {
+													echo "<script>alert('$stts');</script>";
+												}
 												echo "<tr>
 																	<th scope='row'>{$row['ID']}</th>
 																	<td>{$row['NOME']}</td>
@@ -97,7 +102,15 @@
 
 			</div>
 		</main>
+		<script type="text/javascript">
 
+			/**
+				Funcao de transformar uma tabela em datatable
+			*/
+			$(document).ready(function() {
+				$('#example').dataTable();
+			} );
+		</script>
 		<script type="text/javascript">
 			function excluirEvento(idEvento){
 				const swalWithBootstrapButtons = Swal.mixin({
@@ -189,11 +202,7 @@
 			   	}
 			}
 		</script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				$('#eventos').dataTable();
-			} );
-		</script>
+
 		<script type="text/javascript">
 			$('#example').dataTable( {
 				"language": {

@@ -3,7 +3,6 @@
 <html>
 	<head>
 		<title>Editar Eventos</title>
-		<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
@@ -116,6 +115,7 @@
 					<br>
 					<br>
 					<script type="text/javascript">
+						$.noConflict();
 						$(document).on('click', '.number-spinner button', function () {    
 							var btn = $(this),
 								oldValue = btn.closest('.number-spinner').find('input').val().trim(),
