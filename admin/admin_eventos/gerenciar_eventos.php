@@ -5,9 +5,15 @@
 		<title>Gerenciar Eventos</title>
 		<!--<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>-->
 		<link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
-    <script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
+    	<script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+		<script type="text/javascript" src="https://guilherme.cerestoeste.com.br/script/scriptEventos.js"></script>
+		<script type="text/javascript" src="https://guilherme.cerestoeste.com.br/script/gambiarraEventos.js"></script>
+		<script type="text/javascript">
+		var jQuery_3_6_1 = $.noConflict(true);
+		</script>
+
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
 	</head>
 	<body>
@@ -80,6 +86,7 @@
 																	<td>$qtdVagasRestantes</td>";
 																	if ($row['STATUS_INSCRICOES']==1) {
 																		echo "<td><input id='statsInscricoes{$row['ID']}' name='statsInscricoes{$row['ID']}' type='checkbox' checked data-toggle='toggle' data-on='Abertas' data-off='Fechadas' data-onstyle='success' data-offstyle='danger' onchange='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})' onclick='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})'></td>";
+																		echo "<script>jQuery_3_6_1('#statsInscricoes{$row['ID']}').bootstrapToggle();</script>";
 																	}elseif ($row['STATUS_INSCRICOES']==0) {
 																		echo "<td><input id='statsInscricoes{$row['ID']}' name='statsInscricoes{$row['ID']}' type='checkbox' data-toggle='toggle' data-on='Abertas' data-off='Fechadas' data-onstyle='success' data-offstyle='danger' onchange='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})' onclick='alteraStatusInscricao({$row['ID']},statsInscricoes{$row['ID']})'></td>";
 																	}
@@ -104,8 +111,8 @@
 			/**
 				Funcao de transformar uma tabela em datatable
 			*/
-			$(document).ready(function() {
-				$('#example').dataTable();
+			jQuery_3_6_1(document).ready(function() {
+				jQuery_3_6_1('#example').dataTable();
 			} );
 		</script>
 		<script type="text/javascript">
@@ -128,7 +135,7 @@
 				  reverseButtons: true
 				}).then((result) => {
 				  if (result.value) {
-				    $.ajax({
+				    jQuery_3_6_1.ajax({
 	                    url:'excluir_evento.php',
 	                    method:'POST',
 	                    data:{
@@ -164,7 +171,7 @@
 				var statsInscricoes=statsInscricoes.checked;
 				if(statsInscricoes == true){
 			       statusInscricoes=1;
-			    	$.ajax({
+			    	jQuery_3_6_1.ajax({
                        url:'altera_status_inscricao.php',
                        method:'POST',
                        data:{
@@ -181,7 +188,7 @@
                     });
 			    }else{
 			       statusInscricoes=0;
-			       $.ajax({
+			       jQuery_3_6_1.ajax({
                        url:'altera_status_inscricao.php',
                        method:'POST',
                        data:{
@@ -201,7 +208,7 @@
 		</script>
 
 		<script type="text/javascript">
-			$('#example').dataTable( {
+			jQuery_3_6_1('#example').dataTable( {
 				"language": {
 				  	"emptyTable": "Não há nenhum evento disponivel",
 				  	"info": "Mostrando _START_ de _END_ de um total de _TOTAL_ entradas",
@@ -226,11 +233,11 @@
             		"addClass": 'form-control input-lg col-xs-12'
         		},
         		"fnDrawCallback":function(){
-		            $("input[type='search']").attr("id", "searchBox");
-		            $('#dialPlanListTable').css('cssText', "margin-top: 0px !important;");
-		            $("select[name='dialPlanListTable_length'], #searchBox").removeClass("input-sm");
-		            $('#searchBox').css("width", "300px").focus();
-		            $('#dialPlanListTable_filter').removeClass('dataTables_filter');
+		            jQuery_3_6_1("input[type='search']").attr("id", "searchBox");
+		            jQuery_3_6_1('#dialPlanListTable').css('cssText', "margin-top: 0px !important;");
+		            jQuery_3_6_1("select[name='dialPlanListTable_length'], #searchBox").removeClass("input-sm");
+		            jQuery_3_6_1('#searchBox').css("width", "300px").focus();
+		            jQuery_3_6_1('#dialPlanListTable_filter').removeClass('dataTables_filter');
         		}
         
 			} );

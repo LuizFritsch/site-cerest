@@ -25,6 +25,8 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
     src="https://code.jquery.com/jquery-3.4.1.min.js"
     integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
     crossorigin="anonymous"></script>
+    
+
     <script type="text/javascript" src="https://guilherme.cerestoeste.com.br/script/script.js"></script>
     <script type="text/javascript" src="https://guilherme.cerestoeste.com.br/script/gambiarra.js"></script>
     
