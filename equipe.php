@@ -51,15 +51,6 @@
 						</div>
 						<div class="col-xl-3 col-md-6 mb-4">
 							<div class="card border-0 shadow">
-								<!--<img src="./img/equipe/CLAUDIA.jpg"class="card-img-top" alt="...">-->
-								<div class="card-body text-center">
-									<h5 class="card-title mb-0">Cláudia Fleck</h5>
-									<div class="card-text text-black-50">Fisioterapeuta</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-3 col-md-6 mb-4">
-							<div class="card border-0 shadow">
 								<!--<img src="./img/equipe/CLAUDINHA.jpg"class="card-img-top" alt="...">-->
 								<div class="card-body text-center">
 									<h5 class="card-title mb-0">Cláudia Rejane</h5>
@@ -82,6 +73,15 @@
 								<div class="card-body text-center">
 									<h5 class="card-title mb-0">Flávia Leães</h5>
 									<div class="card-text text-black-50">Fonoaudiologa</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6 mb-4">
+							<div class="card border-0 shadow">
+								<!--<img src="./img/equipe/PAULA.jpg"class="card-img-top" alt="...">-->
+								<div class="card-body text-center">
+									<h5 class="card-title mb-0">Leonardo Galloni</h5>
+									<div class="card-text text-black-50">Médico do Trabalho</div>
 								</div>
 							</div>
 						</div>
@@ -112,9 +112,19 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-xl-3 col-md-6 mb-4">
+							<div class="card border-0 shadow">
+								<!--<img src="./img/equipe/PAULA.jpg"class="card-img-top" alt="...">-->
+								<div class="card-body text-center">
+									<h5 class="card-title mb-0">Pedro Oscar</h5>
+									<div class="card-text text-black-50">Médico do Trabalho</div>
+								</div>
+							</div>
+						</div>
 					</div>
 					<!-- /.row -->
 				</div>
+				<br>
 				<!-- /.container -->
 			</div>
 		</main>
