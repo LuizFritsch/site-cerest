@@ -14,6 +14,35 @@
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js" type="text/javascript"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js" type="text/javascript"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" type="text/javascript"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.min.js" type="text/javascript"></script>
+		<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js" type="text/javascript"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" type="text/javascript"></script>
+		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" type="text/javascript"></script>
+
+
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.bootstrap4.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+		<script src="" type="text/javascript"></script>
+		<script src="" type="text/javascript"></script>
+		<script src="" type="text/javascript"></script>
+		<script src='https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css'></script>;
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css'></script>
+		<script src='https://cdn.datatables.net/buttons/1.6.1/css/buttons.bootstrap4.min.css'></script>
+		<script src='https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js'></script>
+		<script src='https://cdn.datatables.net/buttons/1.6.1/js/buttons.bootstrap4.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js'></script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js'></script>
+		<script src='https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js'></script>
+		<script src='https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js'></script>
+		<script src='https://cdn.datatables.net/buttons/1.6.1/js/buttons.colVis.min.js'></script>
 	</head>
 	<body>
 		<?php
@@ -265,7 +294,11 @@
 			} );
 		</script>
 		<script type="text/javascript">
-			$('#example').dataTable( {
+		$('#example').dataTable( {
+				dom: 'Bfrtip',
+		        buttons: [
+		            'copy', 'csv', 'excel', 'pdf', 'print'
+		        ],
 				"language": {
 				  	"emptyTable": "Não há nenhum inscrito neste evento",
 				  	"info": "Mostrando _START_ de _END_ de um total de _TOTAL_ inscritos",
@@ -286,9 +319,6 @@
 				      "next": "Próximo"
 			    	}
 			  	},
-			  	"Buttons":[
-			  		'copy','excel','pdf'
-			  	],
 			  	"Search": {
             		"addClass": 'form-control input-lg col-xs-12'
         		},
