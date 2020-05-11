@@ -281,11 +281,14 @@
 			        "zeroRecords":    "Não há nenhum inscrito neste evento",
 				    "paginate": {
 				      "first":      "Primeira",
-	            	  "last":       "ÚLtima",
+	            	  "last":       "Última",
 				      "previous": "Anterior",
 				      "next": "Próximo"
-			    }
-			  },
+			    	}
+			  	},
+			  	"Buttons":[
+			  		'copy','excel','pdf'
+			  	],
 			  	"Search": {
             		"addClass": 'form-control input-lg col-xs-12'
         		},

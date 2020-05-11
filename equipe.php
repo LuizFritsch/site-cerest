@@ -25,7 +25,7 @@
 							<div class="card border-0 shadow">
 								<!--<img src="./img/equipe/ALINNE.jpg" class="card-img-top" alt="...">-->
 								<div class="card-body text-center">
-									<h5 class="card-title mb-0">Alinne</h5>
+									<h5 class="card-title mb-0">Alinne Azambuja</h5>
 									<div class="card-text text-black-50">Financeiro</div>
 								</div>
 							</div>
