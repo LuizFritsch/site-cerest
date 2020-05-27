@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: 27-Maio-2020 às 07:43
+-- Generation Time: 27-Maio-2020 às 08:40
 -- Versão do servidor: 5.6.41-84.1
 -- versão do PHP: 7.2.7
 
@@ -145,6 +145,52 @@ CREATE TABLE `nucleo` (
   `TELEFONE` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
   `EMAIL` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
   `LOGO` blob
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `paciente`
+--
+
+CREATE TABLE `paciente` (
+  `ID` int(11) NOT NULL,
+  `CARTAO_SUS` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `DATA_NASCIMENTO` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `OCUPACAO` varchar(170) COLLATE utf8_unicode_ci NOT NULL,
+  `NATURALIDADE` varchar(170) COLLATE utf8_unicode_ci NOT NULL,
+  `NOME_MAE` varchar(170) COLLATE utf8_unicode_ci NOT NULL,
+  `PROFISSAO` varchar(170) COLLATE utf8_unicode_ci NOT NULL,
+  `FOTO` blob NOT NULL,
+  `STATUS_TRABALHO` int(11) NOT NULL,
+  `FK_ID_USUARIO_COMUM` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `profissional`
+--
+
+CREATE TABLE `profissional` (
+  `ID` int(11) NOT NULL,
+  `NOME` varchar(150) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `prontuario`
+--
+
+CREATE TABLE `prontuario` (
+  `ID` int(11) NOT NULL,
+  `PROCEDIMENTO` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `FAA` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `DATA` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `CGS` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `FK_ID_PROFISSIONAL` int(11) NOT NULL,
+  `FK_ID_PACIENTE` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -302,6 +348,26 @@ ALTER TABLE `nucleo`
   ADD KEY `ID_2` (`ID`);
 
 --
+-- Indexes for table `paciente`
+--
+ALTER TABLE `paciente`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_ID_USUARIO_COMUM` (`FK_ID_USUARIO_COMUM`);
+
+--
+-- Indexes for table `profissional`
+--
+ALTER TABLE `profissional`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `prontuario`
+--
+ALTER TABLE `prontuario`
+  ADD PRIMARY KEY (`ID`),
+  ADD KEY `FK_ID_PROFISSIONAL` (`FK_ID_PROFISSIONAL`,`FK_ID_PACIENTE`);
+
+--
 -- Indexes for table `publicacoes`
 --
 ALTER TABLE `publicacoes`
@@ -394,6 +460,24 @@ ALTER TABLE `municipio`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `paciente`
+--
+ALTER TABLE `paciente`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `profissional`
+--
+ALTER TABLE `profissional`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `prontuario`
+--
+ALTER TABLE `prontuario`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `publicacoes`
 --
 ALTER TABLE `publicacoes`
@@ -458,6 +542,19 @@ ALTER TABLE `inscritos_eventos`
 --
 ALTER TABLE `municipio`
   ADD CONSTRAINT `fk_municipio_estado1` FOREIGN KEY (`FK_ID_ESTADO`) REFERENCES `estado` (`ID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Limitadores para a tabela `paciente`
+--
+ALTER TABLE `paciente`
+  ADD CONSTRAINT `paciente_ibfk_1` FOREIGN KEY (`FK_ID_USUARIO_COMUM`) REFERENCES `usuario_comum` (`ID`);
+
+--
+-- Limitadores para a tabela `prontuario`
+--
+ALTER TABLE `prontuario`
+  ADD CONSTRAINT `prontuario_ibfk_1` FOREIGN KEY (`FK_ID_PROFISSIONAL`) REFERENCES `profissional` (`ID`),
+  ADD CONSTRAINT `prontuario_ibfk_2` FOREIGN KEY (`ID`) REFERENCES `paciente` (`ID`);
 
 --
 -- Limitadores para a tabela `publicacoes`
