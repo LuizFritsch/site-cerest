@@ -6,7 +6,7 @@ $con=OpenCon();
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Visualizar Eventos</title>
+		<title>Visualizar Prontuario</title>
 		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
 		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 		
@@ -66,7 +66,6 @@ $con=OpenCon();
 				<?php
 					$idPaciente=$_GET['idPaciente'];
 					$sqlss="SELECT * FROM paciente inner join usuario_comum where paciente.FK_ID_USUARIO_COMUM=$idPaciente AND usuario_comum.ID=$idPaciente";
-					echo "$sqlss";
 					$resultss=mysqli_query($con,$sqlss);
 					if(!$resultss) {
 						die('Could not get data: ' . mysqli_error($con));
@@ -75,16 +74,13 @@ $con=OpenCon();
 					$cpf=$paciente['CPF'];
 					$nomeCompleto=$paciente['NOME_COMPLETO'];
 					$cartaosus=$paciente['CARTAO_SUS'];
-					echo "-";
-					echo "-";
-					echo "$id";
-					echo "$nomeCompleto";
-					echo "$cartaosus";
 				?>
 
 				
 				<div class="form-group">
-					
+					<?php
+						echo "<h1 class='text-center'>Prontuario $nomeCompleto</h1>";
+					?>
 				</div>
 				<form>
 					<div id="divPublicacoes">
@@ -123,14 +119,17 @@ $con=OpenCon();
 								<thead>
 									<tr>
 										<th scope="col" id="tabela-eventos">ID</th>
-										<th scope="col">Paciente</th>
-										
+										<th scope="col">Procedimento</th>
+										<th scope="col">Data</th>
+										<th scope="col">FAA</th>
+										<th scope="col">CGS</th>
+										<th scope="col">Profissional</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
 										try {
-											$sql="SELECT * FROM prontuario WHERE prontuario.FK_ID_USUARIO_COMUM=$idPaciente";
+											$sql="SELECT * FROM prontuario INNER JOIN profissional WHERE prontuario.FK_ID_PACIENTE=$idPaciente AND profissional.ID=FK_ID_PROFISSIONAL";
 											$result=mysqli_query($con,$sql);
 												if(!$result ) {
 													die('Could not get data: ' . mysqli_error($con));
@@ -138,7 +137,11 @@ $con=OpenCon();
 												while($row = mysqli_fetch_array($result)) {
 													echo "<tr>
 																<td scope='row'>{$row['ID']}</th>
-																<td>{$row['NOME_COMPLETO']}</td>
+																<td>{$row['PROCEDIMENTO']}</td>
+																<td>{$row['DATA']}</td>
+																<td>{$row['FAA']}</td>
+																<td>{$row['CGS']}</td>
+																<td>{$row['NOME']}</td>
 															";
 													echo "</tr>";
 												}
@@ -171,7 +174,7 @@ $con=OpenCon();
 							  	"infoFiltered":   "(filtrado de um total de _MAX_ total entradas)",
 						        "infoPostFix":    "",
 						        "thousands":      ".",
-						        "lengthMenu":     "Mostrar _MENU_ paciente",
+						        "lengthMenu":     "Mostrar _MENU_ pacientes",
 							  	"loadingRecords": "Carregando...",
 						        "processing":     "Processando...",
 						        "search":         "Buscar:",
@@ -258,6 +261,6 @@ $con=OpenCon();
                 });
 			}
 		</script>
-		<?php include '../../footer.html'; ?>
+		<?php include '../footer.html'; ?>
 	</body>
 </html>

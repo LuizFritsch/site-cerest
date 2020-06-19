@@ -103,7 +103,7 @@ $con=OpenCon();
 							  	"infoFiltered":   "(filtrado de um total de _MAX_ total entradas)",
 						        "infoPostFix":    "",
 						        "thousands":      ".",
-						        "lengthMenu":     "Mostrar _MENU_ paciente",
+						        "lengthMenu":     "Mostrar _MENU_ pacientes",
 							  	"loadingRecords": "Carregando...",
 						        "processing":     "Processando...",
 						        "search":         "Buscar:",
@@ -132,6 +132,6 @@ $con=OpenCon();
 				<br>
 			</div>
 		</main>
-		<?php include 'footer.html'; ?>
+		<?php include '../footer.html'; ?>
 	</body>
 </html>
