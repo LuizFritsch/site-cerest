@@ -33,6 +33,10 @@ if(mysqli_num_rows($result)>0){
 		header('location:https://guilherme.cerestoeste.com.br/index.php#t');
 	}elseif ($_SESSION['id']==3) {
 		header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t');
+	}elseif ($_SESSION['id']==4) {
+		header('location:https://guilherme.cerestoeste.com.br/fisio.php#t');
+	}elseif ($_SESSION['id']==5) {
+		header('location:https://guilherme.cerestoeste.com.br/paciente.php#t');
 	}else{
 		header('location:https://guilherme.cerestoeste.com.br/');
 	}
@@ -49,6 +53,10 @@ if(mysqli_num_rows($result)>0){
 		header('location:https://guilherme.cerestoeste.com.br/index.php#t');
 	}elseif ($_SESSION['id']==3) {
 		header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t');
+	}elseif ($_SESSION['id']==4) {
+		header('location:https://guilherme.cerestoeste.com.br/fisio.php#t');
+	}elseif ($_SESSION['id']==5) {
+		header('location:https://guilherme.cerestoeste.com.br/paciente.php#t');
 	}else{
 		header('location:https://guilherme.cerestoeste.com.br/');
 	}
