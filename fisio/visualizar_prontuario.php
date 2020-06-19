@@ -124,10 +124,7 @@ $con=OpenCon();
 									<tr>
 										<th scope="col" id="tabela-eventos">ID</th>
 										<th scope="col">Paciente</th>
-										<th scope="col">Cartão SUS</th>
-										<th scope="col">Ocupação</th>
-										<th scope="col">Data de Nascimento</th>
-										<th scope="col">Prontuário</th>
+										
 									</tr>
 								</thead>
 								<tbody>
@@ -142,10 +139,6 @@ $con=OpenCon();
 													echo "<tr>
 																<td scope='row'>{$row['ID']}</th>
 																<td>{$row['NOME_COMPLETO']}</td>
-																<td>{$row['CARTAO_SUS']}</td>
-																<td>{$row['OCUPACAO']}</td>
-																<td>{$row['DATA_NASCIMENTO']}</td>
-																<td><a href=\"visualizar_prontuario.php?idPaciente=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-info'>Visualizar Prontuário</a></td>
 															";
 													echo "</tr>";
 												}
@@ -164,6 +157,45 @@ $con=OpenCon();
 
 			</div>
 		</main>
+					<script type="text/javascript">
+						$(document).ready(function() {
+							$('#example').dataTable();
+						} );
+					</script>
+					<script type="text/javascript">
+						$('#example').dataTable( {
+							"language": {
+							  	"emptyTable": "Não há nenhum paciente",
+							  	"info": "Mostrando _START_ de _END_ de um total de _TOTAL_ entradas",
+							  	"infoEmpty": "Mostrando 0 de um total de 0 entradas",
+							  	"infoFiltered":   "(filtrado de um total de _MAX_ total entradas)",
+						        "infoPostFix":    "",
+						        "thousands":      ".",
+						        "lengthMenu":     "Mostrar _MENU_ paciente",
+							  	"loadingRecords": "Carregando...",
+						        "processing":     "Processando...",
+						        "search":         "Buscar:",
+							  	"searchPlaceholder": "Filtre por qualquer coisa aqui...",
+						        "zeroRecords":    "Não há dados",
+							    "paginate": {
+							      "first":      "Primeira",
+				            	  "last":       "Última",
+							      "previous": "Anterior",
+							      "next": "Próximo"
+						    }
+						  },
+						  	"Search": {
+			            		"addClass": 'form-control input-lg col-xs-12'
+			        		},
+			        		"fnDrawCallback":function(){
+					            $("input[type='search']").attr("id", "searchBox");
+					            $('#dialPlanListTable').css('cssText', "margin-top: 0px !important;");
+					            $("select[name='dialPlanListTable_length'], #searchBox").removeClass("input-sm");
+					            $('#searchBox').css("width", "300px").focus();
+					            $('#dialPlanListTable_filter').removeClass('dataTables_filter');
+			        		}
+						} );
+					</script>
 		<script type="text/javascript">
 			function alteraStatusInscricao(idEvento,statsInscricoes){
 				var idEvento=idEvento;
