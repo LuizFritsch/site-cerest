@@ -34,7 +34,7 @@ if(mysqli_num_rows($result)>0){
 	}elseif ($_SESSION['id']==3) {
 		header('location:https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t');
 	}elseif ($_SESSION['id']==4) {
-		header('location:https://guilherme.cerestoeste.com.br/fisio.php#t');
+		header('location:https://guilherme.cerestoeste.com.br/fisio/fisio.php#t');
 	}elseif ($_SESSION['id']==5) {
 		header('location:https://guilherme.cerestoeste.com.br/paciente.php#t');
 	}else{
