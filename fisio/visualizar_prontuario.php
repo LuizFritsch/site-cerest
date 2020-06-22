@@ -168,13 +168,13 @@ $con=OpenCon();
 					<script type="text/javascript">
 						$('#example').dataTable( {
 							"language": {
-							  	"emptyTable": "Não há nenhum paciente",
+							  	"emptyTable": "Não foi encontrado nenhum procedimento",
 							  	"info": "Mostrando _START_ de _END_ de um total de _TOTAL_ entradas",
 							  	"infoEmpty": "Mostrando 0 de um total de 0 entradas",
 							  	"infoFiltered":   "(filtrado de um total de _MAX_ total entradas)",
 						        "infoPostFix":    "",
 						        "thousands":      ".",
-						        "lengthMenu":     "Mostrar _MENU_ pacientes",
+						        "lengthMenu":     "Mostrar _MENU_ procedimento",
 							  	"loadingRecords": "Carregando...",
 						        "processing":     "Processando...",
 						        "search":         "Buscar:",
