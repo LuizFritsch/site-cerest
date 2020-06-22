@@ -91,48 +91,59 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
             </div>
           </li>
           <?php
+
+          if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==4){
+            $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            if (strpos($actual_link, 'fisio')) {
+              //se o usuario logado estiver na pagina relatorio nucleos, a aba relatorio fica em negrito no menu
+            echo "<li class='nav-item active'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t'>Fisioterapia</a></li>";
+            }else{
+            echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t'>Fisioterapia</a></li>";
+            }
+          }
+
           if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==3){
             //se o usuario estiver logado, mostra a aba relatorio nucleos no menu
-          if ($activePage == 'relatorio_nucleos') {
-            //se o usuario logado estiver na pagina relatorio nucleos, a aba relatorio fica em negrito no menu
-          echo "<li class='nav-item active'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
-          }else{
-          echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
-          }
+            if ($activePage == 'relatorio_nucleos') {
+              //se o usuario logado estiver na pagina relatorio nucleos, a aba relatorio fica em negrito no menu
+            echo "<li class='nav-item active'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+            }else{
+            echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/relatorio_nucleos.php#t'>Relatório Semestral dos Núcleos</a></li>";
+            }
           }
           if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==1){
-          $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-          if (strpos($actual_link, 'admin')) {
-            //SE ESTIVER EM ALGUMA PAGINA DE ADMIN, O MENU FICA EM NEGRITO
-          echo "<li class='nav-item dropdown active'>
-            <a class='nav-link dropdown-toggle dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-              Painel de Administração
-            </a>
-            <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor/gerenciar_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php#t'>Gerenciar Publicações</a>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_eventos/gerenciar_eventos.php#t'>Gerenciar Eventos</a>
-              <div role='separator' class='dropdown-divider'></div>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de Administração</a>
-            </div>
-          </li>";
-          }
-          else{
-          echo "<li class='nav-item dropdown'>
-            <a class='nav-link dropdown-toggle' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
-              Painel de Administração
-            </a>
-            <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor/gerenciar_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php#t'>Gerenciar Publicações</a>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_eventos/gerenciar_eventos.php#t'>Gerenciar Eventos</a>
-              <div role='separator' class='dropdown-divider'></div>
-              <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de Administração</a>
-            </div>
-          </li>";
-          }
+            $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+            if (strpos($actual_link, 'admin')) {
+              //SE ESTIVER EM ALGUMA PAGINA DE ADMIN, O MENU FICA EM NEGRITO
+            echo "<li class='nav-item dropdown active'>
+              <a class='nav-link dropdown-toggle dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                Painel de Administração
+              </a>
+              <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor/gerenciar_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php#t'>Gerenciar Publicações</a>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_eventos/gerenciar_eventos.php#t'>Gerenciar Eventos</a>
+                <div role='separator' class='dropdown-divider'></div>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de Administração</a>
+              </div>
+            </li>";
+            }
+            else{
+            echo "<li class='nav-item dropdown'>
+              <a class='nav-link dropdown-toggle' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                Painel de Administração
+              </a>
+              <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_conselho_gestor/gerenciar_conselho_gestor.php#t'>Gerenciar Conselho Gestor</a>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_noticias.php#t'>Gerenciar Noticias</a>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_publicacoes/gerenciar_publicacoes.php#t'>Gerenciar Publicações</a>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/admin_eventos/gerenciar_eventos.php#t'>Gerenciar Eventos</a>
+                <div role='separator' class='dropdown-divider'></div>
+                <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/admin/painel_admin.php#t'>Painel de Administração</a>
+              </div>
+            </li>";
+            }
           }
           ?>
         </ul>
