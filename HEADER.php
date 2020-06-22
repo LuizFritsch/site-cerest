@@ -94,12 +94,34 @@ $activePage = basename($_SERVER['PHP_SELF'], ".php");
 
           if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==4){
             $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-            if (strpos($actual_link, 'fisio')) {
-              //se o usuario logado estiver na pagina relatorio nucleos, a aba relatorio fica em negrito no menu
-            echo "<li class='nav-item active'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t'>Fisioterapia</a></li>";
+            /*if (strpos($actual_link, 'fisio')) {
+              echo "<li class='nav-item active'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t'>Fisioterapia</a></li>";
             }else{
-            echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t'>Fisioterapia</a></li>";
-            }
+              echo "<li class='nav-item'><a class='nav-link' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t'>Fisioterapia</a></li>";
+            }*/
+            if (strpos($actual_link, 'fisio')) {
+              //SE ESTIVER EM ALGUMA PAGINA DE ADMIN, O MENU FICA EM NEGRITO
+              echo "<li class='nav-item dropdown active'>
+                <a class='nav-link dropdown-toggle dropdown-item' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                 Fisioterapia
+                </a>
+                <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                  <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t'>Pacientes e Prontuarios</a>
+                  <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/fisio/agenda.php#t'>Agenda</a>
+                </div>
+              </li>";
+              }
+              else{
+              echo "<li class='nav-item dropdown'>
+               <a class='nav-link dropdown-toggle dropdown-item' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t' id='navbarDropdown' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                 Fisioterapia
+                </a>
+                <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                  <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/fisio/fisio.php#t'>Pacientes e Prontuarios</a>
+                  <a class='dropdown-item' href='https://guilherme.cerestoeste.com.br/fisio/agenda.php#t'>Agenda</a>
+                </div>
+              </li>";
+              }
           }
 
           if(isset($_SESSION['login']) && isset($_SESSION['senha']) && $func==3){

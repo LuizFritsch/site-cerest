@@ -52,6 +52,7 @@ $con=OpenCon();
 										<th scope="col">Paciente</th>
 										<th scope="col">Cartão SUS</th>
 										<th scope="col">Telefone</th>
+										<th scope="col">Email</th>
 										<th scope="col">Ocupação</th>
 										<th scope="col">Data de Nascimento</th>
 										<th scope="col">Prontuário</th>
@@ -71,6 +72,7 @@ $con=OpenCon();
 																<td>{$row['NOME_COMPLETO']}</td>
 																<td>{$row['CARTAO_SUS']}</td>
 																<td>{$row['TELEFONE']}</td>
+																<td>{$row['EMAIL']}</td>
 																<td>{$row['OCUPACAO']}</td>
 																<td>{$row['DATA_NASCIMENTO']}</td>
 																<td><a href=\"visualizar_prontuario.php?idPaciente=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-info'>Visualizar Prontuário</a></td>
