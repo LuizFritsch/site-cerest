@@ -7,15 +7,16 @@ $con=OpenCon();
 <html>
 	<head>
 		<title>Fisioterapia</title>
-		<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-		<script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-		
-		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
-		<link rel="stylesheet" type="text/css" href="./style/style.css">
-		<!--<script src="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"></script>-->
-		
+		<link href="https://nightly.datatables.net/css/jquery.dataTables.css" rel="stylesheet" type="text/css" />
+    	<script src="https://nightly.datatables.net/js/jquery.dataTables.js"></script>
 		<link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
 		<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+		<script type="text/javascript" src="https://guilherme.cerestoeste.com.br/script/scriptEventos.js"></script>
+		<script type="text/javascript" src="https://guilherme.cerestoeste.com.br/script/gambiarraEventos.js"></script>
+		<script type="text/javascript">
+		var jQuery_3_6_1 = $.noConflict(true);
+		</script>
+
 		<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>;
 	</head>
 	<body>
@@ -55,27 +56,36 @@ $con=OpenCon();
 										<th scope="col">Email</th>
 										<th scope="col">Ocupação</th>
 										<th scope="col">Data de Nascimento</th>
+										<th scope="col">Voltou a trabalhar?</th>
 										<th scope="col">Prontuário</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php
 										try {
-											$sql="SELECT * FROM paciente inner join usuario_comum where paciente.FK_ID_USUARIO_COMUM=usuario_comum.ID";
+											$sql="SELECT *, paciente.ID AS pid FROM paciente inner join usuario_comum where paciente.FK_ID_USUARIO_COMUM=usuario_comum.ID";
 											$result=mysqli_query($con,$sql);
 												if(!$result ) {
 													die('Could not get data: ' . mysqli_error($con));
 												}
 												while($row = mysqli_fetch_array($result)) {
+													$stts=$row['STATUS_TRABALHO'];
 													echo "<tr>
-																<td scope='row'>{$row['ID']}</th>
+																<td scope='row'>{$row['pid']}</th>
 																<td>{$row['NOME_COMPLETO']}</td>
 																<td>{$row['CARTAO_SUS']}</td>
 																<td>{$row['TELEFONE']}</td>
 																<td>{$row['EMAIL']}</td>
 																<td>{$row['OCUPACAO']}</td>
-																<td>{$row['DATA_NASCIMENTO']}</td>
-																<td><a href=\"visualizar_prontuario.php?idPaciente=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-info'>Visualizar Prontuário</a></td>
+																<td>{$row['DATA_NASCIMENTO']}</td>";
+																if ($row['STATUS_TRABALHO']==1) {
+																		echo "<td><input id='statsTrabalho{$row['pid']}' name='statsTrabalho{$row['pid']}' type='checkbox' checked data-toggle='toggle' data-on='Retornou' data-off='Não Retornou' data-onstyle='success' data-offstyle='danger' onchange='alteraStatusTrabalho({$row['pid']},statsTrabalho{$row['pid']})' onclick='alteraStatusTrabalho({$row['pid']},statsTrabalho{$row['pid']})'></td>";
+																		echo "<script>jQuery_3_6_1('#statsTrabalho{$row['pid']}').bootstrapToggle();</script>";
+																	}elseif ($row['STATUS_TRABALHO']==0) {
+																		echo "<td><input id='statsTrabalho{$row['pid']}' name='statsTrabalho{$row['pid']}' type='checkbox' data-toggle='toggle' data-on='Retornou' data-off='Não Retornou' data-onstyle='success' data-offstyle='danger' onchange='alteraStatusTrabalho({$row['pid']},statsTrabalho{$row['pid']})' onclick='alteraStatusTrabalho({$row['pid']},statsTrabalho{$row['pid']})'></td>";
+																	}
+
+													echo "<td><a href=\"visualizar_prontuario.php?idPaciente=".$row['ID']."&user-id=".$_ide."\" type='button' class='btn btn-info'>Visualizar Prontuário</a></td>
 															";
 													echo "</tr>";
 												}
@@ -132,10 +142,50 @@ $con=OpenCon();
 			        		}
 						} );
 					</script>
-
 				<br>
 			</div>
 		</main>
+		<script type="text/javascript">
+					function alteraStatusTrabalho(idPaciente,statsTrabalho){
+						var idPaciente=idPaciente;
+						var statsTrabalho=statsTrabalho.checked;
+						if(statsTrabalho == true){
+					       statsTrabalho=1;
+					    	jQuery_3_6_1.ajax({
+		                       url:'altera_status_trabalho.php',
+		                       method:'POST',
+		                       data:{
+		                           idPaciente:idPaciente,
+		                           statsTrabalho:statsTrabalho 
+		                       },
+		                       success:function(response){
+		                           Swal.fire(
+										'Sucesso!',
+										'o status de trabalho do paciente foi atualizado!',
+										'success'
+										);
+		                       }
+		                    });
+					    }else{
+					       statsTrabalho=0;
+					       jQuery_3_6_1.ajax({
+		                       url:'altera_status_trabalho.php',
+		                       method:'POST',
+		                       data:{
+		                           idPaciente:idPaciente,
+		                           statsTrabalho:statsTrabalho 
+		                       },
+		                       success:function(response){
+		                           Swal.fire(
+										'Sucesso!',
+										'o status de trabalho do paciente foi atualizado!!',
+										'success'
+										);
+		                       }
+		                    });
+					   	}
+					}
+				</script>
 		<?php include '../footer.html'; ?>
 	</body>
 </html>
